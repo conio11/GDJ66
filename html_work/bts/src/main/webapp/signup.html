@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<style>
+			table, td {
+				border: 1px solid #000000;
+				border-collapse: collapse;
+			}
+		
+		</style>
+	</head>
+	<body>
+		<form action="">
+		<fieldset>
+			<legend>회원가입</legend>
+			<table>
+				<tr>
+					<td>ID</td>
+					<td><input type="text"></td>
+				</tr>
+				<tr>
+					<td>
+						<div>PW</div>
+						<div>확인</div>
+					</td>
+					<td>
+						<div><input type="password"></div>
+						<div><input type="password"></div>
+					</td>
+				</tr>
+				<tr>
+					<td>성별</td>
+					<td>
+						<input type="radio" name="gender">남
+						<input type="radio" name="gender">여
+					</td>
+				</tr>
+				<tr>
+					<td>취미</td>
+					<td>	
+						<input type="checkbox" name="hobby">운동
+						<input type="checkbox" name="hobby">여행
+						<input type="checkbox" name="hobby">독서
+					</td>
+				</tr>
+				<tr>
+					<td>생일</td>
+					<td><input type="date"></td>
+				</tr>
+				<tr>
+					<td>나이</td>
+					<td><input type="text"></td>
+				</tr>
+								<tr>
+					<td>이메일</td>
+					<td>
+						<input type="text"> @
+						<select>
+							<option>naver.com</option>
+							<option>gmail.com</option>
+							<option>daum.net</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>메모</td>
+					<td>
+						<div><textarea rows="" cols="50"></textarea></div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button type="button">signin
+						<button type="button">reset
+					</td>
+				
+				</tr>
+			</table>
+		</fieldset>
+		</form>
+	</body>
+</html>
