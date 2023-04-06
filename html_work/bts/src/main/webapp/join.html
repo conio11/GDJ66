@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>아미 가입 페이지(폼)</title>
+<style>
+	table, td {
+		border: 1px solid #000000;
+		border-collapse: collapse;
+	}
+</style>
+</head>
+<body>
+	<form action="">
+	<!-- 직접 입력 -->
+	
+	<fieldset>
+		<legend>필수사항</legend>
+		<div>
+			<span>아이디 :</span> <input type="text">
+		</div>
+		
+		<div>
+			<label for="pw">비밀번호 :</label> <!-- span과 달리 for속성 사용 가능  -->
+			<input id="pw" type="password">
+		</div>
+	</fieldset>
+		
+		<div><textarea rows="" cols="50"></textarea></div>
+		
+		<!-- 선택 -->
+		<div>		
+			<input type="radio" name="gender">남
+			<input type="radio" name="gender">여
+		</div>
+		
+		<div>		
+			<input type="checkbox" name="hobby">야구
+			<input type="checkbox" name="hobby">축구
+			<input type="checkbox" name="hobby">클라이밍
+			
+		</div>
+		
+		<div>
+			<!-- 싱글선택 -->
+			관심사1
+			<select>
+				<option>문화</option>
+				<option>경제</option>
+				<option>스포츠</option>
+			</select>
+			
+			<!-- 멀티선택 -->
+			관심사2
+			<select multiple="multiple">
+				<option>프로그래밍</option>
+				<option>게임</option>
+				<option>빅데이터</option>
+				<option>AI</option>
+			</select>
+		</div>
+		
+		<div>
+			<input type="date">
+			<input type="color">
+		</div>
+
+		<div><button type="submit">전송</button></div>
+	</form>
+	
+	<form>
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="text"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button type="button">로그인</button></td>
+				<!-- <td></td> -->
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
