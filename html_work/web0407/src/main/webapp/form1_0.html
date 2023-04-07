@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<!-- 메타 정보 (사용자 확인X) -->
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+	
+	<!-- 산출물(웹페이지) 컨텐츠  -->
+	<body>
+		<!-- 다른 페이지를 요청(요구사항: 값, parameter)하는 방법 -->
+		<!-- a태그 사용,다른 페이지를 요청 (요구사항 값: 사용자 변경 불가>  -->
+		<a href="./action1.html?돈=100">action1</a> <!-- 정적 방식. get 방식 -->
+		
+		<!-- form 태그 사용, 다른 페이지를 요청 (요구사항 값: 사용자가 변경가능) -->
+		<!-- 값 변경, 값 숨김 가능 -->
+ 		<form action="./action1.html" method="get"> <!-- post: 값 숨김, 디폴트: get -->
+		<input type="text" name="돈" value="100"> <!-- 동적 방식. 사용자가 값 변경 가능 -->
+		<button type="submit">action1</button>
+		
+		</form>
+	</body>
+</html>
