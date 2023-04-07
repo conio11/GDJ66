@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<!-- 메타 정보 -->
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+	</head>
+
+<!-- 산출물(웹페이지) 컨텐츠 -->
+	<body>
+		<!-- 키값을 받아서 처리하기 위해서는 웹페이지(html)가 아닌 웹프로그램이(JSP) action에 지정되어야 함 -->
+		<form action="./action1.jsp" method="get" target="_blank">
+			<input list="browsers">
+			<datalist id="browsers">
+			    <option value="Internet Explorer">
+			    <option value="Firefox">
+			    <option value="Chrome">
+			    <option value="Opera">
+			    <option value="Safari">
+	  		</datalist>
+			<br>
+			
+			<select>
+			    <option value="Internet Explorer">Internet Explorer</option>
+			    <option value="Firefox">Firefox</option>
+			    <option value="Chrome">Chrome</option>
+			    <option value="Opera">Opera</option>
+			    <option value="Safari">Safari</option>
+	  		</select>
+		</form>
+	</body>
+</html>
