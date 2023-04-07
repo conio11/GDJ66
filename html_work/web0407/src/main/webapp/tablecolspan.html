@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	table, td {border: 1px solid #FF0000;}
+
+</style>
+</head>
+<body>
+	<h2>colspan</h2>
+	<table>
+		<tr>
+			<td colspan="2">1</td> <!-- 2개 행 합침 -->
+			<!-- <td>2</td> -->
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>5</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td colspan="2">8</td> <!-- 8, 9번 합침 -->
+			<!-- <td>9</td> -->
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+			<td>1</td> 
+			<td>2</td> 
+			<td>3</td>
+		</tr>
+		<tr>
+			<td colspan="3">4</td>
+            <!--<td>5</td>
+			<td>6</td> -->
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>8</td> 
+			<td>9</td> 
+		</tr>
+	</table>
+
+	<h2>rowspan(세로) 2개</h2>
+	<table>
+		<tr>
+			<td>1</td> 
+			<td>2</td> 
+			<td>3</td>
+		</tr>
+		<tr>
+			<td rowspan="2">4</td>
+            <td>5</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<!-- <td>7</td> -->
+			<td>8</td> 
+			<td>9</td> 
+		</tr>
+	</table>
+</body>
+</html>
