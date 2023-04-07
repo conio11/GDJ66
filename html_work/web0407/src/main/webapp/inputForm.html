@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	table, th, td {border: 1px solid #343434;}
+
+</style>
+</head>
+<body>
+	<h1>글 입력</h1>
+	<form action="./inputAction.jsp" method="get">
+<!-- 		아이디 : <input type="text" name="id" value=""><br> name, value : 키, 값
+		
+		<button type="submit">입력</button> -->
+		
+		<table>
+			<tr>
+				<th>아이디</th>
+				<td><input type="text" name="id" value=""></td>
+			</tr>
+
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="pw" value=""></td>
+			</tr>
+			<tr>
+				<th>성별</th>
+				<td>
+					<input type="radio" name="gender" value="남">남 <!-- 외부요소는 값으로 넘어가지X -->
+					<input type="radio" name="gender" value="여">여
+				</td>
+			</tr>
+			<tr>
+				<th>국적</th>
+				<td>
+					<select name="country">
+						<option value="">==선택==</option>
+						<option value="대한민국">대한민국</option>
+						<option value="미국">미국</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>좋아하는 색상</th>
+				<td><input type="color" name="likeColor"></td>
+			</tr>
+			<tr>
+				<th colspan="2"><button type="submit">입력</button></th>
+				<!-- <td></td> -->
+			</tr>
+		</table>
+	</form>
+	
+</body>
+</html>
