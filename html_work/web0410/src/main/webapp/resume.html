@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>resume1</title>
+		<style>
+			table,td {
+				border: 1px solid #000000;
+			}
+			
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				}
+			
+			.centertext {text-align: center;}
+			.boldtext {font-weight: bold;}
+			.pinkcell {background-color:#FFB2D9;}
+			.width90 {width: 90%} /*width: 블럭 안에서  */
+			.width20 {width: 20%}
+			.width10 {width: 10%}
+			.border0 {border: 0px solid #FFFFFF}
+		</style>
+	</head>
+	<body>
+		<h1 class="centertext">입사지원서</h1>
+		<form>
+		<!-- 테이블1 -->
+		<table>
+			<tr><!-- 1행 -->
+				<td rowspan="6" class="centertext">
+					<input type="file">
+				</td>
+				<td rowspan="2" class="centertext boldtext pinkcell">성명</td>
+				<td class="centertext boldtext pinkcell">한글</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext boldtext pinkcell">지원부분</td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr><!-- 2행 -->
+				<!-- <td></td> -->
+				<!-- <td>&nbsp;</td> -->
+				<td class="centertext boldtext pinkcell">영문</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext boldtext pinkcell">지원구분</td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr><!-- 3행 -->
+				<!-- <td></td> -->
+				<td class="centertext boldtext pinkcell">생년월일</td>
+				<td colspan="2" class="centertext">
+					<input type="date">
+					<select>
+						<option>성별</option>
+						<option>남</option>
+						<option>여</option>
+					</select>
+				
+				</td>
+				<!-- <td>&nbsp;</td> -->
+				<td class="centertext boldtext pinkcell">신입/경력</td>
+				<td class="centertext">
+					<input type="radio" name="career">신입
+					<input type="radio" name="career">경력
+				</td>
+			</tr>
+			<tr><!-- 4행 -->
+				<!-- <td></td> -->
+				<td class="centertext boldtext pinkcell">휴대폰</td>
+				<td colspan="4" class="centertext">
+					010 - 
+					<input type="text"> - <input type="text">
+				</td>
+				<!-- <td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td> -->
+			</tr>
+			<tr><!-- 5행 -->
+				<!-- <td></td> -->
+				<td class="centertext boldtext pinkcell">현주소</td>
+				<td colspan="4" class="centertext">
+					<input type="text" class="width90">
+				</td>
+				<!-- <td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td> -->
+			</tr>
+			<tr><!-- 6행 -->
+				<!-- <td></td> -->
+				<td class="centertext boldtext pinkcell">긴급연락처</td>
+				<td colspan="2" class="centertext"><input type="text"></td>
+				<!-- <td>&nbsp;</td> -->
+				<td class="centertext boldtext pinkcell">관계</td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+		</table>
+		
+		<h2>&#9830; 학력사항</h2>
+		
+		<table>
+			<tr>
+				<td class="centertext boldtext pinkcell">졸업일</td>
+				<td class="centertext boldtext pinkcell">학교명</td>
+				<td class="centertext boldtext pinkcell">전공</td>
+				<td class="centertext boldtext pinkcell">졸업여부</td>
+				<td class="centertext boldtext pinkcell">비고</td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+				</td>
+				<td class="centertext">
+					<input type="text"> 고등학교
+				</td>
+				<td class="centertext"
+					><input type="text">
+				</td>
+				<td class="centertext">
+					<select>
+						<option>==선택==</option>
+						<option>졸업</option>
+						<option>재학</option>
+						<option>휴학</option>
+						<option>졸업유예</option>
+					</select>
+				</td>
+				<td class="centertext">
+			<input type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="centertext">	
+					<input type="date">
+				</td>
+				<td class="centertext">
+					<input type="text"> 대학
+				</td>
+				<td class="centertext">
+					<input type="text">
+				</td>
+				<td class="centertext">
+					<select>
+						<option>==선택==</option>
+						<option>졸업</option>
+						<option>재학</option>
+						<option>휴학</option>
+						<option>졸업유예</option>
+					</select>
+				</td>
+				<td class="centertext">
+					<input type="text">
+				</td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext">
+					<select>
+						<option>==선택==</option>
+						<option>졸업</option>
+						<option>재학</option>
+						<option>휴학</option>
+						<option>졸업유예</option>
+					</select>
+				</td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+		
+		</table>
+		
+		<h2>&#9830; 경력사항</h2>
+		<table>
+			<tr>
+				<td class="centertext boldtext pinkcell">근무기간</td>
+				<td class="centertext boldtext pinkcell">회사명</td>
+				<td class="centertext boldtext pinkcell">최종직위</td>
+				<td class="centertext boldtext pinkcell">담당업무</td>
+				<td class="centertext boldtext pinkcell">퇴사사유</td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+					~ <input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+					~ <input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+					~ <input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date"> 
+					~ <input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+			<tr>
+				<td class="centertext">
+					<input type="date">
+					~ <input type="date">
+				</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+		</table>
+		<h2>&#9830; 신체사항 (유니폼사이즈)</h2>
+		<table>
+			<tr>
+				<td class="centertext boldtext pinkcell">신장</td>
+				<td class="centertext">
+					<input type="text"> cm
+				</td>
+				<td class="centertext boldtext pinkcell">체중</td>
+				<td class="centertext">	
+					<input type="text"> kg
+				</td>
+				<td class="centertext boldtext pinkcell">신발</td>
+				<td class="centertext">
+					<input type="text"> mm
+				</td>
+			</tr>
+			<tr>
+				<td class="centertext boldtext pinkcell">시력</td>
+				<td class="centertext"> 
+					<input type="text"> / <input type="text">
+				</td>
+				<td class="centertext boldtext pinkcell">상의</td>
+				<td class="centertext">
+					<input type="text"> 
+				</td>
+				<td class="centertext boldtext pinkcell">하의</td>
+				<td class="centertext">
+					<input type="text">
+				</td>
+			</tr>
+		</table>
+		<h2>&#9830; 병역사항</h2>
+		<table>
+			<tr>
+				<td class="centertext boldtext pinkcell">군필 여부</td>
+				<td colspan="5" class="centertext">
+					<input type="radio" name="army">군필
+					<input type="radio" name="army">미필
+					<input type="radio" name="army">면제
+					<input type="radio" name="army">기타
+					<input type="radio" name="army">해당없음
+				</td>
+			<!-- 	<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td> -->
+			</tr>
+			<tr>
+				<td class="centertext boldtext pinkcell">복무 기간</td>
+				<td colspan="4" class="centertext">
+					<input type="date">
+					~ <input type="date">
+				<!-- <td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td> -->
+				<td class="centertext">(<input type="number" class="width10"> 년 <input type="number" class="width10"> 개월)</td>
+			</tr>
+			<tr>
+				<td class="centertext boldtext pinkcell">군별</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext boldtext pinkcell">계급</td>
+				<td class="centertext"><input type="text"></td>
+				<td class="centertext boldtext pinkcell">병역</td>
+				<td class="centertext"><input type="text"></td>
+			</tr>
+		
+		</table>
+		
+		<table style="border: 0px solid #FFFFFF;">
+			<tr>
+				<td style="border: 0px solid #FFFFFF;">
+					<h2>&#9830; 자격증 및 면허사항</h2>
+					<table>
+						<tr>
+							<td class="centertext boldtext pinkcell">자격 및 면허명</td>
+							<td class="centertext boldtext pinkcell">취득일</td>
+						</tr>
+						<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<input type="date">
+							</td>
+						</tr>
+						<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<input type="date">
+							</td>
+						</tr>
+						<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<input type="date">
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td style="border: 0px solid #FFFFFF;">
+					<h2>&#9830; 외국어 사항</h2>
+					<table>
+						<tr>
+							<td class="centertext boldtext pinkcell">외국어 명</td>
+							<td class="centertext boldtext pinkcell">회화(상, 중, 하)</td>
+						</tr>
+						<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<select>
+									<option>==선택==</option>
+									<option>상</option>
+									<option>중</option>
+									<option>하</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<select>
+									<option>==선택==</option>
+									<option>상</option>
+									<option>중</option>
+									<option>하</option>
+								</select>
+							</td>
+						</tr>
+												<tr>
+							<td class="centertext">
+								<input type="text">
+							</td>
+							<td class="centertext">
+								<select>
+									<option>==선택==</option>
+									<option>상</option>
+									<option>중</option>
+									<option>하</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</td>
+		</table>
+
+		<button type="submit">입력</button>
+		</form>
+	</body>
+</html>
