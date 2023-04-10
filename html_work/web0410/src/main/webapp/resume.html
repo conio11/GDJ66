@@ -24,16 +24,16 @@
 	</head>
 	<body>
 		<h1 class="centertext">입사지원서</h1>
-		<form>
+		<form method ="post" action="./resumeAction.jsp">
 		<!-- 테이블1 -->
 		<table>
 			<tr><!-- 1행 -->
 				<td rowspan="6" class="centertext">
-					<input type="file">
+					<input type="file" name="pic">
 				</td>
 				<td rowspan="2" class="centertext boldtext pinkcell">성명</td>
 				<td class="centertext boldtext pinkcell">한글</td>
-				<td class="centertext"><input type="text"></td>
+				<td class="centertext"><input type="text" name="name"></td>
 				<td class="centertext boldtext pinkcell">지원부분</td>
 				<td class="centertext"><input type="text"></td>
 			</tr>
