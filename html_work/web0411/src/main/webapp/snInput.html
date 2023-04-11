@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>snInput</title>
+	<style>
+		table, td {
+			border: 1px dashed #4d4d4d;
+		}
+		table {
+			border-collapse: collapse;
+		}
+	</style>
+	</head>
+	<body>
+		<form action="snAction.jsp" method="post">
+			<table>
+				<tr>
+					<td>이름</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>태어난 연도</td>
+					<td><input type="number" name="year"></td>
+				</tr>
+				<tr>
+					<td>주민번호 7번째 숫자</td>
+					<td><input type="number" name="sn7"></td>
+				</tr>
+				<tr>
+					<td colspan="2" style="text-align: center;">
+					<button type="submit">입력</button>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
