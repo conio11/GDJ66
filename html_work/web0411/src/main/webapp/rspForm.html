@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>rspForm</title>
+	</head>
+	<body>
+		<h1>가위바위보를 선택하세요</h1>
+		<form action="./rspAction.jsp" method="post">
+			<div>
+				<input type="radio" name="userRsp" value="가위">
+				<img src="./img/s.jpg"> <!-- 가위 이미지 -->
+				<input type="radio" name="userRsp" value="바위">
+				<img src="./img/r.jpg"> <!-- 바위 이미지 -->
+				<input type="radio" name="userRsp" value="보">
+				<img src="./img/p.jpg"> <!-- 보 이미지 -->
+			</div>
+			<div>
+			<button type="submit">가위바위보</button>
+			</div>
+		</form>
+	</body>
+</html>
