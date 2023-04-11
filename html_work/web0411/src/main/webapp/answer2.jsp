@@ -81,7 +81,7 @@
 		ox6 = "O";
 	
 	} else {
-		ox6 = "";
+		ox6 = "X";
 	} 
 
 	if (job_grandpa.equals("군인")) {
