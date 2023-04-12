@@ -18,9 +18,7 @@
 		<tr>
 	<%
 			for (int i = 0; i < 10; i = i + 1) { 
-	%>
-		<!-- <tr> 위치 상관없음 -->
-	<%
+				// <tr> 위치 상관없음 
 				for (int dan = 2; dan < 10; dan = dan + 1) {
 					if (i == 0) {		
 	%>
@@ -43,6 +41,5 @@
 				
 	%>				
 		</table>
-	
 	</body>
 </html>
