@@ -7,7 +7,7 @@
 		<title>gugu3</title>
 		<style>
 			table, td {
-				border-collapse: collapse;'
+				border-collapse: collapse;
 			}
 		
 		</style>
@@ -21,14 +21,11 @@
 		for (int dan = 2; dan < 10; dan = dan + 1) {
 			for (int i = 0; i < 10; i = i + 1) {
 				if (i == 0) {
-					
-				
-	%>				<td><%=(dan + "단")%></td>
-	
+	%>				
+				<td><%=(dan + "단")%></td>
 	<%
 				} else {
 	%>
-	
 				<td><%=(dan + " * " + i + " = " + (dan * i))%></td>	
 	<% 			}
 			}
