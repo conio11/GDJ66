@@ -10,8 +10,6 @@
 	ArrayList<Pirate> list = new ArrayList<Pirate>();
 
 	// Pirate 객체를 20개 생성
-	
-	
 	Pirate p1 = new Pirate();
 	p1.name = "몽키 D.루피";
 	p1.nickName = "밀짚모자";
@@ -325,45 +323,52 @@
 	// 디버깅 코드
 	System.out.println(list.size() + " <-- list.size()" );
 	
-
+	// 검색조건에 따라 필터링된 list2 생성
+	ArrayList<Pirate> list2 = new ArrayList<Pirate>();
 	
-/*
-	Pirate p1 = new Pirate();
-	p1.name = "";
-	p1.nickName = ""; 
-	p1.gender = '';
-	p1.birth = "";
-	p1.age = ;
-	p1.height = ;
-	p1.hobby = new ArrayList<String>();
-	p1.hobby.add("");
-	p1.hobby.add("");
-	p1.blood = "형";
-	p1.country = "";
-	p1.money = L;
-	p1.group = "빨간 머리 해적단";
-	p1.isDevilFruit = ;
-	list.add(p1);
+	// 요청값 디버깅
+	System.out.println(request.getParameter("gender"));
 	
-	// 읽기
-	System.out.println(list.get(0).name);
-	System.out.println(list.get(0).hobby.get(0);
+	char gender = ' '; // char은 한 글자이므로 '' 입력 불가 
+	if (request.getParameter("gender") != null) 
+			/* || !request.getParameter("gender").equals("")) */ {
+		gender = request.getParameter("gender").charAt(0); // 첫 번째 문자만 출력
+	}
+			
+	// gender ' ' or 'M' or 'F'
+/* 	if (gender == ' ') {
+		list2 = list;
+	} else if (gender == 'M'){
+		for (Pirate p : list){
+			if (p.gender == 'M') {
+				list2.add(p);
+			}
+		}
+	} else { // gender = 'F'
+		for (Pirate p : list){
+			if (p.gender == 'F') {
+				list2.add(p);
+			}
+		}
+	} */
 	
-	for (Pirate e : list) {
-		System.out.println(e.name);
-		for (String h : e.hobby) {
-			System.out.println(h);
+	if (gender == ' ') {
+		list2 = list;
+	} else {
+		for (Pirate p : list) {
+			if (p.gender == gender) {
+				list2.add(p);
+			}
 		}
 	}
-*/
-
+	
+	System.out.println(list2.size() + " <-- list.size()" );
 %>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>Pirate</title>
 		<style>
 			table, th, td {
 				border-collapse: collapse;
@@ -373,6 +378,18 @@
 	</head>
 	<body>
 		<h1>등장인물 리스트</h1>
+		
+		<form action="./onepiece.jsp" method="post">
+			<select name="gender">
+				<!-- <option value="">:::성별 선택:::</option> -->
+				<option value="M">남자</option>
+				<option value="F">여자</option>
+			</select>
+			<div>
+				<button type="submit">검색</button>
+			</div>
+		
+		
 		<table border="1">
 			<tr>
 				<th>이름</th>
@@ -389,7 +406,7 @@
 				<th>악마의 열매</th>
 			</tr>
 		<%
-			for (Pirate e : list) {
+			for (Pirate e : list2) { // 리스트 변경
 		%>		
 			<tr>
 				<td><%=e.name%></td>
@@ -405,19 +422,16 @@
 		<%
 				}
 		%>		
-				
 				<td><%=e.birth%></td>
 				<td><%=e.age%></td>
 				<td><%=e.height%></td>
-				<td>
-				
+				<td>	
 	 		<%	
 				if (e.hobby != null) {
 					int cnt = 1;
 					for (String h : e.hobby) {
 		%>				
-						<%=h%>
-						
+						<%=h%>			
 		<%				
 					if (cnt < e.hobby.size()) {
 		%>
@@ -426,15 +440,12 @@
 						}
 						cnt = cnt + 1;
 					} 
-				}
-				
+				}	
 		%> 		</td>
-				<%-- <td><%=e.hobby%></td> --%>
 				<td><%=e.blood%></td>
 				<td><%=e.country%></td>
 				<td><%=e.money%>베리</td>
-				<td><%=e.group%></td>
-				
+				<td><%=e.group%></td>	
 			<%	
 				if (e.isDevilFruit == true) {		
 			%>
@@ -450,8 +461,7 @@
 		<%		
 			}
 		%>
-		
 		</table>
-	
+	</form>
 	</body>
 </html>
