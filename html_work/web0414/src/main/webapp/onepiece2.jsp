@@ -10,8 +10,6 @@
 	ArrayList<Pirate> list = new ArrayList<Pirate>();
 
 	// Pirate 객체를 20개 생성
-	
-	
 	Pirate p1 = new Pirate();
 	p1.name = "몽키 D.루피";
 	p1.nickName = "밀짚모자";
@@ -325,8 +323,6 @@
 	// 디버깅 코드
 	System.out.println(list.size() + " <-- list.size()" );
 	
-
-	
 /*
 	Pirate p1 = new Pirate();
 	p1.name = "";
@@ -358,7 +354,6 @@
 */
 
 %>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -424,7 +419,6 @@
 				<td><%=e.country%></td>
 				<td><%=e.money%> 베리</td>
 				<td><%=e.group%></td>
-				
 			<%	
 				if (e.isDevilFruit == true) {		
 			%>
@@ -440,8 +434,6 @@
 		<%		
 			}
 		%>
-		
 		</table>
-	
 	</body>
 </html>
