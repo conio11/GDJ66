@@ -29,7 +29,7 @@
 	list.add("루피");
 	list.add("조로");
 	list.add("나미");
-	list.add("상디"); // 동적 배열: 메모리 공간이 부족하면
+	list.add("상디"); // 동적 배열: 메모리 공간이 부족하면 다른 더큰 공간의 메모리영역으로 이동시킴(자동)
 	System.out.println(list.size() + " <-- list.size()"); // list.size() : null 값을 제외한 데이터 크기
 %>
 </body>
