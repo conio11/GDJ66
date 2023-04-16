@@ -24,7 +24,7 @@
 	System.out.println(pirate.length); // 3
 	
 	// ArrayList
-	ArrayList<String> list = new java.util.ArrayList<String>(3);
+	ArrayList<String> list = new ArrayList<String>(3);
 	// 제네릭 : 타입을 지정하는 문법, 참조 타입만 사용 가능
 	list.add("루피");
 	list.add("조로");
