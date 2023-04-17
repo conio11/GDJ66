@@ -16,7 +16,7 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
-		<form action="./calendar.jsp?targetYear=<%=targetYear%>&targetMonth=<%=targetMonth%>" method="post">
+		<form action="./calendar3.jsp?targetYear=<%=targetYear%>&targetMonth=<%=targetMonth%>" method="post">
 			<div class="container">
 			<h1>새 일정 입력</h1>
 			<h4>
