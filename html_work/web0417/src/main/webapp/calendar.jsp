@@ -80,7 +80,7 @@
 			<%=targetYear%>년 <%=targetMonth + 1%>월
 			<a href="./calendar.jsp?targetYear=<%=targetYear%>&targetMonth=<%=targetMonth + 1%>">다음 달</a>
 		</h1>
-		<form action="calender.jsp" method="post">
+		<form action="calender.jsp" method="post"> 
 		<table class="table table-bordered table-sm">
 			<thead>
 			 	<tr>
@@ -127,6 +127,6 @@
 	 	<!-- 일요일 빨간색 -->
 			</tr>
 		</table>
-		</form>	
+		</form> <!-- form 태그 유무 출력과 관계 X  -->
 	</body>
 </html>
