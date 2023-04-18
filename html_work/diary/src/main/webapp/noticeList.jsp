@@ -43,7 +43,7 @@
 		
 		<tr>
 			<td><%=rs.getInt("notice_no")%></td>
-			<td><a href=""><%=rs.getString("notice_title")%></a>></td>
+			<td><a href=""><%=rs.getString("notice_title")%></a></td>
 		</tr>
 		
 		<%
