@@ -71,6 +71,9 @@
 		
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<style>
+			.red {color: red;}
+		</style>
 	</head>
 	<body>
 		<div class="container"></div>
@@ -103,7 +106,7 @@
 	 			int dateNum = i - startTdBlank + 1;
 	 			if (dateNum > 0 && dateNum <= endDateNum) {
 		%>			
-	 				<td><a href=""><%=i - startTdBlank + 1%></a></td>
+	 				<td><a href="" class="red"><%=i - startTdBlank + 1%></a></td> <!-- 링크 색상 변경: <a> 태그에 클래스 요소 추가 -->
  		<%		
 	 			} else {	
 		%>	
