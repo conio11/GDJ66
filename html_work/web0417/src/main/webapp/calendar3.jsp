@@ -6,6 +6,7 @@
 	int targetMonth = 0; // 0 ~ 11
 	int targetDate = 0; // 추가
 	
+	// 최초 실행 시 request값 없으므로 if문 실행
 	if (request.getParameter("targetYear") == null 
 			|| request.getParameter("targetYear") == null) {
 		// 둘 중 하나라도 null이면 예외 발생
@@ -15,7 +16,7 @@
 		targetYear = today.get(Calendar.YEAR);
 		targetMonth = today.get(Calendar.MONTH);
 		
-	} else {
+	} else { // 링크 클릭 이후 request 전달값 받아 else문 실행
 		// 출력하고자 하는 달력의 연도와 월
 		targetYear = Integer.parseInt(request.getParameter("targetYear"));
 		targetMonth = Integer.parseInt(request.getParameter("targetMonth"));
@@ -174,7 +175,6 @@
 							</td>
 		<%					
  						}
-	 					
 	 					
 	 			} else if (dateNum < 1) {
 	 				
