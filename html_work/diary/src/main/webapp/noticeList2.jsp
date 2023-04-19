@@ -33,7 +33,6 @@
 	// limit ?, ? // 쿼리에서 ? 표시 -> 값만 가능
 			
 	// 출력할 공지 데이터		
-		
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/diary", "root", "java1234");
 	PreparedStatement stmt = conn.prepareStatement("select notice_no, notice_title, createdate from notice order by createdate desc limit ?, ?");
@@ -71,11 +70,6 @@
 			<a href="./noticeList.jsp">공지 리스트</a>
 			<a href="./diaryList.jsp">일정 리스트</a>
 		</div>
-		
-		<!-- 날짜순 최근 공지 5개  -->
-		<%
-			
-		%>	
 		<div class="container mt-3 d-flex justify-content-center">
 		<h1>공지사항 리스트</h1>
 		</div>
