@@ -50,7 +50,7 @@
 						<%=rs.getString("notice_title")%>
 					</a>
 				</td>
-				<td><%=rs.getString("createdate").substring(0, 10)%></td> <!-- .substring(0, 9): index 0부터 9까지 출력 -->
+				<td><%=rs.getString("createdate").substring(0, 10)%></td> <!-- .substring(0, 10): index 0부터 9까지 출력 -->
 			</tr>
 		<%
 				}
