@@ -6,7 +6,7 @@
 <%@ page import="java.sql.ResultSet"%>
 <%
     // 95개 rows, page당 10개 데이터
-    
+      
    	// 현재 페이지
 	int currentPage = 1;
 	if (request.getParameter("currentPage") != null) {
@@ -28,7 +28,7 @@
     		
 	Class.forName("org.mariadb.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/homework0419", "root", "java1234");
-	String sql = " select store_no, store_name, store_category, store_address, store_emp_cnt, store_begin, createdate, updatedate from store order by store_begin desc limit ?, ?";
+	String sql = "select store_no, store_name, store_category, store_address, store_emp_cnt, store_begin, createdate, updatedate from store order by store_begin desc limit ?, ?";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, startRow);
 	stmt.setInt(2, rowPerPage);
@@ -58,9 +58,15 @@
   		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
+		<div><!-- 메인메뉴  -->
+			<a href="./storeHome.jsp">메인화면으로</a>
+			<a href="./storeList.jsp">전체 리스트</a>
+		</div>
 		<div class="container mt-3 d-flex justify-content-center">
 		<h1>맛집 리스트</h1>
 		</div>
+		
+		<a href="./insertStoreForm.jsp">새 맛집 입력</a>
 		<table class="table table-bordered text-center">
 			<tr>
 				<th class="text-bg-dark">store_no</th>
@@ -77,7 +83,9 @@
 				while (rs.next()) {	// 커서 마지막까지 (ResultSet 마지막까지)
 			%>		
 				<tr>
-					<td><%=rs.getString("store_no")%></td> 
+					<td>
+						<a href="./storeOne.jsp?storeNo=<%=rs.getInt("store_no")%>"><%=rs.getString("store_no")%></a>
+					</td> 
 					<td><%=rs.getString("store_name")%></td>
 					<td><%=rs.getString("store_category")%></td>
 					<td><%=rs.getString("store_address")%></td>
