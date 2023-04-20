@@ -17,15 +17,15 @@
 			<h1>맛집 입력</h1>
 		</div>
 		<form action="./insertStoreAction.jsp" method="post">
-			<table class="table table-bordered text-center">
+			<table class="table table-bordered">
 				<tr>
-					<td class="text-bg-dark">store_name</td>
+					<td class="text-bg-dark text-center">store_name</td>
 					<td>
 						<input type="text" name="storeName">
 					</td>
 				</tr>
 				<tr>
-					<td class="text-bg-dark">store_category</td>
+					<td class="text-bg-dark text-center">store_category</td>
 					<td>
 						<input type=radio name="storeCategory" value="한식">한식 <!-- 라디오 타입의 값은 value로 저장 -->
 						<input type=radio name="storeCategory" value="중식">중식
@@ -33,13 +33,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="text-bg-dark">store_address</td>
+					<td class="text-bg-dark text-center">store_address</td>
 					<td>
 						<textarea rows="3" cols="50" name="storeAddress"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td class="text-bg-dark">store_emp_cnt</td>
+					<td class="text-bg-dark text-center">store_emp_cnt</td>
 					<td>
 						<input type=radio name="storeEmpCnt" value="1">1
 						<input type=radio name="storeEmpCnt" value="2">2
@@ -54,7 +54,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="text-bg-dark">store_begin</td>
+					<td class="text-bg-dark text-center">store_begin</td>
 					<td>
 						<input type="date" name="storeBegin">
 					</td>
