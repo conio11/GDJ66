@@ -8,6 +8,7 @@
 <%
 	// 상세 페이지 출력 코드
 	
+	// 해당 파일 실행 시 요청값 없으므로 홈 화면 출력
 	if (request.getParameter("noticeNo") == null) {
 		response.sendRedirect("./home.jsp"); // 요청값 없을 시 기존 페이지로 이동 (재요청)
 		return; // 1) 코드 진행 종료 2) 반환값을 남길 때
