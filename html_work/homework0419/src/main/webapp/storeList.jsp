@@ -20,7 +20,7 @@
 	int rowPerPage = 10;
     
     // 시작 행 번호
-    int startRow = (currentPage - 1) * rowPerPage; // 
+    int startRow = (currentPage - 1) * rowPerPage; 
     
     // DB 연결 설정
     // (SQL 쿼리) select store_no, store_name, store_category, store_address, store_emp_cnt, store_begin, createdate, updatedate
