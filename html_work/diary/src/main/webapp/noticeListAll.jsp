@@ -6,6 +6,8 @@
 <%@ page import="java.sql.ResultSet"%>
 
 <%
+	// 전체 데이터(공지사항) 리스트 
+
 	// select 쿼리를 MariaDB에 전송 -> 결과셋을 받아서 출력하는 페이지
 	// select title_no, notice_title from notice order by notice_no desc;
 	
@@ -30,8 +32,8 @@
 <meta charset="UTF-8">
 <title>noticeList.jsp</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
- 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<table class="table table-bordered text-center">
