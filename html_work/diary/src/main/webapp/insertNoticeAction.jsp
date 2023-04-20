@@ -30,6 +30,11 @@
 	String noticeContent = request.getParameter("noticeContent");
 	String noticeWriter = request.getParameter("noticeWriter");
 	String noticePw = request.getParameter("noticePw");
+	
+	System.out.println(noticeTitle + " <-- noticeTitle");
+	System.out.println(noticeContent + " <-- noticeContent");
+	System.out.println(noticeWriter + " <-- noticeWriter");
+	System.out.println(noticePw + " <-- noticePw");
 
 	// 입력된 값들을 DB 테이블에 입력
 	/*
