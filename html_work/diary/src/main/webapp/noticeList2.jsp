@@ -6,6 +6,8 @@
 <%@ page import="java.sql.ResultSet"%>
 
 <%
+	// 전체 데이터(공지사항) 10개씩 출력
+
 	// 요청 분석(currentPage, ...)
 	// 현재 페이지
 	int currentPage = 1;
@@ -44,6 +46,7 @@
 	
 	// 마지막 페이지
 	// select count(*) from notice
+	// 쿼리문 사용하기 위해 stmt2 변수 생성
 	PreparedStatement stmt2 = conn.prepareStatement("select count(*) from notice");
 	ResultSet rs2 = stmt2.executeQuery();
 	int totalRow = 0; // select count(*) from notice;
@@ -67,12 +70,14 @@
 	<body>
 		<div><!-- 메인메뉴 -->
 			<a href="./home.jsp">홈으로</a>
-			<a href="./noticeList.jsp">공지 리스트</a>
+			<a href="./noticeList2.jsp">공지 리스트</a>
 			<a href="./diaryList.jsp">일정 리스트</a>
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
 		<h1>공지사항 리스트</h1>
 		</div>
+		
+		<a href="./insertNoticeForm.jsp">공지입력</a>
 		<table class="table table-bordered text-center">
 			<tr>
 				<th class="text-bg-dark">notice_title</th>
@@ -95,7 +100,7 @@
 		</table>
 		<div class="text-center">
 		<%
-			if (currentPage > 1) {	
+			if (currentPage > 1) {	// 2페이지부터 이전 버튼 생성
 		%>
 			<a href="./noticeList2.jsp?currentPage=<%=currentPage - 1%>" class="btn btn-dark">이전</a>
 		<%
@@ -103,7 +108,7 @@
 		%>
 			<%=currentPage%>
 		<%
-			if (currentPage < lastPage) {
+			if (currentPage < lastPage) { // 마지막 페이지에는 다음 버튼 생성 X
 		%>	
 			<a href="./noticeList2.jsp?currentPage=<%=currentPage + 1%>" class="btn btn-dark">다음</a>
 		<%

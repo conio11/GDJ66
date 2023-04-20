@@ -6,6 +6,8 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%
+	// 상세 페이지 출력 코드
+	
 	if (request.getParameter("noticeNo") == null) {
 		response.sendRedirect("./home.jsp"); // 요청값 없을 시 기존 페이지로 이동 (재요청)
 		return; // 1) 코드 진행 종료 2) 반환값을 남길 때
@@ -34,7 +36,7 @@
 	<body>
 		<div><!-- 메인메뉴 -->
 			<a href="./home.jsp">홈으로</a>
-			<a href="./noticeList.jsp">공지 리스트</a>
+			<a href="./noticeList2.jsp">공지 리스트</a>
 			<a href="./diaryList.jsp">일정 리스트</a>
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
@@ -72,5 +74,10 @@
 		<% 
 			}
 		%>
+		
+		<div>
+			<a href="./updateNoticeForm.jsp?noticeNo=<%=noticeNo%>">수정</a>
+			<a href="./deleteNoticeForm.jsp?noticeNo=<%=noticeNo%>">삭제</a>
+		</div>
 	</body>
 </html>

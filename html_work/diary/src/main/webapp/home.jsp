@@ -5,6 +5,9 @@
 <%-- <%@ page import="java.sql.DriverManager" %> --%>
 <%-- <%@ page import="java.sql.PreparedStatement"%> --%>
 <%-- <%@ page import="java.sql.ResultSet" %> --%>
+<%
+	// 홈 페이지 (공지사항 5개만 출력)
+%>
 <!DOCTYPE html>
 <html>
 	<head>
