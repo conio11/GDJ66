@@ -38,14 +38,13 @@
 	// ? 2개 (1, 2)
 	stmt.setInt(1, noticeNo);
 	stmt.setString(2, noticePw);
-	System.out.println(stmt + " <-- deleteNoticeAtion sql"); // 쿼리 출력
+	System.out.println(stmt + " <-- deleteNoticeAction sql"); // 쿼리 출력
 	
 	int row = stmt.executeUpdate(); // 완료된 행 수 ?
 	System.out.println(row + " <-- row");
 	
 	if (row == 0) { // 비밀번호 틀려서 삭제행 0 // 삭제 실패 -> 이전 폼으로 리다이렉트
 		response.sendRedirect("./deleteNoticeForm.jsp?noticeNo=" + noticeNo);
-		// response.sendRedirect("./deleteNoticeForm.jsp?noticeNo=" + noticeNo);
 	} else {
 		response.sendRedirect("./noticeList2.jsp");
 	}
