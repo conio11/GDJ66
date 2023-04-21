@@ -9,7 +9,8 @@
 	// post 방식 인코딩 처리
 	request.setCharacterEncoding("UTF-8"); 
 
-	// no, pw, title, content 가 null 또는 공백이면 updateForm으로 리다이렉트
+	// no, pw, title, content 가 null 또는 공백이면 updateNoticeForm.jsp로 리다이렉트
+	// updateForm도 noticeNo == null일 때 리다이렉트 -> noticeList2.jsp로 이동
 	if (request.getParameter("noticeNo") == null 
 	|| request.getParameter("noticePw") == null 
 	|| request.getParameter("noticeTitle") == null

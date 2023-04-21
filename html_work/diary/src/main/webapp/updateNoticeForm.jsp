@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
     
 <%
-	// 유효성 코드 추가 -> 분기 -> (response.sendRedirect(); return;
+	// 유효성 코드 추가 -> 분기 -> response.sendRedirect(); return;
 	
 	// 해당 파일 실행 시 요청값 없으므로 홈 화면 출력
 	if (request.getParameter("noticeNo") == null) {
@@ -37,17 +37,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <title>updateNoticeForm</title>
 </head>
 <body>
-	<form action="./updateNoticeAction.jsp" method="post"> <!-- post: 주소창에 입력값 숨김 
+	<div class="container mt-3 d-flex justify-content-center">
+	<h1>수정폼</h1>
+	</div>
+	<div>
+		<%
+			if (request.getParameter("msg") != null) {
+		%>	
+				<!-- action 페이지로 잘못된 접근이거나 null, 공백 넘어감 -->
+				<%=request.getParameter("msg")%>
+		<%
+			}
+		%>
+	</div>
+	<form action="./updateNoticeAction2.jsp" method="post"> <!-- post: 주소창에 입력값 숨김 
 								-> get 방식 사용하기에 많은 컨텐츠, 비밀번호 등 정보 숨기기 위한 목적 등 -->
 	<%
 		if (rs.next()) {
 	%>
-		<table border="1">
+		<table class="table table-bordered">
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					notice_no
 				</td>
 				<td>
@@ -55,7 +71,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					notice_pw
 				</td>
 				<td>
@@ -63,7 +79,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					notice_title
 				</td>
 				<td>
@@ -71,7 +87,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					notice_content
 				</td>
 				<td>
@@ -79,7 +95,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					notice_writer
 				</td>
 				<td>
@@ -87,7 +103,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					createdate
 				</td>
 				<td>
@@ -95,7 +111,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>
+				<td class="text-bg-dark text-center">
 					updatedate
 				</td>
 				<td>
