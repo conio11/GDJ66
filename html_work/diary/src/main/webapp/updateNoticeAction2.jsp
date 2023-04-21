@@ -13,9 +13,10 @@
  
     // 3. 2번 유효성 검정 -> 잘못된 결과 -> 분기 -> 리다이렉션 (액션을 요청한 웹브라우저-form에게 다른 곳을 요청하도록 안내) -> 코드진행종료 (return)
     // -> updateNoticeForm.jsp?noticeNo=&msg=)
-	// updateNoticeForm.jsp (해당 페이지에서도 받아온 값 없으므로 home.jsp로 이동
-	// response.sendRedirect("./updateNoticeForm.jsp?noticeNo=" +  + "&msg=error");
-	
+	if (request.getParameter("noticeNo") == null) { // noticeNo에 값이 없으면 전체 리스트 출력
+		response.sendRedirect("./noticeList2.jsp");
+	}
+
 	String msg = null;
 
 	if (request.getParameter("noticeTitle") == null // or 연산자는 앞의 연산 먼저 실행
@@ -29,7 +30,7 @@
 		msg = "noticePw is required";
 	}
 		
-	if (request.getParameter("noticeNo") == null || msg != null) { //noticeNo가 null이거나 위 if-else 문에 하나라도 해당될 경우
+	if (msg != null) { // 위 if-else 문에 하나라도 해당될 경우
 		response.sendRedirect("./updateNoticeForm.jsp?noticeNo=" + request.getParameter("noticeNo") + "&msg=" + msg);
 		return;
 	}
@@ -45,7 +46,6 @@
 	System.out.println(noticeTitle + " <-- updateAction2 noticeTitle");
 	System.out.println(noticeContent + " <-- updateAction2 noticeContent");
 	System.out.println(noticePw + " <-- updateAction2 noticePw");
-	
 	
 	// 5. MariaDB RDBMS에 update 문을 전송
 	// 드라이버 연결 확인
@@ -67,7 +67,6 @@
 	stmt.setInt(3, noticeNo);		  // 세 번째 ? 에 들어갈 값 : noticeNo
 	stmt.setString(4, noticePw); 	  // 네 번째 ? 에 들어갈 값 : noticePw
 	System.out.println(stmt + " <-- updateAction2 stmt2");
-	
 	
 	int row = stmt.executeUpdate(); // 적용된 행의 수
 	
