@@ -5,7 +5,7 @@
 <%
 	// 유효성 코드 추가 -> 분기 -> response.sendRedirect(); return;
 	
-	// 해당 파일 실행 시 요청값 없으므로 홈 화면 출력
+	// 해당 파일 실행 시 요청값 없으므로 전체 리스트 출력
 	if (request.getParameter("noticeNo") == null) {
 		response.sendRedirect("./noticeList2.jsp"); // 요청값 없을 시 전체 리스트 페이지로 이동(재요청)
 		return; // 코드 진행 종료 
