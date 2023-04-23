@@ -6,7 +6,7 @@
 	int targetMonth = 0; // 0 ~ 11
 	
 	if (request.getParameter("targetYear") == null 
-			|| request.getParameter("targetYear") == null) {
+			|| request.getParameter("targetMonth") == null) {
 		// 둘 중 하나라도 null이면 예외 발생
 		// 값이 지정되지 않으면 오늘 날짜 사용
 		
