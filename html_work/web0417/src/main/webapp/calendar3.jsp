@@ -37,11 +37,11 @@
 	
 	// startTdBlank: 달력 1일 앞의 공백 수
 	// 현재 월의 1일의 DAY_OF_WEEK(요일): (일1, 월2, 화3, ..., 토7) - 1
-	int startTdBlank = 0; // 1일 앞 공백의 개수
+	int startTdBlank = 0; 
 	
 	// 출력하고자 하는 연, 월, 1일
-	Calendar firstDate = Calendar.getInstance(); // // firstDate에 오늘 날짜 가져옴
-	firstDate.set(Calendar.YEAR, targetYear); // firstDate의 연도를 2023년으로 바꿈
+	Calendar firstDate = Calendar.getInstance(); // firstDate에 오늘 날짜 가져옴
+	firstDate.set(Calendar.YEAR, targetYear); // firstDate의 연도를 2023년으로 변경
 	firstDate.set(Calendar.MONTH, targetMonth); 
 	firstDate.set(Calendar.DATE, 1); 
 	
@@ -63,10 +63,12 @@
 	if (preTargetMonth == -1) {
 		preTargetMonth = 11;
 		preTargetYear = preTargetYear - 1;
-	} else if (preTargetMonth == 12) {
+	} 
+	
+/* 	else if (preTargetMonth == 12) {
 		preTargetMonth = 0;
 		preTargetYear = preTargetYear + 1;
-	}
+	} */
 	
 	System.out.println(preTargetYear + "<-- preTargetYear");
 	System.out.println(preTargetMonth + " <-- preTargetMonth");
@@ -84,10 +86,12 @@
 	int nextTargetYear = targetYear;
 	int nextTargetMonth = targetMonth + 1;
 	
-	if (nextTargetMonth == -1) {
+/* 	if (nextTargetMonth == -1) {
 		nextTargetMonth = 11;
-		nextTargetYear = nextTargetYear - 1;
-	} else if (nextTargetMonth == 12) {
+		nextTargetYear = nextTargetYear - 1; 
+	} else */
+
+	if (nextTargetMonth == 12) {
 		nextTargetMonth = 0;
 		nextTargetYear = nextTargetYear + 1;
 	}
