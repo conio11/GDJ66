@@ -46,7 +46,7 @@
 	<div class="container mt-3 d-flex justify-content-center">
 	<h1>수정폼</h1>
 	</div>
-	<div>
+	<div class="text-danger">
 		<%
 			if (request.getParameter("msg") != null) {
 		%>	
