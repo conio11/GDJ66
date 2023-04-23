@@ -47,10 +47,10 @@
 	<h1>수정폼</h1>
 	</div>
 	<div class="text-danger">
+		<!-- action2에서 받아온 msg 값이 null이 아닐 경우 (오류가 있을 경우) 출력  -->
 		<%
 			if (request.getParameter("msg") != null) {
 		%>	
-				<!-- action 페이지로 잘못된 접근이거나 null, 공백 넘어감 -->
 				<%=request.getParameter("msg")%>
 		<%
 			}
