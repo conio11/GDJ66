@@ -6,7 +6,7 @@
 	int targetMonth = 0; // 0 ~ 11
 	
 	if (request.getParameter("targetYear") == null 
-			|| request.getParameter("targetYear") == null) {
+			|| request.getParameter("targetMonth") == null) {
 		// 둘 중 하나라도 null이면 예외 발생
 		// 값이 지정되지 않으면 오늘 날짜 사용
 		
@@ -35,7 +35,7 @@
 	
 	// startTdBlank: 달력 1일 앞의 공백 수
 	// 현재 월의 1일의 DAY_OF_WEEK(요일): (일1, 월2, 화3, ..., 토7) - 1
-	int startTdBlank = 0; // 1일 앞 공백의 개수
+	int startTdBlank = 0; 
 	
 	// 출력하고자 하는 연, 월, 1일
 	Calendar firstDate = Calendar.getInstance(); // // firstDate에 오늘 날짜 가져옴
@@ -56,6 +56,7 @@
 		endTdBlank = 7 - ((startTdBlank + endDateNum) % 7);
 	}
 	
+	// 달력의 전체 칸 수 
 	int totalTdCnt = startTdBlank + endDateNum + endTdBlank;
 	
 	System.out.println("==================");
@@ -80,7 +81,6 @@
 			<%=targetYear%>년 <%=targetMonth + 1%>월
 			<a href="./calendar.jsp?targetYear=<%=targetYear%>&targetMonth=<%=targetMonth + 1%>">다음 달</a>
 		</h1>
-		<form action="calender.jsp" method="post"> 
 		<table class="table table-bordered table-sm">
 			<thead>
 			 	<tr>
@@ -127,6 +127,5 @@
 	 	<!-- 일요일 빨간색 -->
 			</tr>
 		</table>
-		</form> <!-- form 태그 유무 출력과 관계 X  -->
 	</body>
 </html>
