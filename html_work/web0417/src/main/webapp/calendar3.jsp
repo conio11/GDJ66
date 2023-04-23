@@ -8,7 +8,7 @@
 	
 	// 최초 실행 시 request값 없으므로 if문 실행
 	if (request.getParameter("targetYear") == null 
-			|| request.getParameter("targetYear") == null) {
+			|| request.getParameter("targetMonth") == null) {
 		// 둘 중 하나라도 null이면 예외 발생
 		// 값이 지정되지 않으면 오늘 날짜 사용
 		
