@@ -30,8 +30,14 @@
 			// order by createdate desc
 			// limit 0, 5
 			
+			// 드라이버 로딩
 			Class.forName("org.mariadb.jdbc.Driver");
+			System.out.println("드라이버 로딩 성공");
+			
+			// MariaDB 로그인 후 접속정보 반환
 			Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/diary", "root", "java1234");
+			System.out.println("DB 접속 성공 :" + conn);
+			
 			PreparedStatement stmt = conn.prepareStatement("select notice_no, notice_title, createdate from notice order by createdate desc limit 0, 5");
 			System.out.println(stmt + " <-- stmt"); // parameters:[] 비어있으면 초기 페이지, noticeNo 출력
 			ResultSet rs = stmt.executeQuery();
