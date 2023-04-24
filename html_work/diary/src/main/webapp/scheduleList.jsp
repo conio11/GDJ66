@@ -145,13 +145,13 @@
 						</td>
 		<% 					
 					}	
-				} else if (dateNum < lastDate){			
+				} else if (dateNum < lastDate){	// dateNum이 0 이하	
 		%>
 							<td style="color:gray">
 								<%=dateNum + preLastDate%>
 							</td>	
 		<%	
-				} else {
+				} else { // dateNum이 현재 달 마지막 날짜보다 큰 경우
 		%>	
 							<td style="color:gray">
 								<%=dateNum - lastDate%>
