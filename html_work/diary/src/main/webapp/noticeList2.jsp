@@ -71,7 +71,7 @@
 		<div><!-- 메인메뉴 -->
 			<a href="./home.jsp">홈으로</a>
 			<a href="./noticeList2.jsp">공지 리스트</a>
-			<a href="./diaryList.jsp">일정 리스트</a>
+			<a href="./scheduleList.jsp">일정 리스트</a>
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
 		<h1>공지사항 리스트</h1>
