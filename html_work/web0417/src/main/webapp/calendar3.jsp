@@ -4,7 +4,7 @@
 <%
 	int targetYear = 0;
 	int targetMonth = 0; // 0 ~ 11
-	int targetDate = 0; // 추가
+	// int targetDate = 0; // 추가
 	
 	// 최초 실행 시 request값 없으므로 if문 실행
 	if (request.getParameter("targetYear") == null 
@@ -45,7 +45,6 @@
 	firstDate.set(Calendar.MONTH, targetMonth); 
 	firstDate.set(Calendar.DATE, 1); 
 	
-	// 추가 
 	// 출력하고자 하는 연, 월의 공백 수
 	startTdBlank = firstDate.get(Calendar.DAY_OF_WEEK) - 1; 									
 	System.out.println(startTdBlank + " <-- startTdBlank");
