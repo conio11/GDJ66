@@ -6,7 +6,7 @@
 <%@ page import="java.sql.ResultSet" %>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%> <!-- java. 생략 가능  -->
-
+ 
 <%
 	// 상세 페이지 출력 코드
 	

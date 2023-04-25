@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%> <!-- java. 생략 가능  -->
-<%
+<% 
 	int targetYear = 0;
 	int targetMonth = 0; // 0 ~ 11 값으로 들어옴 // 출력 단계에서 값 변경
 	

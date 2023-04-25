@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%> <!-- java. 생략 가능  -->
-
+ 
 <%
 	// 유효성 코드 추가
 	// 해당 파일 실행 시 요청값 없으므로 scheduleList.jsp로 이동

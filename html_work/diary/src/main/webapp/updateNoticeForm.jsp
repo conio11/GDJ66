@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%> <!-- java. 생략 가능  -->
-    
+     
 <%
 	// 유효성 코드 추가 -> 분기 -> response.sendRedirect(); return;
 	

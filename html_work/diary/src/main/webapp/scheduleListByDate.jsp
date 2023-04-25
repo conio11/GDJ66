@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%> <!-- java. 생략 가능  -->
-<%
+<% 
 	// 인코딩 설정
 	request.setCharacterEncoding("UTF-8");
 
