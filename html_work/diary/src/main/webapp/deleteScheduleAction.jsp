@@ -47,12 +47,33 @@
 	int row = stmt.executeUpdate(); // 0이면 입력 실패, 1이면 입력 성공
 	System.out.println(row + " <-- row(deleteScheduleAction)");
 	
+	/*
+	// 날짜 불러오는 sql 구문 
+	String sql2 = "select schedule_date from schedule where schedule_no=?";
+	PreparedStatement stmt2 = conn.prepareStatement(sql2);
+	stmt2.setInt(1, scheduleNo);
+	ResultSet rs = stmt2.executeQuery();
+	// rs.next();
+	
+	// 변수에 날짜 넣기
+	String scheduleDate = rs.getString("schedule_date");
+	// System.out.println("stmt2-deleteSchedulAction.jsp-->" + scheduleDate+ stmt2);
+	
+	// 삭제 성공 후 확인 페이지로 가기 위해 Date(날짜) 값 슬라이스
+	String y = scheduleDate.substring(0,4);
+	int m = Integer.parseInt(scheduleDate.substring(5,7)) - 1;
+	String d = scheduleDate.substring(8);
+	
+	System.out.println(y + " <-- y(deleteScheduleAction)");
+	System.out.println(m + " <-- m(deleteScheduleAction)");
+	System.out.println(d + " <-- d(deleteScheduleAction)");	
+	 */
+	
 	if (row == 1) {
-		System.out.println("정상 입력");
+		System.out.println("삭제 완료");
 	} else {
-		System.out.println("입력 실패");
+		System.out.println("삭제 실패");
 	}
 	
-	response.sendRedirect("./scheduleListByDate.jsp");
-
+	response.sendRedirect("./scheduleListByDate.jsp"); // 삭제 작업 후 해당 페이지로 리다이렉트
 %>
