@@ -21,6 +21,9 @@
 <title>deleteNoticeForm.jsp</title>
 </head>
 <body>
+	<div><!-- 메인메뉴 -->
+		<a href="./home.jsp" class="btn btn-outline-dark">홈으로</a>
+	</div>
 	<div class="container mt-3 d-flex justify-content-center">
 	<h1>공지 삭제</h1>
 	</div>
@@ -39,13 +42,10 @@
 					<input type="password" name="noticePw">
 				</td>
 			</tr>
-			<tr>
-				<td colspan="2">
-					<button type="submit">삭제</button>
-				</td>
-				<!-- <td></td> -->
-			</tr>
 		</table>
+		<div>
+			<button type="submit">삭제</button>
+		</div>
 	</form>
 </body>
 </html>
