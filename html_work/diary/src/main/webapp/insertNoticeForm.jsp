@@ -44,13 +44,10 @@
 						<input type="password" name="noticePw">
 					</td>
 				</tr>
-				<tr>
-					<td colspan="2">
-						<button type="submit">입력</button>
-					</td>
-					<!-- <td></td> -->
-				</tr>	
 			</table>
+			<div>
+				<button type="submit">삭제</button>
+			</div>
 		</form>
 	</body>
 </html>
