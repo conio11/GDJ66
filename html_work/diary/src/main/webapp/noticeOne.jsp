@@ -4,6 +4,8 @@
 <%@ page import="java.sql.DriverManager"%>
 <%@ page import="java.sql.PreparedStatement"%>
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.util.*"%>
+<%@ page import="vo.*"%> <!-- java. 생략 가능  -->
 
 <%
 	// 상세 페이지 출력 코드
@@ -23,6 +25,23 @@
 	stmt.setInt(1, noticeNo); // stmt의 첫 번째 ? -> noticeNo로 바뀜 // notice_no가 int 타입이므로 setInt() 사용
 	System.out.println(stmt + " <-- stmt");
 	ResultSet rs = stmt.executeQuery();
+
+	/*
+	
+	// 자료구조 ResultSet 타입을 일반적인 자료구조 타입으로 변환
+	// ResultSet -> ArrayList<Notice>
+	ArrayList<Notice> noticeList = new ArrayList<Notice>();
+	while (rs.next()) { // 커서가 내려가는 동안 밖에서 만들어진 noticeList에 값 저장
+		Notice n = new Notice();
+		n.noticeNo = rs.getInt("notice_no");
+		n.noticeTitle = rs.getString("notice_title");
+		n.noticeContent = rs.getString("notice_content");
+		n.noticeWriter = rs.getString("notice_writer");
+		n.createdate = rs.getString("createdate");
+		n.updatedate = rs.getString("updatedate");
+		noticeList.add(n); // ArrayList에 클래스 객체 추가
+	}
+	*/
 %>
 
 <!DOCTYPE html>
@@ -36,40 +55,55 @@
 	</head>
 	<body>
 		<div><!-- 메인메뉴 -->
-			<a href="./home.jsp">홈으로</a>
-			<a href="./noticeList2.jsp">공지 리스트</a>
-			<a href="./scheduleList.jsp">일정 리스트</a>
+			<a href="./home.jsp" class="btn btn-outline-dark">홈으로</a>
+			<a href="./noticeList2.jsp" class="btn btn-outline-dark">공지 리스트</a>
+			<a href="./scheduleList.jsp" class="btn btn-outline-dark">일정 리스트</a>
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
 		<h1>공지 상세</h1>
 		</div>
 		<%
-			if (rs.next()) { // 행에 값이 있으면 테이블 생성
+			
+			// 모델 데이터
+			// rs를 사용하는 것은 모델 데이터 생성까지
+			// Notice notice = new Notice(); // 사용 가능하나 초기값 설정되기 때문에 오류검사와 맞지 않을 가능성
+			Notice notice = null;
+			if (rs.next()) { // rs 내부에서 필요한 타입을 결정 // rs가 항상 ArrayList 타입으로 바뀌어야 하는 것은 아님
+				notice = new Notice();
+				notice.noticeNo = rs.getInt("notice_no");
+				notice.noticeTitle = rs.getString("notice_title");
+				notice.noticeContent = rs.getString("notice_content");
+				notice.noticeWriter = rs.getString("notice_writer");
+				notice.createdate = rs.getString("createdate");
+				notice.updatedate = rs.getString("updatedate");
+		
+			// for (Notice n : noticeList) {
+			// if (rs.next()) { // 행에 값이 있으면 테이블 생성
 		%>		
 			<table class="table table-bordered text-center">
 			<tr>
 				<td class="text-bg-dark">notice_no</td>
-				<td><%=rs.getInt("notice_no")%></td>
+				<td><%=notice.noticeNo%></td>
 			</tr>
 			<tr>
 				<td class="text-bg-dark">notice_title</td>
-				<td><%=rs.getString("notice_title")%></td>
+				<td><%=notice.noticeTitle%></td>
 			</tr>
 			<tr>
 				<td class="text-bg-dark">notice_content</td>
-				<td><%=rs.getString("notice_content")%></td>
+				<td><%=notice.noticeContent%></td>
 			</tr>
 			<tr>
 				<td class="text-bg-dark">notice_writer</td>
-				<td><%=rs.getString("notice_writer")%></td>
+				<td><%=notice.noticeWriter%></td>
 			</tr>
 			<tr>
 				<td class="text-bg-dark">createdate</td>
-				<td><%=rs.getString("createdate")%></td>
+				<td><%=notice.createdate%></td>
 			</tr>
 			<tr>
 				<td class="text-bg-dark">updatedate</td>
-				<td><%=rs.getString("updatedate")%></td>
+				<td><%=notice.updatedate%></td>
 			</tr>
 		</table>
 		<% 
@@ -77,8 +111,8 @@
 		%>
 		
 		<div>
-			<a href="./updateNoticeForm.jsp?noticeNo=<%=noticeNo%>">수정</a>
-			<a href="./deleteNoticeForm.jsp?noticeNo=<%=noticeNo%>">삭제</a>
+			<a href="./updateNoticeForm.jsp?noticeNo=<%=noticeNo%>" class="btn btn-dark">수정</a>
+			<a href="./deleteNoticeForm.jsp?noticeNo=<%=noticeNo%>" class="btn btn-dark">삭제</a>
 		</div>
 	</body>
 </html>
