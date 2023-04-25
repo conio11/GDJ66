@@ -5,7 +5,6 @@
 	// post 방식 인코딩
 	request.setCharacterEncoding("UTF-8");
 
-	
 	// 한 개의 값이라도 공백이거나 null일 경우 scheduleListByDate.jsp 페이지로 이동 
 	// -> 해당 페이지에도 입력값 없어 scheduleList.jsp로 이동
 	if (request.getParameter("scheduleDate") == null
@@ -22,14 +21,12 @@
 		return; // 실행 종료
 	}
 	
-
 	String scheduleDate = request.getParameter("scheduleDate");
 	String scheduleTime = request.getParameter("scheduleTime");
 	String scheduleColor = request.getParameter("scheduleColor");
 	String scheduleMemo = request.getParameter("scheduleMemo");
 	String schedulePw = request.getParameter("schedulePw");
 	
-
 	System.out.println(scheduleDate + " <-- scheduleDate(insertScheduleAction)");
 	System.out.println(scheduleTime + " <-- scheduleTime(insertScheduleAction)");
 	System.out.println(scheduleColor + " <-- scheduleColor(insertScheduleAction)");
@@ -58,7 +55,7 @@
 	System.out.println("DB 접속 성공(insertScheduleAction) : " + conn);
 	
 	// 쿼리 생성
-	String sql = "insert into schedule(schedule_date, schedule_time, schedule_memo, schedule_color, schedule_pw, createdate, updatedate) values(?, ?, ?, ?, now(), now())";
+	String sql = "insert into schedule(schedule_date, schedule_time, schedule_memo, schedule_color, schedule_pw, createdate, updatedate) values(?, ?, ?, ?, ?, now(), now())";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	
 	// ? 5개(1 ~ 5)
