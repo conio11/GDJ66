@@ -14,7 +14,7 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 		
-	System.out.println(currentPage + "currentPage(empList)");
+	System.out.println(currentPage + " <-- currentPage(empList)");
 	
 	// 페이지 당 출력할 자료(행)의 수
 	int rowPerPage = 10;
@@ -50,7 +50,6 @@
 		ascDesc = request.getParameter("ascDesc");
 	}
 	// ex col -> "birth_date", order -> "ASC"; ===> "birth_date ASC"
-	
 	
 	String sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees order by " + col + " " + ascDesc + " limit ?, ?";
 	PreparedStatement stmt = conn.prepareStatement(sql);
@@ -117,7 +116,7 @@
 	//	empDate > todayDate 이면 age = age - 1
 	// 	empDate =< todayDate 이면 age = age
 	
-	System.out.println("======================================");
+	System.out.println("==============================================");
 	
 %>
 <!DOCTYPE html>
@@ -128,11 +127,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-		
 	</head>
 	<body>
 		<div>
-			<!-- 추후 링크 필요할 시 추가 -->
+			<!-- 링크 필요 시 추가 -->
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
 			<h1>employees 리스트</h1>
