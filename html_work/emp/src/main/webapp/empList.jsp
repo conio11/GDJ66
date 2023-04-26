@@ -4,6 +4,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*" %>
 <%
+	// 페이징 기능 + 컬럼별 오름차순/내림차순 데이터 정렬 기능
+	
 	// 인코딩 설정
 	request.setCharacterEncoding("UTF-8");
 	
@@ -18,7 +20,7 @@
 	int rowPerPage = 10;
 	
 	// 시작 행 번호
-	int startRow = (currentPage - 1) * 10;
+	int startRow = (currentPage - 1) * rowPerPage;
 	
 	/*
 	현재 페이지 / 시작 위치 (페이지당 10 데이터씩)
