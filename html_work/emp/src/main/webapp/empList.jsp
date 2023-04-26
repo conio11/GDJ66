@@ -21,7 +21,7 @@
 	int startRow = (currentPage - 1) * 10;
 	
 	/*
-	현재 페이지 / 시작 위치 (페이지당 20 데이터씩)
+	현재 페이지 / 시작 위치 (페이지당 10 데이터씩)
 	1 / 0   <-- (currentPage - 1) * 10
 	2 / 10
 	3 / 20
@@ -38,6 +38,7 @@
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees", "root", "java1234");
 	System.out.println("DB 접속 성공(empList) : " + conn);
 	
+	// col, ascDesc 값에 따라 쿼리문 변경
 	String col = "emp_no"; 
 	String ascDesc = "ASC";
 	
@@ -54,8 +55,8 @@
 	// ? 2개
 	// limit (?, ?) -> ?번째 행부터 ?개 자료 출력
 	stmt.setInt(1, startRow); // 1번째 ? 의 값
-	stmt.setInt(2, rowPerPage // 2번째 ? 의 값
-			);
+	stmt.setInt(2, rowPerPage); // 2번째 ? 의 값
+			
 	System.out.println(stmt + "stmt(empList)");
 	ResultSet rs = stmt.executeQuery();
 	System.out.println(rs + " <-- rs(empList)");
