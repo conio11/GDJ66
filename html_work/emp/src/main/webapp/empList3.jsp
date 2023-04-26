@@ -30,6 +30,7 @@
 		gender = request.getParameter("gender");
 	}
 	
+	
 	// 쿼리 미리 작성 및 테스트 후(HeidiSQL 등) DB에 접근 시작
 	Class.forName("org.mariadb.jdbc.Driver");
 	System.out.println("드라이버 로딩 성공(empList3)");
@@ -37,38 +38,37 @@
 	Connection conn = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/employees", "root", "java1234");
 	System.out.println("DB 접속 성공(empList3) : " + conn);
 	
+	// col, ascDesc 값에 따라 쿼리문 변경
+	String col = "emp_no"; 
+	String ascDesc = "ASC";
+	
 	// 쿼리 생성
 	String sql = null;
 	PreparedStatement stmt = null;
 	if (gender.equals("")) { // gender 값이 들어오지 않았을 경우 
-		sql = "SELECT emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate FROM employees LIMIT ?, ?";
+		sql = "SELECT emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate FROM employees ORDER BY " + col + " " + ascDesc + " LIMIT ?, ?";
 		stmt = conn.prepareStatement(sql); // ? 2개
 		stmt.setInt(1, startRow);
 		stmt.setInt(2, rowPerPage);
 		
 	} else { // gender 값이 들어왔을 경우 
-		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName,gender gender, hire_date hireDate from employees where gender = ? limit ?,?";
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName,gender gender, hire_date hireDate from employees where gender=? ORDER BY " + col + " " + ascDesc + " limit ?,?";
 		stmt = conn.prepareStatement(sql); // ? 3개
 		stmt.setString(1, gender);
 		stmt.setInt(2, startRow);
 		stmt.setInt(3, rowPerPage);
 	}
-
-	// 쿼리문
-	// SELECT emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate FROM employees order by emp_no asc LIMIT ?, ?
-
-	// col, ascDesc 값에 따라 쿼리문 변경
-	String col = "emp_no"; 
-	String ascDesc = "ASC";
 	
+	System.out.println(stmt + " <-- stmt(empList3)");
+
+	/*
 	if (request.getParameter("col") != null
 	&& request.getParameter("ascDesc") != null) {
 		col = request.getParameter("col");
 		ascDesc = request.getParameter("ascDesc");
 	}
-	// ex col -> "birth_date", order -> "ASC"; ===> "birth_date ASC"
+	*/
 	
-	System.out.println(stmt + "stmt(empList3)");
 	ResultSet rs = stmt.executeQuery();
 	System.out.println(rs + " <-- rs(empList3)");
 
@@ -132,34 +132,34 @@
 		<table class="table table-bordered text-center">
 			<tr class="table-success">
 				<th>
-					<a href="./empList3.jsp?col=emp_no&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=emp_no&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					emp_no
-					<a href="./empList3.jsp?col=emp_no&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=emp_no&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 				<th>
-					<a href="./empList3.jsp?col=birth_date&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=birth_date&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					age
-					<a href="./empList3.jsp?col=birth_date&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=birth_date&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 				<th>
-					<a href="./empList3.jsp?col=first_name&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=first_name&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					first_name
-					<a href="./empList3.jsp?col=first_name&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=first_name&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 				<th>
-					<a href="./empList3.jsp?col=last_name&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=last_name&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					last_name
-					<a href="./empList3.jsp?col=last_name&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=last_name&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 				<th>
-					<a href="./empList3.jsp?col=gender&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=gender&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					gender
-					<a href="./empList3.jsp?col=gender&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=gender&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 				<th>
-					<a href="./empList3.jsp?col=hire_date&ascDesc=ASC" class="btn">[ASC]</a>
+					<a href="./empList3.jsp?col=hire_date&ascDesc=ASC&gender=<%=gender%>" class="btn">[ASC]</a>
 					hire_date
-					<a href="./empList3.jsp?col=hire_date&ascDesc=DESC" class="btn">[DESC]</a>
+					<a href="./empList3.jsp?col=hire_date&ascDesc=DESC&gender=<%=gender%>" class="btn">[DESC]</a>
 				</th>
 			</tr>
 		<%	
@@ -206,7 +206,7 @@
 		%>
 		</table>
 	
-		<form action="./empList2.jsp" method="get">
+		<form action="./empList3.jsp" method="get">
 			<select name="gender">
 				<option value="">성별 선택</option>
 				<option value="M">남</option>
@@ -219,7 +219,7 @@
 		<%
 			if (currentPage > 1) { // 2페이지부터 이전 버튼 생성
 		%>
-				<a href="./empList3.jsp?currentPage=<%=currentPage - 1%>&col=<%=col%>&ascDesc=<%=ascDesc%>" class="btn btn-success">이전</a>
+				<a href="./empList3.jsp?currentPage=<%=currentPage - 1%>&col=<%=col%>&ascDesc=<%=ascDesc%>&gender=<%=gender%>" class="btn btn-success">이전</a>
 		<%
 			}
 		%>
@@ -227,7 +227,7 @@
 		<%
 			if (currentPage < lastPage) { // 마지막 페이지 - 1 페이지까지만 다음 버튼 생성
 		%>
-				<a href="./empList3.jsp?currentPage=<%=currentPage + 1%>&col=<%=col%>&ascDesc=<%=ascDesc%>" class="btn btn-success">다음</a>
+				<a href="./empList3.jsp?currentPage=<%=currentPage + 1%>&col=<%=col%>&ascDesc=<%=ascDesc%>&gender=<%=gender%>" class="btn btn-success">다음</a>
 		<%
 			}
 		%>
