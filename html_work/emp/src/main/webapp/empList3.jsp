@@ -42,6 +42,12 @@
 	String col = "emp_no"; 
 	String ascDesc = "ASC";
 	
+	if (request.getParameter("col") != null
+	&& request.getParameter("ascDesc") != null) {
+		col = request.getParameter("col");
+		ascDesc = request.getParameter("ascDesc");
+	}
+	
 	// 쿼리 생성
 	String sql = null;
 	PreparedStatement stmt = null;
@@ -60,14 +66,6 @@
 	}
 	
 	System.out.println(stmt + " <-- stmt(empList3)");
-
-	/*
-	if (request.getParameter("col") != null
-	&& request.getParameter("ascDesc") != null) {
-		col = request.getParameter("col");
-		ascDesc = request.getParameter("ascDesc");
-	}
-	*/
 	
 	ResultSet rs = stmt.executeQuery();
 	System.out.println(rs + " <-- rs(empList3)");
