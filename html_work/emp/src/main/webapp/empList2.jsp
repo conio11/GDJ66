@@ -5,7 +5,7 @@
 <%@ page import="vo.*" %>
 <%
 	// where gender=? 조건 추가 
-	// 페이징 기능 + 1페이지에서 gender 가 "F", "M" 인 자료만 조회 기능
+	// 페이징 기능 + 1페이지에서 gender 가 "F", "M" 인 자료만 조회 기능 -> 페이지 넘겨도 성별순으로 출력 가능
 
 	// 코드 작성 시 데이터부터 생성, 출력은 나중에 
 
@@ -49,14 +49,14 @@
 		stmt.setInt(2, rowPerPage);
 		
 	} else { // gender 값이 들어왔을 경우 
-		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName,gender gender, hire_date hireDate from employees where gender = ? limit ?,?";
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName,gender gender, hire_date hireDate from employees where gender = ? limit ?, ?";
 		stmt = conn.prepareStatement(sql); // ? 3개
 		stmt.setString(1, gender);
 		stmt.setInt(2, startRow);
 		stmt.setInt(3, rowPerPage);
 	}
 	
-	System.out.println(stmt + "stmt(empList2)");
+	System.out.println(stmt + " <-- stmt(empList2)");
 	ResultSet rs = stmt.executeQuery();
 	System.out.println(rs + " <-- rs(empList2)");
 
@@ -183,7 +183,7 @@
 		<%
 			if (currentPage > 1) { // 2페이지부터 이전 버튼 생성
 		%>
-				<a href="./empList2.jsp?currentPage=<%=currentPage - 1%>" class="btn btn-success">이전</a>
+				<a href="./empList2.jsp?currentPage=<%=currentPage - 1%>&gender=<%=gender%>" class="btn btn-success">이전</a>
 		<%
 			}
 		%>
@@ -191,7 +191,7 @@
 		<%
 			if (currentPage < lastPage) { // 마지막 페이지 - 1 페이지까지만 다음 버튼 생성
 		%>
-				<a href="./empList2.jsp?currentPage=<%=currentPage + 1%>" class="btn btn-success">다음</a>
+				<a href="./empList2.jsp?currentPage=<%=currentPage + 1%>&gender=<%=gender%>" class="btn btn-success">다음</a>
 		<%
 			}
 		%>
