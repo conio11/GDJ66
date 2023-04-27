@@ -4,7 +4,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="vo.*" %>
 <%
-	// 페이징 기능 + 이름/성별 검색 기능 + 입사년도 검색 기능
+	// 페이징 기능 + 이름/성별/입사년도 검색 기능
 	// Controller Layer - 요청값 처리 계층
 	// gender(null, "", "M/F"), searchWord(null, "", "검색 단어")
 	
@@ -105,39 +105,62 @@
 		stmt.setInt(2, rowPerPage);
 	} else if (gender.equals("") && searchWord.equals("")
 	&& beginYear != 0 && endYear != 0) { // year 값만 유효
-		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where year(hire_date between) ? and ? limit ?, ?";
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where year(hire_date) between ? and ? limit ?, ?";
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, beginYear);
 		stmt.setInt(2, endYear);
 		stmt.setInt(3, startRow);
 		stmt.setInt(4, rowPerPage);
-	} else if () {
-	
-	
-	
-	
-	/*
-	else if (!gender.equals("") && searchWord.equals("")) {
+	} else if (!gender.equals("") && searchWord.equals("")
+	&& beginYear == 0 && endYear == 0) { // gender 유효값, searchWord 공백, year 둘 다 0 
 		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where gender=? limit ?, ?";
-		stmt = conn.prepareStatement(sql);
+		stmt = conn.prepareStatement(sql); 
 		stmt.setString(1, gender);
 		stmt.setInt(2, startRow);
-		stmt.setInt(3, rowPerPage);
-	} else if (gender.equals("") && !searchWord.equals("")) {
+		stmt.setInt(3, rowPerPage); 
+	} else if (!gender.equals("") && searchWord.equals("")
+	&& beginYear != 0 && endYear != 0) { // gender 유효값, searchWord 공백, year 둘 다 유효값 
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where gender=? and year(hire_date) between ? and ? limit ?, ?";
+		stmt = conn.prepareStatement(sql); 
+		stmt.setString(1, gender);
+		stmt.setInt(2, beginYear);
+		stmt.setInt(3, endYear);
+		stmt.setInt(4, startRow);
+		stmt.setInt(5, rowPerPage);
+	} else if (gender.equals("") && !searchWord.equals("")
+	&& beginYear == 0 && endYear == 0) { // gender 공백, searchWord 유효값, year 둘 다 0
 		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where concat(first_name, ' ', last_name) like ? limit ?, ?";
-		stmt = conn.prepareStatement(sql);
+		stmt = conn.prepareStatement(sql);	
 		stmt.setString(1, "%" + searchWord + "%");
 		stmt.setInt(2, startRow);
 		stmt.setInt(3, rowPerPage);
-	} else { // 둘 다 유효값을 가지는 경우
-		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where gender=? and concat(first_name, ' ', last_name) like ? limit ?, ?";	
+	} else if (gender.equals("") && !searchWord.equals("")
+	&& beginYear != 0 && endYear != 0) { // gender 공백, searchWord 유효값, year 둘 다 유효값
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where concat(first_name, ' ', last_name) like ? and year(hire_date) between ? and ? limit ?, ?";
+		stmt = conn.prepareStatement(sql);	
+		stmt.setString(1, "%" + searchWord + "%");
+		stmt.setInt(2, beginYear);
+		stmt.setInt(3, endYear);
+		stmt.setInt(4, startRow);
+		stmt.setInt(5, rowPerPage);	
+	} else if (!gender.equals("") && !searchWord.equals("")
+	&& beginYear == 0 && endYear == 0) { // gender, searchWord 둘 다 유효값, year 둘 다 0
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where gender=? and concat(first_name, ' ', last_name) like ? limit ?, ?";
 		stmt = conn.prepareStatement(sql);
 		stmt.setString(1, gender);
 		stmt.setString(2, "%" + searchWord + "%");
 		stmt.setInt(3, startRow);
-		stmt.setInt(4, rowPerPage);
+		stmt.setInt(4, rowPerPage);	
+	} else { // gender, searchWord 둘 다 유효값, year 둘 다 유효값
+		sql = "select emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender gender, hire_date hireDate from employees where gender=? and concat(first_name, ' ', last_name) like ? and year(hire_date) between ? and ? limit ?, ?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, gender);
+		stmt.setString(2, "%" + searchWord + "%");
+		stmt.setInt(3, beginYear);
+		stmt.setInt(4, endYear);
+		stmt.setInt(5, startRow);
+		stmt.setInt(6, rowPerPage);	
 	}
-	*/
 	
 	System.out.println(stmt + " <-- stmt(empList5)");
 	
@@ -226,7 +249,6 @@
 					<td><%=e.hireDate%></td>
 				</tr>
 			</tbody>
-
 	<%
 			}
 	%>
@@ -236,7 +258,6 @@
 			<form action="./empList5.jsp" method="get">
 			<label>성별 : </label>
 				<select name="gender">
-				
 				<%
 					if (gender.equals("")) { 
 				%>
@@ -250,7 +271,6 @@
 					<option value="M" selected="selected">남</option>
 					<option value="F">여</option>
 				<%
-				
 					} else {
 				%>
 					<option value="">선택</option>
@@ -259,7 +279,6 @@
 				<%
 					}
 				%>
-				
 				</select>
 				<label>이름 검색 : </label>
 				<input type="text" name="searchWord" value="<%=searchWord%>">
@@ -273,7 +292,7 @@
 		<%
 			if (currentPage > 1) { // 2페이지부터 이전 버튼 생성
 		%>		
-				<a href="./empList5.jsp?currentPage=<%=currentPage - 1%>&gender=<%=gender%>&searchWord=<%=searchWord%>" class="btn btn-success">이전</a>
+				<a href="./empList5.jsp?currentPage=<%=currentPage - 1%>&gender=<%=gender%>&searchWord=<%=searchWord%>&beginYear=<%=beginYear%>&endYear=<%=endYear%>" class="btn btn-success">이전</a>
 		<%	
 			}
 		%>
@@ -281,7 +300,7 @@
 		<%
 			if (currentPage < lastPage) { // 마지막 페이지 - 1 페이지까지만 다음 버튼 생성
 		%>
-				<a href="./empList5.jsp?currentPage=<%=currentPage + 1%>&gender=<%=gender%>&searchWord=<%=searchWord%>" class="btn btn-success">다음</a>
+				<a href="./empList5.jsp?currentPage=<%=currentPage + 1%>&gender=<%=gender%>&searchWord=<%=searchWord%>&beginYear=<%=beginYear%>&endYear=<%=endYear%>" class="btn btn-success">다음</a>
 		<%
 			}
 		%>	
