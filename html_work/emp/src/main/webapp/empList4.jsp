@@ -92,7 +92,6 @@
 		stmt.setInt(3, startRow);
 		stmt.setInt(4, rowPerPage);
 	}
-	
 	System.out.println(stmt + " <-- stmt(empList4)");
 	
 	// ResultSet -> ArrayList<> 구조로 변경
@@ -135,9 +134,6 @@
 	System.out.println(lastPage + " <-- lastPage(empList4)");
 
 	System.out.println(BG_GREEN + "=======================================" + RESET_ANSI);
-			
-			
-	// select * from employees where year(hire_date) between 1988 and 1990
 %>
 
 <!DOCTYPE html>
@@ -176,21 +172,20 @@
 					<td><%=e.lastName%></td>
 					<td>
 				<%	
-					if (e.gender.equals("M")) {		
+						if (e.gender.equals("M")) {		
 				%>
-					<img src="./img/manNew.jpg" width="50" height="50">
+						<img src="./img/manNew.jpg" width="50" height="50">
 				<% 
-					} else {
+						} else {
 				%>
-					<img src="./img/womanNew.jpg" width="50" height="50">
+						<img src="./img/womanNew.jpg" width="50" height="50">
 				<%
-					}
-				%>
+						}
+				%>	
 					</td>
 					<td><%=e.hireDate%></td>
 				</tr>
 			</tbody>
-
 	<%
 			}
 	%>
@@ -199,8 +194,7 @@
 		<div>
 			<form action="./empList4.jsp" method="get">
 			<label>성별 : </label>
-				<select name="gender">
-				
+				<select name="gender"> <!-- select에서 선택한 값이 gender의 값으로 넘어감 -->
 				<%
 					if (gender.equals("")) { 
 				%>
@@ -223,7 +217,6 @@
 				<%
 					}
 				%>
-				
 				</select>
 				<label>이름 검색 : </label>
 				<input type="text" name="searchWord" value="<%=searchWord%>">
