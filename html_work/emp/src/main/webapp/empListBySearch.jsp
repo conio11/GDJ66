@@ -5,19 +5,20 @@
 <%@ page import="java.util.*"%>
     
 <%
-	String bgGreen = "\u001B[42m";
-	String resetAnsi = "\u001B[0m";
+	// 디버깅 첫 줄, 마지막 줄 적용
+	final String BG_GREEN = "\u001B[42m"; // 콘솔 폰트 배경색 설정
+	final String RESET_ANSI = "\u001B[0m"; // 설정 초기화
     
 	// MVC 패턴
 	// Controller Layer: 요청값 처리 계층 
 	// 가장 먼저 필요한 내용: 받아올 값 정의(파라미터값) - 현재 페이지(String -> Integer -> int), 검색 단어(String) 
-	// String 타입이 넘어오기 때문에 인코딩 설정 필요
+	// String 타입 넘어오기 때문에 인코딩 설정 필요
+	request.setCharacterEncoding("UTF-8");
 	
 	// 파라미터값 확인
-	System.out.println(bgGreen + request.getParameter("currentPage") + " <- Current param(empListBySearch)" + resetAnsi);
-	System.out.println(request.getParameter("searchWord") + " <- Current param(empListBySearch)");
-	System.out.println(request.getParameter("rowPerPage") + " <- Current param(empListBySearch)");
-	
+	System.out.println(BG_GREEN + request.getParameter("currentPage") + " <- currentPage_current param(empListBySearch)" + RESET_ANSI);
+	System.out.println(request.getParameter("searchWord") + " <- searchWord_current param(empListBySearch)");
+	System.out.println(request.getParameter("rowPerPage") + " <- rowPerPage_current param(empListBySearch)");
 	
 	// 파라미터값 null 유효성 검사
 	// request.getParameter("currentPage") -> null 일 경우 진행 불가
@@ -28,12 +29,12 @@
 	if (request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	} else {
-		currentPage = 1; // 값이 넘어오지 않을 경우 currentPage = 1로 기본 설정
+		currentPage = 1; // 값이 넘어오지 않을 경우 currentPage = 1로 기본 설정 -> else 대신 블록 밖에서 초기값을 1로 설정
 	}
 	*/
 	
 	int currentPage = 1;
-	if (request.getParameter("currentPage") != null) {
+	if (request.getParameter("currentPage") != null && !request.getParameter("currentPage").equals("")) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
@@ -57,7 +58,7 @@
 	// Controller layer의 결과 변수 (currentPage, searchWOrd)의 모델 생성을 위한 변수 추가
 	// controller layer의 결과 변수 가공
 
-	int startRow = (currentPage - 1) * 10;
+	int startRow = (currentPage - 1) * rowPerPage;
 	// currentPage = 1 -> startRow = 0
 	System.out.println(startRow + " <-- startRow(empListBySearch)");
 	
@@ -71,10 +72,11 @@
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(empListBySearch) : " + conn);
 	
+	// Model Layer
 	// 동적 쿼리 
 	String sql = null;
 	PreparedStatement stmt = null;
-	if (searchWord.equals("") == true) { // 공백이면 // if (searchWord.equals("")) {}
+	if (searchWord.equals("") == true) { // serachWord 공백이면 // if (searchWord.equals("")) {}
 		sql = "SELECT emp_no empNo, birth_date birthDate, first_name firstName, last_name lastName, gender, hire_date hireDate FROM employees ORDER BY emp_no ASC LIMIT ?, ?"; 
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, startRow);
@@ -96,9 +98,8 @@
 	
 	System.out.println(stmt + " <-- stmt(empListBySearch)");
 	
-	ResultSet rs = stmt.executeQuery();
-	
 	// ResultSet -> ArrayList<> 구조로 변경
+	ResultSet rs = stmt.executeQuery();
 	ArrayList<Employees> empList = new ArrayList<Employees>();
 	while (rs.next()) { // rs 커서가 내려가는 동안 반복
 		Employees e = new Employees();
@@ -134,13 +135,11 @@
 	}
 	System.out.println(lastPage + " <-- lastPage(empListBySearch)");
 	
-	System.out.println("==============================================");
+	System.out.println(BG_GREEN + "==============================================" + RESET_ANSI);
 	
 	// View Layer 
-	
 %>
-    
-    
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -166,7 +165,6 @@
 				<th>gender</th>
 				<th>hire_date</th>
 			</tr>
-			
 		<%	
 			for (Employees e : empList) {
 		%>
