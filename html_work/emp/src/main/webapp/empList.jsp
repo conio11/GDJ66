@@ -85,6 +85,8 @@
 	if (rs2.next()) { // rs2의 커서가 내려가는 동안 실행
 		totalRow = rs2.getInt("count(*)"); 
 	}
+	System.out.println(totalRow + " <-- totalRow(empList)");
+	
 	int lastPage = totalRow / rowPerPage;
 	if (totalRow % rowPerPage != 0) {
 		lastPage = lastPage + 1;
