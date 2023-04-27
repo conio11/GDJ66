@@ -57,7 +57,7 @@
 	System.out.println(searchWord + " <-- searchWord(empList5)");
 	System.out.println(beginYear + " <-- beginYear(empList5)");
 	System.out.println(endYear + " <-- endYear(empList5)");
-	// searchWord에 값이 있는 경우도 디버깅 -> 주소창에 ?currentPage=(int값)&gender=(String값)&searchWord=(String값) 추가
+	// 값이 넘어오지 않는 경우는 주소창으로 직접 디버깅 -> 주소창에 ?&gender=(String값)&searchWord=(String값)&beginYear=(int값)&endYear=(int값) 추가
 	
 	// 페이징 설정 - rowPerPage, startRow
 	int rowPerPage = 10;
@@ -87,13 +87,13 @@
 
 	// if, else if, else if, else
 	// 1-1) select * from employees
-	// 1-2) select * from employees where year(hire_date between) ? and ?
+	// 1-2) select * from employees where year(hire_date) between ? and ?
 	// 2-1) select * from employees where gender=?
- 	// 2-2) select * from employees where gender=? and year(hire_date between) ? and ?
+ 	// 2-2) select * from employees where gender=? and year(hire_date) between ? and ?
 	// 3-1) select * from employees where searchWord like ? 
-	// 3-2) select * from employees where searchWord like ? and year(hire_date between) ? and ?
+	// 3-2) select * from employees where searchWord like ? and year(hire_date) between ? and ?
 	// 4-1) select * from employees where gender=? and searchWord like ?
-	// 4-2) select * from employees where gender=? and searchWord like ? year(hire_date between) ? and ?
+	// 4-2) select * from employees where gender=? and searchWord like ? year(hire_date) between ? and ?
 
 	String sql = null; // 쿼리문 블록에서 분기
 	PreparedStatement stmt = null; // 분기된 쿼리값에 따라 변경
@@ -199,6 +199,7 @@
 	System.out.println(BG_GREEN + "=======================================" + RESET_ANSI);
 %>
 
+<!-- View Layer -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -212,6 +213,42 @@
 		<div class="container mt-3 d-flex justify-content-center">
 			<h1>사원 목록</h1>
 		</div>
+		<br>
+		<div>
+		 	<!-- 요청 폼 -->
+			<form action="./empList5.jsp" method="get">
+				<label>성별 : </label>
+				<select name="gender">
+				<%
+					if (gender.equals("")) { 
+				%>
+					<option value="" selected="selected">선택</option>
+					<option value="M">남</option>
+					<option value="F">여</option>
+				<%
+					} else if (gender.equals("M")) {
+				%>
+					<option value="">선택</option>
+					<option value="M" selected="selected">남</option>
+					<option value="F">여</option>
+				<%
+					} else {
+				%>
+					<option value="">선택</option>
+					<option value="M">남</option>
+					<option value="F" selected="selected">여</option>
+				<%
+					}
+				%>
+				</select>
+				<label>이름 검색 : </label>
+				<input type="text" name="searchWord"> <!-- value="<%=searchWord%> 없어도 정상 실행? -->
+				<label>입사년도 : </label> <!-- div 요소와 달리 행 전체 차지하지 않음  -->
+				<input type="number" name="beginYear"> ~ <input type="number" name="endYear">
+				<button type="submit">조회</button>
+			</form>
+		</div>
+		<br> 
 		<table class="table table-bordered text-center">
 			<thead>
 				<tr class="table-success">
@@ -253,41 +290,6 @@
 			}
 	%>
 		</table>
-		<!-- 요청 폼 -->
-		<div>
-			<form action="./empList5.jsp" method="get">
-			<label>성별 : </label>
-				<select name="gender">
-				<%
-					if (gender.equals("")) { 
-				%>
-					<option value="" selected="selected">선택</option>
-					<option value="M">남</option>
-					<option value="F">여</option>
-				<%
-					} else if (gender.equals("M")) {
-				%>
-					<option value="">선택</option>
-					<option value="M" selected="selected">남</option>
-					<option value="F">여</option>
-				<%
-					} else {
-				%>
-					<option value="">선택</option>
-					<option value="M">남</option>
-					<option value="F" selected="selected">여</option>
-				<%
-					}
-				%>
-				</select>
-				<label>이름 검색 : </label>
-				<input type="text" name="searchWord" value="<%=searchWord%>">
-				<label>입사년도 : </label>
-				<input type="number" name="beginYear"> ~ <input type="number" name="endYear">
-				<button type="submit">조회</button>
-			</form>
-			<br>
-		</div>
 		<div class="text-center">
 		<%
 			if (currentPage > 1) { // 2페이지부터 이전 버튼 생성
