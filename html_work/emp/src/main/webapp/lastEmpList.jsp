@@ -188,32 +188,8 @@
 			}
 		%>
 		</div>
-		<!-- ckMonth 개수 처리? -->
-		
-		<%
-			/*
-			int countMonth = ckMonth.length;
-			String hLink = null; 
-			
-			int[] countMonth2 = new int [countMonth];
-			for (int i = 0; i < countMonth; i += 1) {
-				countMonth2[i] = intCkMonth[i];
-			}
-			*/
-			
-		
-		%>
-		
-		<%
-		
-		%>
-		<%
-			if (currentPage < lastPage) { // 마지막 페이지 - 1 페이지까지만 다음 버튼 생성
-		%>
-				<a href="./lastEmpList.jsp?currentPage=<%=currentPage + 1%>">다음</a>
-		<%
-			}
-		%>
-
+		<div>
+			마지막 페이지: <%=lastPage%>
+		</div>
 	</body>
 </html>
