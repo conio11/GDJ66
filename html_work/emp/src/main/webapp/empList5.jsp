@@ -241,10 +241,16 @@
 					}
 				%>
 				</select>
+				
+				<%
+					if (beginYear == 0) {
+						String str = String.valueOf(beginYear);
+					}
+				%>
 				<label>이름 검색 : </label>
-				<input type="text" name="searchWord"> <!-- value="<%=searchWord%> 없어도 정상 실행? -->
+				<input type="text" name="searchWord" value="<%=searchWord%>"> <!-- value="<%=searchWord%> 없으면 실행 후 입력한 값이 text 영역에 저장되지 않음 -->
 				<label>입사년도 : </label> <!-- div 요소와 달리 행 전체 차지하지 않음  -->
-				<input type="number" name="beginYear"> ~ <input type="number" name="endYear">
+				<input type="number" name="beginYear" value="<%=beginYear%>"> ~ <input type="number" name="endYear" value="<%=endYear%>">
 				<button type="submit">조회</button>
 			</form>
 		</div>
