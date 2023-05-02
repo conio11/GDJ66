@@ -13,23 +13,21 @@
 	
 	// 세션 유효성 확인: 로그인 상태인 경우 home.jsp로 이동
 	if (session.getAttribute("memberID") != null) { 
-		response.sendRedirect(request.getContextPath() + "/home.jsp"); // 추후 msg 변수 추가
+		response.sendRedirect(request.getContextPath() + "/home.jsp"); 
 		return; // 실행 종료
 	}
 	
 	// 요청값 유효성 확인
-	// ID, PW 모두 유효값이 있으면 (null값이나 공백값이 아니면)
-	if (request.getParameter("memberID") != null
-	&& !request.getParameter("memberID").equals("")
-	&& request.getParameter("memberPW") != null 
-	&& !request.getParameter("memberPW").equals("")) { 
-		System.out.println("아이디, 비밀번호 입력 확인");
-	} else {
-		String msg = URLEncoder.encode("아이디와 비밀번호를 모두 입력하세요", "utf-8");
+	// ID 또는 PW가 null값 또는 공백일 경우 회원가입 폼으로 이동
+	String msg = null;
+	if (request.getParameter("memberID") == null
+	|| request.getParameter("memberPW") == null
+	|| request.getParameter("memberID").equals("")
+	|| request.getParameter("memberPW").equals("")) { 
+		msg = URLEncoder.encode("아이디와 비밀번호를 모두 입력하세요", "UTF-8");
 		response.sendRedirect(request.getContextPath()+"/member/insertMemberForm.jsp?msg=" + msg);
-		System.out.println("회원가입 실패");
+		return; // 실행 종료
 	}
-	
 	// 입력된 아이디, 비밀번호 변수로 저장
 	String ID = request.getParameter("memberID");
 	String PW = request.getParameter("memberPW");
@@ -53,7 +51,7 @@
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(insertMemberAction)");
 	PreparedStatement stmt = null;
-	// ResultSet rs = null;
+	ResultSet rsID = null;
 	
 	// 비밀번호 암호화 (PASSWORD(?))
 	String sql = "INSERT INTO member(member_id, member_pw, createdate, updatedate) VALUES(?, PASSWORD(?), NOW(), NOW())";
@@ -61,13 +59,29 @@
 	stmt.setString(1, newMember.memberID);
 	stmt.setString(2, newMember.memberPW);
 	
+	// 중복 ID 확인
+	String sqlID = "SELECT member_id memberID FROM member WHERE member_id=?";
+	PreparedStatement stmtID = null;
+	stmtID = conn.prepareStatement(sqlID);
+	stmtID.setString(1, newMember.memberID);
+	
 	// stmt값 확인
 	System.out.println(stmt + " <-- stmt(insertMemberAction)");
+	System.out.println(stmtID + " <--stmtID(insertMemberAction)");
+	
+	rsID = stmtID.executeQuery();
+	
+	if (rsID.next()) { // ID가 중복되는 경우
+		System.out.println("ID 중복(insertMemberAction)");
+		msg = URLEncoder.encode("사용 중인 ID입니다", "UTF-8");
+		response.sendRedirect(request.getContextPath() + "/member/insertMemberForm.jsp?msg=" + msg);
+		return; // 실행 종료
+	}
 	
 	int row = stmt.executeUpdate();
 	System.out.println(row + "<-- row(insertMemberAction)");
 	
-	if(row == 1) { // 회원가입 성공, 
+	if (row == 1) { // 회원가입 성공 시 home.jsp로 이동
 		System.out.println("회원가입 성공");
 		response.sendRedirect(request.getContextPath()+"/home.jsp");
 	} else { // 실패 시 입력폼으로 이동
