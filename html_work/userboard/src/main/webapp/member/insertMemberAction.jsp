@@ -3,9 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import="vo.*"%>
-<%
- 	// 중복 ID값 검사 추가 예정
- 	
+<%	
 	// post 방식 인코딩 처리
 	request.setCharacterEncoding("UTF-8");
 	
@@ -50,11 +48,10 @@
 	System.out.println("드라이버 로딩 성공(insertMemberAction)");
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(insertMemberAction)");
-	PreparedStatement stmt = null;
-	ResultSet rsID = null;
 	
 	// 비밀번호 암호화 (PASSWORD(?))
 	String sql = "INSERT INTO member(member_id, member_pw, createdate, updatedate) VALUES(?, PASSWORD(?), NOW(), NOW())";
+	PreparedStatement stmt = null;
 	stmt = conn.prepareStatement(sql);
 	stmt.setString(1, newMember.memberID);
 	stmt.setString(2, newMember.memberPW);
@@ -64,14 +61,15 @@
 	PreparedStatement stmtID = null;
 	stmtID = conn.prepareStatement(sqlID);
 	stmtID.setString(1, newMember.memberID);
+	ResultSet rsID = null;
 	
 	// stmt값 확인
 	System.out.println(stmt + " <-- stmt(insertMemberAction)");
 	System.out.println(stmtID + " <--stmtID(insertMemberAction)");
 	
-	rsID = stmtID.executeQuery();
+	rsID = stmtID.executeQuery(); // 쿼리 실행
 	
-	if (rsID.next()) { // ID가 중복되는 경우
+	if (rsID.next()) { // ID가 중복되는 경우 (true일 때) 실행
 		System.out.println("ID 중복(insertMemberAction)");
 		msg = URLEncoder.encode("사용 중인 ID입니다", "UTF-8");
 		response.sendRedirect(request.getContextPath() + "/member/insertMemberForm.jsp?msg=" + msg);
