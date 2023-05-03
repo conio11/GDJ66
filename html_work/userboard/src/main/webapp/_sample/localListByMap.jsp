@@ -105,10 +105,15 @@
 		<hr> 
 		<h2>rs3 결과셋</h2>
 		<ul>
+			<li>
+				<a href="">전체</a>	
+			</li>
 			<%
 				for (HashMap<String, Object> m : list3) {
 			%>
-					<li><a href=""><%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>)</a></li>
+					<li>
+						<a href=""><%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>)</a>
+					</li>
 			<% 
 				}
 			%>
