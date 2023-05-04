@@ -5,6 +5,13 @@
 <%@ page import="vo.*" %>
 
 <%
+	// * 요청분석(컨트롤러 계층) 후 모델 계층 생성
+	// 1)) session - JSP내장(기본) 객체
+
+	// 2)) request / response JSP내장(기본) - 객체
+	int currentPage = 1;
+	int rowPerPage = 10;
+
 	//인코딩 설정
 	response.setCharacterEncoding("UTF-8");
 	
@@ -81,6 +88,7 @@
 	
 	System.out.println("====================================");
 %>
+<!-- View Layer -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -90,7 +98,7 @@
 	<body>
 		<!-- 메인 메뉴(가로) -->
 		<div>
-			<jsp:include page="./inc/mainmenu.jsp"></jsp:include> <!-- mainmenu.jsp 의 결과를 현재 페이지에서 사용 가능 -->
+			<jsp:include page="/inc/mainmenu.jsp"></jsp:include> <!-- mainmenu.jsp 의 결과를 현재 페이지에서 사용 가능 -->
 		</div>
 		
 
@@ -160,7 +168,7 @@
 		%>
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
-			<jsp:include page="./inc/copyright.jsp"></jsp:include>
+			<jsp:include page="/inc/copyright.jsp"></jsp:include>
 		</div>
 	</body>
 </html>
