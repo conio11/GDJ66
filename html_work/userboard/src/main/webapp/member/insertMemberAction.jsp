@@ -9,9 +9,9 @@
 	
 	// 세션 유효성 확인 -> 요청값 유효성 확인
 	
-	// 세션 유효성 확인: 로그인 상태인 경우 home.jsp로 이동
+	// 세션 유효성 확인: 로그인 상태인 경우 home2.jsp로 이동
 	if (session.getAttribute("memberID") != null) { 
-		response.sendRedirect(request.getContextPath() + "/home.jsp"); 
+		response.sendRedirect(request.getContextPath() + "/home2.jsp"); 
 		return; // 실행 종료
 	}
 	
