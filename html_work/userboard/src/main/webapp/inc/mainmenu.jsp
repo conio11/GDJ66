@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div>
 	<ul>
-		<li><a href="<%= request.getContextPath()%>/home.jsp">홈으로</a></li>
+		<li><a href="<%= request.getContextPath()%>/home2.jsp">홈으로</a></li>
 		<!--
 		로그인 전: 회원가입 링크	
 		로그인 후: 회원정보 / 로그아웃 (로그인 정보 세션: loginMemberID) 링크
