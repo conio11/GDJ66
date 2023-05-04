@@ -128,17 +128,6 @@
 				<td><%=board.updatedate%><td>
 			</tr>
 		</table>
-		<%
-			// 로그인된 상태이면
-			if (session.getAttribute("loginMemberID") != null) {
-		%>
-			<div>
-				<a href="">수정</a>
-				<a href="">삭제</a>
-			</div>
-		<%		
-			}
-		%>
 		
 		<!-- 3-2) comment(댓글) 입력 : 세션유무에 따른 분기 -->
 		<!-- comment 입력: 세션 유무 확인  -->
@@ -162,8 +151,7 @@
 							<td>
 								<textarea rows="2" cols="80" name="commentContent"></textarea>
 							</td>
-						</tr>
-						
+						</tr>	
 					</table>
 					<button type="submit">댓글 입력</button>
 				</form>
@@ -197,7 +185,24 @@
 			}
 		%>
 		</table>
+		
+		<%
+			// 로그인된 상태이면
+			if (session.getAttribute("loginMemberID") != null) {
+		%>
+			<div>
+				<a href="">수정</a>
+				<a href="">삭제</a>
+			</div>
+		<%		
+			}
+		%>
 			<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=currentPage - 1%>">이전</a>
 			<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=currentPage + 1%>">다음</a>
+			
+		<div>
+			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
+			<jsp:include page="/inc/copyright.jsp"></jsp:include>
+		</div>	
 	</body>
 </html>
