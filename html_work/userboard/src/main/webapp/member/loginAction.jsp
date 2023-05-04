@@ -8,7 +8,7 @@
 	
 	// 세션 유효성 확인
 	if (session.getAttribute("loginMemberID") != null) { 
-		response.sendRedirect(request.getContextPath()+ "/home.jsp");
+		response.sendRedirect(request.getContextPath()+ "/home2.jsp");
 		return; // 실행 종료
 	}
 	
@@ -50,7 +50,7 @@
 	} else { // 로그인 실패
 		System.out.println("로그인 실패");
 	}
-	response.sendRedirect(request.getContextPath()+ "/home.jsp");
+	response.sendRedirect(request.getContextPath()+ "/home2.jsp");
 	
 	System.out.println("==============================");
 %>
