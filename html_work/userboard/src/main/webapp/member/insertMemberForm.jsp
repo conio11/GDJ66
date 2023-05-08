@@ -14,6 +14,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>insertMemberForm</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
 		<h1>회원가입</h1>
@@ -25,18 +28,19 @@
 		}
 	%>
 		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
-			<table border="1">
+			<table class="table table-bordered">
 				<tr>
-					<td>아이디</td>
+					<td class="table-primary text-center">아이디</td>
 					<td><input type="text" name="memberID"></td>
 				</tr>
 				<tr>
-					<td>비밀번호</td>
+					<td class="table-primary text-center">비밀번호</td>
 					<td><input type="password" name="memberPW"></td>
 				</tr>
 			</table>
-			<button type="submit">회원가입</button>
+			<button type="submit" class="btn btn-outline-primary">회원가입</button>
 		</form>
+		<br>
 		<div>
 			<jsp:include page="/inc/copyright.jsp"></jsp:include>
 		</div>
