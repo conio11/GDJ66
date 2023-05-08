@@ -55,7 +55,7 @@
 	// searchWord에 값이 있는 경우도 디버깅 -> 주소창에 ?currentPage=(int값)&searchWord=(String값)&rowPerPage=(int값) 추가
 	
 	// Model Layer: 모델값 생성하기 까지
-	// Controller layer의 결과 변수 (currentPage, searchWOrd)의 모델 생성을 위한 변수 추가
+	// Controller layer의 결과 변수 (currentPage, searchWord)의 모델 생성을 위한 변수 추가
 	// controller layer의 결과 변수 가공
 
 	int startRow = (currentPage - 1) * rowPerPage;
