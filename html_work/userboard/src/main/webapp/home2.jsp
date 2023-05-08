@@ -14,6 +14,12 @@
 
 	// 2)) request / response JSP내장(기본) - 객체
 	int currentPage = 1;
+	if (request.getParameter("currentPage") != null && !request.getParameter("currentPage").equals("")) {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	System.out.println(currentPage + " <-- currenetPage(home2)");
+		
+		
 	int rowPerPage = 10;
 	int startRow = (currentPage - 1) * rowPerPage;
 	System.out.println(startRow + " <-- startRow(home2)");
@@ -118,9 +124,12 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>home2</title>
-		<style>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- <style>
 			table, th, td {border: 1px solid; border-collapse: collapse;}
-		</style>
+		</style> -->
 	</head>
 	<body>
 		<!-- 메인 메뉴(가로) -->
@@ -151,26 +160,26 @@
 			if (session.getAttribute("loginMemberID") == null) { // 로그인 전이면 로그인 폼 출력
 		%>
 				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post"> <!-- 절대 주소로 작성 - "/web0502/loginAction.jsp"  -->
-					<table border="1">
+					<table class="table table-bordered">
 						<tr>
-							<td>아이디</td>
+							<th class="table-primary text-center">아이디</th>
 							<td><input type="text" name="memberID"></td>
 						</tr>
 						<tr>
-							<td>패스워드</td>
+							<th class="table-primary text-center">패스워드</th>
 							<td><input type="password" name="memberPW"></td>
 						</tr>
 					</table>
-					<button type="submit">로그인</button>
+					<button type="submit" class="btn btn-outline-primary">로그인</button>
 				</form>
+				<br>
 		<%
 			}
 		%>
-	
 		</div>
 		
-		<table>
-			<tr>
+		<table class="table table-bordered text-center">
+			<tr class="table-primary">
 				<th>localName</th>
 				<th>boardTitle</th>
 				<th>createdate</th>
@@ -187,7 +196,7 @@
 						<%=b.boardTitle%>
 					</a>
 				</td>
-				<td><%=b.createdate%></td>
+				<td ><%=b.createdate.substring(0, 10)%></td>
 			</tr>	
 		<%
 			}
@@ -198,13 +207,23 @@
 			// 위 코드를 액션 태그로 변경하면 아래와 같음
 		%>
 		 
+		<div class="text-center">
 		<%
-			
+			if (currentPage > 1) {
+		%>
+				<a href="./home2.jsp?currentPage=<%=currentPage - 1%>&localName=<%=localName%>" class="btn btn-outline-primary">이전</a>
+		<%
+			}
 		%>
 			<%=currentPage%>페이지
 		<%
-		
+			if (currentPage < lastPage) {
 		%>
+				<a href="./home2.jsp?currentPage=<%=currentPage + 1%>&localName=<%=localName%>" class="btn btn-outline-primary">다음</a>
+		<%
+			}
+		%>
+		</div>
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 			<jsp:include page="./inc/copyright.jsp"></jsp:include>
