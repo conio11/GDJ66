@@ -3,7 +3,7 @@
 <%
 	// 로그인된 상태이면 home.jsp로 이동
 	if (session.getAttribute("memberID") != null) {
-		response.sendRedirect(request.getContextPath() + "/home.jsp");
+		response.sendRedirect(request.getContextPath() + "/home2.jsp");
 		return; // 실행 종료
 	}
 
@@ -30,11 +30,11 @@
 		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
 			<table class="table table-bordered">
 				<tr>
-					<td class="table-primary text-center">아이디</td>
+					<th class="table-primary text-center">아이디</th>
 					<td><input type="text" name="memberID"></td>
 				</tr>
 				<tr>
-					<td class="table-primary text-center">비밀번호</td>
+					<th class="table-primary text-center">비밀번호</th>
 					<td><input type="password" name="memberPW"></td>
 				</tr>
 			</table>
