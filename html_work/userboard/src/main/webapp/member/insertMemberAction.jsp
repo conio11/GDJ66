@@ -81,7 +81,7 @@
 	
 	if (row == 1) { // 회원가입 성공 시 home.jsp로 이동
 		System.out.println("회원가입 성공");
-		response.sendRedirect(request.getContextPath()+"/home.jsp");
+		response.sendRedirect(request.getContextPath()+"/home2.jsp");
 	} else { // 실패 시 입력폼으로 이동
 		System.out.println("회원가입 실패");
 		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
