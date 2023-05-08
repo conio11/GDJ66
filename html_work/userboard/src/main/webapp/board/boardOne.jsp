@@ -19,6 +19,11 @@
 		
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 	int currentPage = 1;
+	if (request.getParameter("currentPage") != null && !request.getParameter("currentPage").equals("")) {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	System.out.println(currentPage + " <-- currentPage(boardOne)");
+	
 	int rowPerPage = 10;
 	int startRow = 0;
 	System.out.println(boardNo + " <-- boardNo(boardOne)");
@@ -79,6 +84,22 @@
 		commentList.add(c);
 	}
 	
+	// 마지막 페이지
+	String lastPageSql = "SELECT COUNT(*) FROM board";
+	PreparedStatement lastPageStmt = conn.prepareStatement(lastPageSql);
+	ResultSet lastPageRs = lastPageStmt.executeQuery();
+	int totalRow = 0;
+	while (lastPageRs.next()) {
+		totalRow = lastPageRs.getInt("COUNT(*)");
+	}
+	System.out.println(totalRow + " <-- totalRow(boardOne)");
+	
+	int lastPage = totalRow / rowPerPage;
+	if (totalRow % rowPerPage != 0) {
+		lastPage += 1;
+	}
+	System.out.println(lastPage + " <-- lastPage(boardOne)");
+	
 	System.out.println("====================================");
 	
 	// 3. 뷰 계층
@@ -89,6 +110,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>boardOne</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
 		<!-- 메인 메뉴(가로) -->
@@ -98,34 +122,34 @@
 
 		<h1>상세 페이지</h1>
 		<!-- boardOne 결과셋  -->
-		<table border="1">
+		<table class="table table-bordered">
 			<tr>
-				<th>boardNo</th>
+				<th class="table-primary text-center">boardNo</th>
 				<td><%=board.boardNo%><td>
 			</tr>
 			<tr>
-				<th>localName</th>
+				<th class="table-primary text-center">localName</th>
 				<td><%=board.localName%><td>
 			</tr>
 			<tr>
-				<th>boardTitle</th>
+				<th class="table-primary text-center">boardTitle</th>
 				<td><%=board.boardTitle%><td>
 			</tr>
 			<tr>
-				<th>boardContent</th>
+				<th class="table-primary text-center">boardContent</th>
 				<td><%=board.boardContent%><td>
 			</tr>
 			<tr>
-				<th>memberID</th>
+				<th class="table-primary text-center">memberID</th>
 				<td><%=board.memberID%><td>
 			</tr>
 			<tr>
-				<th>createdate</th>
-				<td><%=board.createdate%><td>
+				<th class="table-primary text-center">createdate</th>
+				<td><%=board.createdate.substring(0, 10)%><td>
 			</tr>
 			<tr>
-				<th>updatedate</th>
-				<td><%=board.updatedate%><td>
+				<th class="table-primary text-center">updatedate</th>
+				<td><%=board.updatedate.substring(0, 10)%><td>
 			</tr>
 		</table>
 		
@@ -139,30 +163,31 @@
 				String loginMemberID = (String) session.getAttribute("loginMemberID");
 		%>
 				<form action="<%=request.getContextPath()%>/board/insertCommentAction.jsp" method="post">
-					<input type="hidden" name="boardNo" value="<%=board.boardNo%>">
+					<a></a><input type="hidden" name="boardNo" value="<%=board.boardNo%>">
 					<input type="text" name="memberID" value="<%=loginMemberID%>" readonly="readonly">
-					<table border="1">
+					<table class="table table-bordered mx-auto">
 						<tr>
 				<%-- 			<th>boardNo</th>
 							<td>
 								<input type="text" name="boardNo" value="<%=board.boardNo%>" readonly="readonly">
 							</td> --%>
-							<th>commentContent</th>
+							<th class="table-primary text-center">commentContent</th>
 							<td>
 								<textarea rows="2" cols="80" name="commentContent"></textarea>
 							</td>
-						</tr>	
+						</tr>
 					</table>
-					<button type="submit">댓글 입력</button>
+					<button type="submit" class="btn btn-outline-primary">댓글 입력</button>
 				</form>
+				<br>
 		<%
 			}
 		%>
 				
 		<!-- comment list 결과셋  -->
 		<!-- 댓글 출력 -->
-		<table border="1">
-			<tr>
+		<table class="table table-bordered">
+			<tr class="table-primary text-center">
 				<th>memberID</th>
 				<th>commentContent</th>
 				<th>createdate</th>
@@ -173,11 +198,11 @@
 		<%
 			for (Comment c : commentList) {
 		%>	
-			<tr>	
+			<tr class="text-center">	
 				<td><%=c.memberID%></td>
 				<td><%=c.commentContent%></td>
-				<td><%=c.createdate%></td>
-				<td><%=c.updatedate%></td>
+				<td><%=c.createdate.substring(0, 10)%></td>
+				<td><%=c.updatedate.substring(0, 10)%></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -191,15 +216,31 @@
 			if (session.getAttribute("loginMemberID") != null) {
 		%>
 			<div>
-				<a href="">수정</a>
-				<a href="">삭제</a>
+				<a href="" class="btn btn-outline-primary">수정</a>
+				<a href="" class="btn btn-outline-primary">삭제</a>
 			</div>
 		<%		
 			}
 		%>
-			<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=currentPage - 1%>">이전</a>
-			<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo%>&currentPage=<%=currentPage + 1%>">다음</a>
-			
+			<br>
+		
+		<div class="text-center">
+		<%
+			if (board.boardNo > 5) {
+		%>
+				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo - 1%>" class="btn btn-outline-primary">이전</a>
+		<%
+			}
+		%>
+
+		<%
+			if (board.boardNo < 1004) {	
+		%>
+				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo + 1%>" class="btn btn-outline-primary">다음</a>
+		<%
+			}
+		%>
+		</div>	
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 			<jsp:include page="/inc/copyright.jsp"></jsp:include>
