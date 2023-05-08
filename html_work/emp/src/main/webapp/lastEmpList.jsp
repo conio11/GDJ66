@@ -20,7 +20,7 @@
 	// int 배열 선언 (ckMonth의 값을 int 타입으로 저장)
 	int[] intCkMonth = null; // int[] 대신 ArrayList<Integer> 사용 가능 // ckMonth의 형태를 int type으로 바꾸기 위한 배열
 	if (ckMonth != null) { // ckMonth가 null 이면 intCkMonth도 null
-		intCkMonth = new int[ckMonth.length]; // intCkMonth 배열의 길이는 chMonth 배열의 길이와 같음
+		intCkMonth = new int[ckMonth.length]; // intCkMonth 배열의 길이는 ckMonth 배열의 길이와 같음
 		for (int i = 0; i < intCkMonth.length; i += 1) { // 배열 길이만큼 돌면서 intCkMonth에 값 대입
 			intCkMonth[i] = Integer.parseInt(ckMonth[i]);
 		}
