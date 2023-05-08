@@ -19,7 +19,6 @@
 	}
 	System.out.println(currentPage + " <-- currenetPage(home2)");
 		
-		
 	int rowPerPage = 10;
 	int startRow = (currentPage - 1) * rowPerPage;
 	System.out.println(startRow + " <-- startRow(home2)");
@@ -49,6 +48,7 @@
 	SELECT local_name, COUNT(local_name) FROM board GROUP BY local_name
 	*/
 
+	// 전체 개수와 지역명별 컬럼 개수를 구하는 쿼리
 	String subMenuSql = "SELECT '전체' localName, COUNT(local_name) cnt FROM board UNION ALL SELECT local_name, COUNT(local_name) FROM board GROUP BY local_name";
 	PreparedStatement subMenuStmt = conn.prepareStatement(subMenuSql);
 	ResultSet subMenuRs = subMenuStmt.executeQuery();
@@ -61,6 +61,7 @@
 		m.put("cnt", subMenuRs.getInt("cnt"));
 		subMenuList.add(m);
 	}
+	System.out.println(subMenuList + " <-- subMenuList(home2)");
 	
 	// 2) 게시판 목록 결과셋(모델)
 	String boardSql = "";
@@ -79,7 +80,6 @@
 		boardStmt = conn.prepareStatement(boardSql);
 		boardStmt.setInt(1, startRow);
 		boardStmt.setInt(2, rowPerPage);
-		
 	} else {
 		boardSql = "SELECT board_no boardNo, local_name localName, board_title boardTitle, createdate FROM board where local_name=? ORDER BY createdate DESC LIMIT ?, ?";
 		boardStmt = conn.prepareStatement(boardSql);
@@ -144,7 +144,7 @@
 					for (HashMap<String, Object> m : subMenuList) {
 				%>
 						<li>
-							<a href="<%=request.getContextPath()%>/home2.jsp?localName=<%=(String)m.get("localName")%>">
+							<a href="<%=request.getContextPath()%>/home2.jsp?localName=<%=(String)m.get("localName")%>" class="btn">
 								<%=(String)m.get("localName")%>(<%=(Integer)m.get("cnt")%>) <!-- Object 타입이므로 형변환 -->
 							</a>
 						</li>
