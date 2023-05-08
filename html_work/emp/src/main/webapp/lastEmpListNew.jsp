@@ -158,7 +158,7 @@
 			<h1>사원 목록</h1>
 		</div>
 		
-		<form action="./lastEmpListNew.jsp?" method="get">
+		<form action="./lastEmpListNew.jsp" method="get">
 			
 		<% 
 			// 체크 확인용 boolean 배열
