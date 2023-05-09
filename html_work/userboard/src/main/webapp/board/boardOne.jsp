@@ -16,8 +16,8 @@
 		response.sendRedirect(request.getContextPath()+ "/home2.jsp");
 		return; // 실행 종료
 	}
-		
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+	System.out.println(boardNo + " <-- boardNo(boardOne)");
 	int currentPage = 1;
 	if (request.getParameter("currentPage") != null && !request.getParameter("currentPage").equals("")) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -52,13 +52,13 @@
 	Board board = null; 
 	if (boardRs.next()) {
 		board = new Board();
-		board.boardNo = boardRs.getInt("boardNo");
-		board.localName = boardRs.getString("localName");
-		board.boardTitle = boardRs.getString("boardTitle");
-		board.boardContent = boardRs.getString("boardContent");
-		board.memberID = boardRs.getString("memberID");
-		board.createdate = boardRs.getString("createdate");
-		board.updatedate = boardRs.getString("updatedate");
+		board.setBoardNo(boardRs.getInt("boardNo"));
+		board.setLocalName(boardRs.getString("localName"));
+		board.setBoardTitle(boardRs.getString("boardTitle"));
+		board.setBoardContent(boardRs.getString("boardContent"));
+		board.setMemberID(boardRs.getString("memberID"));
+		board.setCreatedate(boardRs.getString("createdate"));
+		board.setUpdatedate(boardRs.getString("updatedate"));
 	}
 	System.out.println(board + " <-- board(boardOne)");
 	
@@ -75,12 +75,12 @@
 	ArrayList<Comment> commentList = new ArrayList<Comment>();
 	while(commentListRs.next()) {
 		Comment c = new Comment();
-		c.commentNo = commentListRs.getInt("commentNo");
-		c.boardNo = commentListRs.getInt("boardNo");
-		c.memberID = commentListRs.getString("memberID");
-		c.commentContent = commentListRs.getString("commentContent");
-		c.createdate = commentListRs.getString("createdate");
-		c.updatedate = commentListRs.getString("updatedate");
+		c.setCommentNo(commentListRs.getInt("commentNo"));
+		c.setBoardNo(commentListRs.getInt("boardNo"));
+		c.setMemberID(commentListRs.getString("memberID"));
+		c.setCommentContent(commentListRs.getString("commentContent"));
+		c.setCreatedate(commentListRs.getString("createdate"));
+		c.setUpdatedate(commentListRs.getString("updatedate"));
 		commentList.add(c);
 	}
 	
@@ -99,6 +99,24 @@
 		lastPage += 1;
 	}
 	System.out.println(lastPage + " <-- lastPage(boardOne)");
+	
+	// board 페이징 - 첫 페이지, 마지막 페이지
+	String startBoardNoSql = "SELECT MIN(board_no) FROM board";
+	String lastBoardNoSql = "SELECT MAX(board_no) FROM board";
+	PreparedStatement startBoardNoStmt = conn.prepareStatement(startBoardNoSql);
+	PreparedStatement lastBoardNoStmt = conn.prepareStatement(lastBoardNoSql);
+	ResultSet startBoardNoRs = startBoardNoStmt.executeQuery();
+	ResultSet lastBoardNoRs = lastBoardNoStmt.executeQuery();
+	int startBoardNo = 0;
+	int lastBoardNo = 0;
+	if (startBoardNoRs.next()) {
+		startBoardNo = startBoardNoRs.getInt("MIN(board_no)");
+	}
+	if (lastBoardNoRs.next()) {
+		lastBoardNo = lastBoardNoRs.getInt("MAX(board_no)");
+	}
+	System.out.println(startBoardNo + " <-- startBoardNo");
+	System.out.println(lastBoardNo + " <-- lastBoardNo");
 	
 	System.out.println("====================================");
 	
@@ -125,31 +143,31 @@
 		<table class="table table-bordered">
 			<tr>
 				<th class="table-primary text-center">boardNo</th>
-				<td><%=board.boardNo%><td>
+				<td><%=board.getBoardNo()%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">localName</th>
-				<td><%=board.localName%><td>
+				<td><%=board.getLocalName()%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">boardTitle</th>
-				<td><%=board.boardTitle%><td>
+				<td><%=board.getBoardTitle()%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">boardContent</th>
-				<td><%=board.boardContent%><td>
+				<td><%=board.getBoardContent()%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">memberID</th>
-				<td><%=board.memberID%><td>
+				<td><%=board.getMemberID()%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">createdate</th>
-				<td><%=board.createdate.substring(0, 10)%><td>
+				<td><%=board.getCreatedate().substring(0, 10)%><td>
 			</tr>
 			<tr>
 				<th class="table-primary text-center">updatedate</th>
-				<td><%=board.updatedate.substring(0, 10)%><td>
+				<td><%=board.getUpdatedate().substring(0, 10)%><td>
 			</tr>
 		</table>
 		
@@ -163,7 +181,7 @@
 				String loginMemberID = (String) session.getAttribute("loginMemberID");
 		%>
 				<form action="<%=request.getContextPath()%>/board/insertCommentAction.jsp" method="post">
-					<a></a><input type="hidden" name="boardNo" value="<%=board.boardNo%>">
+					<a></a><input type="hidden" name="boardNo" value="<%=board.getBoardNo()%>">
 					<input type="text" name="memberID" value="<%=loginMemberID%>" readonly="readonly">
 					<table class="table table-bordered mx-auto">
 						<tr>
@@ -199,10 +217,10 @@
 			for (Comment c : commentList) {
 		%>	
 			<tr class="text-center">	
-				<td><%=c.memberID%></td>
-				<td><%=c.commentContent%></td>
-				<td><%=c.createdate.substring(0, 10)%></td>
-				<td><%=c.updatedate.substring(0, 10)%></td>
+				<td><%=c.getMemberID()%></td>
+				<td><%=c.getCommentContent()%></td>
+				<td><%=c.getCreatedate().substring(0, 10)%></td>
+				<td><%=c.getUpdatedate().substring(0, 10)%></td>
 				<td></td>
 				<td></td>
 			</tr>
@@ -226,7 +244,7 @@
 		
 		<div class="text-center">
 		<%
-			if (board.boardNo > 5) {
+			if (board.getBoardNo() > startBoardNo) { // boardNo의 첫 번째 번호보다 클 때
 		%>
 				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo - 1%>" class="btn btn-outline-primary">이전</a>
 		<%
@@ -234,7 +252,7 @@
 		%>
 
 		<%
-			if (board.boardNo < 1004) {	
+			if (board.getBoardNo() < lastBoardNo) { // boardNo의 마지막 번호보다 작을 때
 		%>
 				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo + 1%>" class="btn btn-outline-primary">다음</a>
 		<%
