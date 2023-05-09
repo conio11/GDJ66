@@ -8,8 +8,8 @@
 	// d1.x = 1;
 	// d2.x = 100;
 	
-	d1.setX(777);
-	d2.setX(555);
+	d1.setX(777); // this -> d1
+	d2.setX(555); // this -> d2
 	
 	System.out.println(d1.getX()); // this -> d1
 	System.out.println(d2.getX()); // this -> d2
