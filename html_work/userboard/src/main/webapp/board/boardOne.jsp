@@ -137,8 +137,10 @@
 		<div>
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 		</div>
-
-		<h1>상세 페이지</h1>
+		
+		<div class="text-center">
+			<h1>상세 페이지</h1>
+		</div>
 		<!-- boardOne 결과셋  -->
 		<table class="table table-bordered">
 			<tr>
@@ -170,10 +172,13 @@
 				<td><%=board.getUpdatedate().substring(0, 10)%><td>
 			</tr>
 		</table>
+		<br>
 		
 		<!-- 3-2) comment(댓글) 입력 : 세션유무에 따른 분기 -->
 		<!-- comment 입력: 세션 유무 확인  -->
-		<h2>댓글</h2>
+		<div class="text-center">
+			<h2>댓글</h2>
+		</div>
 		<%
 			// 로그인한 사용자만 댓글 입력 허용
 			if (session.getAttribute("loginMemberID") != null) {
