@@ -14,7 +14,7 @@
 		<% 
 			} else { // 로그인 후 
 		%>
-				<li><a href="<%= request.getContextPath()%>/.jsp">회원정보</a></li>
+				<li><a href="<%= request.getContextPath()%>/member/memberInfo.jsp" class="btn">회원정보</a></li>
 				<li><a href="<%= request.getContextPath()%>/member/logoutAction.jsp" class="btn">로그아웃</a></li>
 		<%
 			}
