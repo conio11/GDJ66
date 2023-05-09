@@ -93,10 +93,10 @@
 	ArrayList<Board> boardList = new ArrayList<Board>();// 애플리케이션에서 사용할 모델 (현재 사이즈 0)
 	while (boardRs.next()) {
 		Board b = new Board();
-		b.boardNo = boardRs.getInt("boardNo");
-		b.localName = boardRs.getString("localName");
-		b.boardTitle = boardRs.getString("boardTitle");
-		b.createdate = boardRs.getString("createdate");
+		b.setBoardNo(boardRs.getInt("boardNo"));
+		b.setLocalName(boardRs.getString("localName"));
+		b.setBoardTitle(boardRs.getString("boardTitle"));
+		b.setCreatedate(boardRs.getString("createdate"));
 		boardList.add(b);
 	}
 	
@@ -190,13 +190,13 @@
 			for (Board b : boardList) {
 		%>
 			<tr>
-				<td><%=b.localName%></td> 
+				<td><%=b.getLocalName()%></td> 
 				<td>
-					<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.boardNo%>">
-						<%=b.boardTitle%>
+					<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
+						<%=b.getBoardTitle()%>
 					</a>
 				</td>
-				<td ><%=b.createdate.substring(0, 10)%></td>
+				<td ><%=b.getCreatedate().substring(0, 10)%></td>
 			</tr>	
 		<%
 			}
