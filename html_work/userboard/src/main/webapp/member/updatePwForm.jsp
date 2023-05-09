@@ -5,7 +5,8 @@
 <%@ page import="vo.*"%>
 
 <%
- 	// 회원정보 수정 폼
+ 	// 회원정보(비밀번호) 수정 폼
+ 	// 비밀번호만 변경 가능
   	
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
@@ -33,11 +34,21 @@
 	
 	// member_id, createdate, updatedate 를 가져오기 위한 쿼리 작성
 	// SELECT member_id memberID, createdate, updatedate FROM member WHERE member_id=?
-	String memberSql = "SELECT member_id memberID, createdate, updatedate FROM member WHERE member_id=?";
+	String memberSql = "SELECT member_id memberID, member_pw memberPW, createdate, updatedate FROM member WHERE member_id=?";
 	PreparedStatement memberStmt = conn.prepareStatement(memberSql);
 	memberStmt.setString(1, loginMemberID);
 	System.out.println(memberStmt + " <-- memberStmt(updateMemberInfoForm)");
 	
+	ResultSet memberRs = memberStmt.executeQuery();
+	Member member = null;
+	if (memberRs.next()) {
+		member = new Member();
+		member.setMemberID(memberRs.getString("memberID"));
+		member.setMemberPW(memberRs.getString("memberPW"));
+		member.setCreatedate(memberRs.getString("createdate"));
+		member.setUpdatedate(memberRs.getString("updatedate"));
+	}
+	System.out.println(member + " <-- member(updateMemberInfoForm)");
 	
 	System.out.println("=============================");
 %>
@@ -51,16 +62,35 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>updatePwForm</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 	</head>
 	<body>
 		<div>
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 		</div>
 		<div class="container mt-3 d-flex justify-content-center">
-			<h1>회원 정보(ID) 수정</h1>
+			<h1>비밀번호 수정</h1>
 		</div>
 		<table>
+			<tr>
+				<th>memberID</th>
+				<td><%=member.getMemberID()%></td>
+			</tr>
+			<tr>
+				<th>memberPW</th>
+				<td><%=member.getMemberPW()%></td>
+			</tr>
+			<tr>
+				<th>createdate</th>
+				<td><%=member.getCreatedate()%></td>
+			</tr>
+			<tr>
+				<th>updatedate</th>
+				<td><%=member.getUpdatedate()%></td>
+			</tr>
 			
 		</table>
 	</body>
