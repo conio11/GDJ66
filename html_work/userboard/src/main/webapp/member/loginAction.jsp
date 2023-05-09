@@ -22,8 +22,8 @@
 	
 	// 요청값을 Member 클래스에 정리
 	Member paramMember = new Member();
-	paramMember.memberID = memberID;
-	paramMember.memberPW = memberPW;
+	paramMember.setMemberID(memberID);
+	paramMember.setMemberPW(memberPW);
 	
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -39,8 +39,8 @@
 	
 	String sql = "SELECT member_id memberID FROM member WHERE member_id=? AND member_pw=PASSWORD(?)";
 	stmt = conn.prepareStatement(sql);
-	stmt.setString(1, paramMember.memberID);
-	stmt.setString(2, paramMember.memberPW);
+	stmt.setString(1, paramMember.getMemberID());
+	stmt.setString(2, paramMember.getMemberPW());
 	System.out.println(stmt + " <-- stmt(loginAction)");
 	rs = stmt.executeQuery();
 	if (rs.next()) { // 로그인 성공
