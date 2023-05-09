@@ -7,14 +7,12 @@
 	// 회원정보 보기 (현재 페이지 - memberInfo)
 	// member_id, (member_pw), createdate, updatedate
 	// 로그인된 상태에서만 '회원정보' 탭 볼 수 있는 상태
-	// 로그인한 회원의 아이디 가져오기 -> 어떻게? -> session 변수에서 가져옴
+	// 로그인한 회원의 아이디 가져오기 -> 어떻게? -> session 변수
 	// '회원정보 수정' 버튼
 	// '회원 탈퇴' 버튼
 	
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
-	
-	// 세션 유효성 확인 -> 요청값 유효성 확인
 	
 	// 세션 유효성 확인: 로그인 상태가 아닌 경우 home2.jsp로 이동
 	// 로그인된 상태에서만 '회원정보'를 볼 수 있는 상태이므로 없어도 되는 부분인지?
@@ -23,20 +21,7 @@
 		return;
 	} 
 	String loginMemberID = (String) session.getAttribute("loginMemberID");
-	System.out.println(loginMemberID + " <-- loginMemberID(memberInfo)");
-	
-/* 	// 요청값 유효성 확인
-	// 로그인된 상태에서만 접근 가능 
-	// 세션에서 ID값 뜯어오기?
-	// memberID 값 넘어오지 않을 경우 홈으로 리다이렉트 -> 로그인된 상태에서만 '회원정보'를 볼 수 있는 상태이므로 부적절한듯,,일단 킵
-		
-	if (request.getParameter("memberID") == null 
-	|| request.getParameter("memberID").equals("")) { 
-		response.sendRedirect(request.getContextPath() + "/home2.jsp");
-		return; // 실행 종료
-	}
-	String memberID = request.getParameter("memberID"); */
-	
+	System.out.println(loginMemberID + " <-- loginMemberID(memberInfo)");	
 	
 	// DB연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -65,11 +50,6 @@
 		member.setUpdatedate(loginMemberRs.getString("updatedate"));
 	}
 	System.out.println(member + " <-- member(memberInfo)");
-	
-			
-	/* if (memberID != null) {
-		response.sendRedirect(request.getContextPath() + "/member/memberInfo.jsp?memberID=" + memberID);
-	} */
 	
 	System.out.println("=====================");
 %>
@@ -106,7 +86,7 @@
 			</tr>
 		</table>
 		<div>
-			<a href="<%=request.getContextPath()%>/member/updateMemberInfoForm.jsp?loginMemberID=<%=loginMemberID%>" class="btn btn-outline-primary">회원정보 수정</a>
+			<a href="<%=request.getContextPath()%>/member/updatePwForm.jsp?loginMemberID=<%=loginMemberID%>" class="btn btn-outline-primary">회원정보 수정</a>
 			<a href="<%=request.getContextPath()%>/member/deleteMemberInfoForm.jsp" class="btn btn-outline-primary">회원 탈퇴</a>
 		</div>
 		<br>
