@@ -22,7 +22,7 @@
 	|| request.getParameter("memberPW") == null
 	|| request.getParameter("memberID").equals("")
 	|| request.getParameter("memberPW").equals("")) { 
-		msg = URLEncoder.encode("아이디와 비밀번호를 모두 입력하세요", "UTF-8");
+		msg = URLEncoder.encode("아이디와 비밀번호를 모두 입력하세요", "UTF-8"); // URLEncoder.encode() 메소드: URL 인코딩 수행 -> 특수문자나 한글 등의 문자를 URL에서 사용할 수 있는 형식으로 변환
 		response.sendRedirect(request.getContextPath()+"/member/insertMemberForm.jsp?msg=" + msg);
 		return; // 실행 종료
 	}
@@ -36,8 +36,8 @@
 	
 	// 요청값을 Member 클래스에 정리
 	Member newMember = new Member();
-	newMember.memberID = ID;
-	newMember.memberPW = PW;
+	newMember.setMemberID(ID);
+	newMember.setMemberPW(PW);
 	
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -53,14 +53,14 @@
 	String sql = "INSERT INTO member(member_id, member_pw, createdate, updatedate) VALUES(?, PASSWORD(?), NOW(), NOW())";
 	PreparedStatement stmt = null;
 	stmt = conn.prepareStatement(sql);
-	stmt.setString(1, newMember.memberID);
-	stmt.setString(2, newMember.memberPW);
+	stmt.setString(1, newMember.getMemberID());
+	stmt.setString(2, newMember.getMemberPW());
 	
 	// 중복 ID 확인
 	String sqlID = "SELECT member_id memberID FROM member WHERE member_id=?";
 	PreparedStatement stmtID = null;
 	stmtID = conn.prepareStatement(sqlID);
-	stmtID.setString(1, newMember.memberID);
+	stmtID.setString(1, newMember.getMemberID());
 	ResultSet rsID = null;
 	
 	// stmt값 확인
