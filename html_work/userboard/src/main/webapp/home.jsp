@@ -78,9 +78,9 @@
 	ArrayList<Board> localNameList = new ArrayList<Board>();
 	while (rs.next()) {
 		Board b = new Board();
-		b.boardNo = rs.getInt("boardNo");
-		b.localName = rs.getString("localName");
-		b.boardTitle = rs.getString("boardTitle");
+		b.setBoardNo(rs.getInt("boardNo"));
+		b.setLocalName(rs.getString("localName"));
+		b.setBoardTitle(rs.getString("boardTitle"));
 		localNameList.add(b);
 	}
 	
@@ -153,9 +153,9 @@
 			for (Board b : localNameList) {
 		%>
 			<tr>
-				<td><%=b.boardNo%></td> 
-				<td><%=b.localName%></td>
-				<td><%=b.boardTitle%></td>
+				<td><%=b.getBoardNo()%></td> 
+				<td><%=b.getLocalName()%></td>
+				<td><%=b.getBoardTitle()%></td>
 			</tr>
 				
 		<%
