@@ -71,6 +71,7 @@
 		System.out.println("중복 카테고리 존재");
 		msg = URLEncoder.encode("이미 존재하는 카테고리입니다", "UTF-8");
 		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp?msg=" + msg);		
+		return;
 	} else {
 		System.out.println("중복 카테고리 없음");
 	}
@@ -87,7 +88,7 @@
 	int row = updateStmt.executeUpdate();
 	if (row == 1) { // 지역명 수정 성공
 		System.out.println("지역명 수정 완료");
-		msg = URLEncoder.encode("새 지역명이 추가되었습니다.", "UTF-8");
+		msg = URLEncoder.encode("지역명이 변경되었습니다.", "UTF-8");
 		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp?msg=" + msg);
 	} else { // 지역명 수정 실패
 		System.out.println("지역명 수정 실패");
