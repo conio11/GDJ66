@@ -28,6 +28,13 @@
 	<h1>공지 삭제</h1>
 	</div>
 	<form action="./deleteNoticeAction.jsp" method="post">
+	<%
+		if (request.getParameter("msg") != null) { // 액션 페이지에서 넘어올 때 msg에 값이 있으면 출력
+	%>
+			<%=request.getParameter("msg")%>
+	<%
+		}
+	%>
 		<table class="table table-bordered">
 			<tr>
 				<td class="text-bg-dark text-center">notice_no</td>
