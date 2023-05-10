@@ -19,7 +19,7 @@
 	String loginMemberID = (String) session.getAttribute("loginMemberID");
 	System.out.println(loginMemberID + " <-- loginMemberID(updatePwAction)");
 	
-	// updatePwAction.jsp 입력값 확인
+	// updatePwForm.jsp 입력값 확인
 	String currentPw = request.getParameter("currentPw");
 	String newPw = request.getParameter("newPw");
 	String newPw2 = request.getParameter("newPw2");
