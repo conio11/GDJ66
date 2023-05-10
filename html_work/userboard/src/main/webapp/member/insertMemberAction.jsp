@@ -81,10 +81,11 @@
 	
 	if (row == 1) { // 회원가입 성공 시 home.jsp로 이동
 		System.out.println("회원가입 성공");
-		response.sendRedirect(request.getContextPath()+"/home2.jsp");
+		msg = URLEncoder.encode("회원가입 성공. 로그인 후 이용 가능합니다.", "UTF-8"); 
+		response.sendRedirect(request.getContextPath()+"/home2.jsp?msg=" + msg);
 	} else { // 실패 시 입력폼으로 이동
 		System.out.println("회원가입 실패");
-		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
+		response.sendRedirect(request.getContextPath()+"/member/insertMemberForm.jsp");
 	}
 	
 	System.out.println("==============================");

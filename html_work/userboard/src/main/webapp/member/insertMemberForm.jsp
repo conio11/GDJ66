@@ -26,7 +26,7 @@
 	<%
 		if (request.getParameter("msg") != null) { // 넘어오는 msg 값이 있으면 실행
 	%>
-			<%=msg%>
+			<%=request.getParameter("msg")%>
 	<%
 		}
 	%>
