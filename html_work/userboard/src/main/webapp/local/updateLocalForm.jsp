@@ -18,15 +18,15 @@
 	String loginMemberID = (String) session.getAttribute("loginMemberID");
 	System.out.println(loginMemberID + " <-- loginMemberID(updateLocalForm)");
 	
-	// 요청값 유효성 확인
-	// localName 값이 넘어오지 않을 경우 폼 이동(현재 화면 새로고침)
+ 	// 요청값 유효성 확인
+	// localName 값이 넘어오지 않을 경우 localOne.jsp로 이동
 	if (request.getParameter("localName") == null
 	|| request.getParameter("localName").equals("")) {
-		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp");
+		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp");
 		return;
 	}
 	String localName = request.getParameter("localName");
-	System.out.println(localName + " <-- localName(updateLocalForm)");
+	System.out.println(localName + " <-- localName(updateLocalForm)"); 
 	
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -38,12 +38,24 @@
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(updateLocalForm)");
 	
-	// local_name 가져오기 위한 쿼리 작성
-	// SELECT local_name localName FROM local WHERE local_name=?
-	String localSql = "SELECT local_name localName FROM local WHERE local_name=?";
+	// localName에 해당하는 board 테이블 행의 수(게시글 수)를 구하는 쿼리 작성
+	String localSql = "SELECT COUNT(*) cnt FROM board WHERE local_name=?";
 	PreparedStatement localStmt = conn.prepareStatement(localSql);
 	localStmt.setString(1, localName);
 	System.out.println(localStmt + " <-- localStmt(updateLocalForm)");
+	
+	// 쿼리 실행
+	ResultSet localRs = localStmt.executeQuery();
+	int cnt = 0;
+	if (localRs.next()) {
+		cnt = localRs.getInt("cnt");
+	}
+	System.out.println(cnt + " <-- cnt(updateLocalForm)");
+	
+/* 	if (cnt != 0) {
+		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp");
+		return;
+	} */
 
 %>
 <!DOCTYPE html>
@@ -60,8 +72,12 @@
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 		</div>
 		<br>
+		<!-- cnt가 0 (게시글이 0)인 경우에만 form 태그 출력  -->
+		<%
+			if (cnt == 0) { 
+		%>
 		<div class="text-center">
-			<h1>지역이름 수정</h1>
+			<h1>지역명 수정</h1>
 		</div>
 		<%
 			if (request.getParameter("msg") != null) {	
@@ -74,14 +90,31 @@
 			<table class="table table-bordered">
 				<tr>
 					<th class="table-primary text-center">현재 지역명</th>
-					<td><input type="hidden" name="oldLocalName" value="<%=localName%>"></td>
+					<td><input type="text" name="localName" value="<%=localName%>" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<th class="table-primary text-center">새 지역명</th>
-					<td><input type="text" name="localName"></td>
+					<td><input type="text" name="newLocalName"></td>
 				</tr>
-			
 			</table>
+			<button type="submit" class="btn btn-outline-primary">수정</button>
 		</form>
+		<%
+			} else {
+		%>
+			
+			<h5>게시글이 존재하므로 수정 불가능합니다.</h5>
+			<h5><%=localName%> 카테고리 게시글 수: <%=cnt%></h5>
+		
+			<a href="<%=request.getContextPath()%>/local/localOne.jsp" class="btn btn-outline-primary">이전</a>
+		<%
+			}
+		%>
+		<br>
+		<br>
+		<div >
+			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
+			<jsp:include page="/inc/copyright.jsp"></jsp:include>
+		</div>
 	</body>
 </html>

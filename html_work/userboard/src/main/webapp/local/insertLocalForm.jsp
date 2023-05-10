@@ -47,10 +47,13 @@
 			<table class="table table-bordered">
 				<tr>
 					<th class="table-primary text-center">localName</th>
-					<td><input type="text" name="localName"></td>
+					<td>
+						<input type="text" name="localName">
+						<button type="submit" class="btn btn-outline-primary">입력</button>
+					</td>
 				</tr>
 			</table>
-			<button type="submit" class="btn btn-outline-primary">입력</button>
+			
 
 		</form>
 	</body>
