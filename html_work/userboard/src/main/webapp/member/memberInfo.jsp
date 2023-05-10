@@ -87,7 +87,7 @@
 		</table>
 		<div>
 			<a href="<%=request.getContextPath()%>/member/updatePwForm.jsp?loginMemberID=<%=loginMemberID%>" class="btn btn-outline-primary">회원정보 수정</a>
-			<a href="<%=request.getContextPath()%>/member/deleteMemberInfoForm.jsp" class="btn btn-outline-primary">회원 탈퇴</a>
+			<a href="<%=request.getContextPath()%>/member/deleteMemberForm.jsp" class="btn btn-outline-primary">회원 탈퇴</a>
 		</div>
 		<br>
 			<div>
