@@ -4,14 +4,11 @@
 <%@ page import="java.net.*" %>
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*" %>   
-<%
-	// local 정보?
-	// insert 입력?
-	// update, delete : board 참조된 행의 수가 없을 때 -> ?
-	// select -> 상세정보 조회? 
-			
+<%			
 	// local 테이블 상세정보
-				
+	// 각 항목별로 수정, 삭제 옵션
+	// 수정, 삭제의 경우 게시글이 없는 카테고리(지역명)만 가능
+	
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
 	
@@ -94,7 +91,7 @@
 				<td><%=l.getLocalName()%></td>
 				<td><%=l.getCreatedate().substring(0, 10)%></td>
 				<td><a href="<%=request.getContextPath()%>/local/updateLocalForm.jsp?localName=<%=l.getLocalName()%>" class="btn btn-outline-primary">수정</a></td>
-				<td><a href="<%=request.getContextPath()%>/local/deleteLocalForm.jsplocalName=<%=l.getLocalName()%>" class="btn btn-outline-primary">삭제</a></td>
+				<td><a href="<%=request.getContextPath()%>/local/deleteLocalForm.jsp?localName=<%=l.getLocalName()%>" class="btn btn-outline-primary">삭제</a></td>
 			</tr>
 		<%
 			}
