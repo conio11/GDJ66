@@ -14,6 +14,8 @@
 	String msg = "";
 	if (session.getAttribute("loginMemberID") == null) {
 		msg = URLEncoder.encode("잘못된 접근입니다. 로그인 후 이용하세요.", "UTF-8");
+		String loginMemberID = (String) session.getAttribute("loginMemberID");
+		System.out.println(loginMemberID + " <-- loginMemberID(insertLocalAction)");
 		response.sendRedirect(request.getContextPath() + "/home2.jsp?msg=" + msg);
 		return; // 실행 종료
 	}

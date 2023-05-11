@@ -7,7 +7,7 @@
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
 
-	// 세션 유효성 확인 - 세션 없으면(로그인 상탣가 아니면) home2.jsp로 이동
+	// 세션 유효성 확인 - 세션 없으면(로그인 상태가 아니면) home2.jsp로 이동
 	String msg = "";
 	if (session.getAttribute("loginMemberID") == null) {
 		msg = URLEncoder.encode("잘못된 접근입니다. 로그인 후 이용하세요.", "UTF-8");
@@ -17,7 +17,6 @@
 	String loginMemberID = (String) session.getAttribute("loginMemberID");
 	System.out.println(loginMemberID + " <-- loginMemberID(insertLocalForm)");
 %>    
-    
     
 <!DOCTYPE html>
 <html>
@@ -32,6 +31,7 @@
 		<div>
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 		</div>
+		<br>
 		<div class="text-center">
 			<h1>새 지역 입력</h1>
 		</div>
@@ -53,8 +53,12 @@
 					</td>
 				</tr>
 			</table>
-			
-
 		</form>
+		<br>
+		<br>
+		<div >
+			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
+			<jsp:include page="/inc/copyright.jsp"></jsp:include>
+		</div>
 	</body>
 </html>
