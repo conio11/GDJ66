@@ -5,7 +5,7 @@
 <%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
 <%
-	// 지역명 수정 실행파일
+	// 지역명 수정 실행파일 (게시글 없는 경우에만 수정)
 	
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
@@ -13,16 +13,16 @@
 	// 세션 유효성 확인 - 세션 없으면(로그인 상태가 아니면) home2.jsp로 이동
 	String msg = "";
 	if (session.getAttribute("loginMemberID") == null) {
-	msg = URLEncoder.encode("잘못된 접근입니다. 로그인 후 이용하세요.", "UTF-8");
-	response.sendRedirect(request.getContextPath() + "/home2.jsp?msg=" + msg);
-	return;
+		msg = URLEncoder.encode("잘못된 접근입니다. 로그인 후 이용하세요.", "UTF-8");
+		response.sendRedirect(request.getContextPath() + "/home2.jsp?msg=" + msg);
+		return;
 	}
 	String loginMemberID = (String) session.getAttribute("loginMemberID");
 	System.out.println(loginMemberID + " <-- loginMemberID(updateLocalAction)");
 	
 	// 요청값 유효성 확인
 	// 넘어온 기존 지역명이 null이거나 공백이면
-	if(request.getParameter("localName") == null	
+	if (request.getParameter("localName") == null	
 		|| request.getParameter("localName").equals("")) {
 		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp");
 		return;
@@ -31,9 +31,12 @@
 	System.out.println(localName + " <-- localName(updateLocalAction)");
 	
 	// 넘어온 새 지역명이 null이거나 공백이면
-	if(request.getParameter("newLocalName") == null	
+	if (request.getParameter("newLocalName") == null	
 	|| request.getParameter("newLocalName").equals("")) {
-		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp");
+		// 영문을 제외한 기타 문자(한글, 특수문자 등)를 인코딩된 값 URL에 포함하기 위해 설정
+		localName = URLEncoder.encode(localName, "UTF-8"); 
+		msg = URLEncoder.encode("새 지역명을 입력하세요.", "UTF-8");
+		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp?localName=" + localName + "&msg=" + msg);
 		return;
 	}
 	String newLocalName = request.getParameter("newLocalName");
@@ -66,11 +69,11 @@
 	}
 	System.out.println(cnt + " <-- cnt(updateLocalAction)");
 	
-	
 	if (cnt > 0) {
 		System.out.println("중복 카테고리 존재");
 		msg = URLEncoder.encode("이미 존재하는 카테고리입니다", "UTF-8");
-		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp?msg=" + msg);		
+		localName = URLEncoder.encode(localName, "UTF-8");
+		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp?localName=" + localName + "&msg=" + msg);		
 		return;
 	} else {
 		System.out.println("중복 카테고리 없음");
@@ -92,7 +95,8 @@
 		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp?msg=" + msg);
 	} else { // 지역명 수정 실패
 		System.out.println("지역명 수정 실패");
-		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp");
+		localName = URLEncoder.encode(localName, "UTF-8");
+		response.sendRedirect(request.getContextPath() + "/local/updateLocalForm.jsp?localName=" + localName);
 	}
 	
 	System.out.println("=============================");

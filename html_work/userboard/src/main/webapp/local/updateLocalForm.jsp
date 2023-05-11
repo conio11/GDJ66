@@ -4,6 +4,7 @@
 <%@ page import="java.net.*" %> 
 <%
 	// 지역정보(지역명) 수정 폼
+	// 지역명 카테고리에 게시글 있는 경우 수정 불가
 	
 	// 인코딩 설정
 	response.setCharacterEncoding("UTF-8");
@@ -57,6 +58,7 @@
 		return;
 	} */
 
+	System.out.println("==========================================");
 %>
 <!DOCTYPE html>
 <html>
