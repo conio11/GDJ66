@@ -199,7 +199,7 @@
 			<tr>
 				<td><%=b.getLocalName()%></td> 
 				<td>
-					<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>">
+					<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=b.getBoardNo()%>" class="btn btn-outline-light text-dark">
 						<%=b.getBoardTitle()%>
 					</a>
 				</td>
@@ -222,7 +222,7 @@
 		<%
 			}
 		%>
-			<%=currentPage%>페이지
+				<%=currentPage%>페이지
 		<%
 			if (currentPage < lastPage) {
 		%>
