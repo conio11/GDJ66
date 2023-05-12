@@ -18,15 +18,15 @@
 	}
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
 	System.out.println(boardNo + " <-- boardNo(boardOne)");
-	int currentPage = 1;
+	
+/*  int currentPage = 1;
 	if (request.getParameter("currentPage") != null && !request.getParameter("currentPage").equals("")) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-	System.out.println(currentPage + " <-- currentPage(boardOne)");
+	System.out.println(currentPage + " <-- currentPage(boardOne)");  */
 	
 	int rowPerPage = 10;
 	int startRow = 0;
-	System.out.println(boardNo + " <-- boardNo(boardOne)");
 	
 	// 2. 모델 계층
 	// DB 연결
@@ -85,7 +85,7 @@
 	}
 	
 	// 마지막 페이지
-	String lastPageSql = "SELECT COUNT(*) FROM board";
+/* 	String lastPageSql = "SELECT COUNT(*) FROM board";
 	PreparedStatement lastPageStmt = conn.prepareStatement(lastPageSql);
 	ResultSet lastPageRs = lastPageStmt.executeQuery();
 	int totalRow = 0;
@@ -98,7 +98,7 @@
 	if (totalRow % rowPerPage != 0) {
 		lastPage += 1;
 	}
-	System.out.println(lastPage + " <-- lastPage(boardOne)");
+	System.out.println(lastPage + " <-- lastPage(boardOne)"); */
 	
 	// board 페이징 - 첫 페이지, 마지막 페이지
 	String startBoardNoSql = "SELECT MIN(board_no) FROM board";
@@ -186,7 +186,7 @@
 				String loginMemberID = (String) session.getAttribute("loginMemberID");
 		%>
 				<form action="<%=request.getContextPath()%>/board/insertCommentAction.jsp" method="post">
-					<a></a><input type="hidden" name="boardNo" value="<%=board.getBoardNo()%>">
+					<input type="hidden" name="boardNo" value="<%=board.getBoardNo()%>">
 					<input type="text" name="memberID" value="<%=loginMemberID%>" readonly="readonly">
 					<table class="table table-bordered mx-auto">
 						<tr>
@@ -226,8 +226,8 @@
 				<td><%=c.getCommentContent()%></td>
 				<td><%=c.getCreatedate().substring(0, 10)%></td>
 				<td><%=c.getUpdatedate().substring(0, 10)%></td>
-				<td></td>
-				<td></td>
+				<td><a href="" class="btn btn-outline-primary">수정</a></td>
+				<td><a href="" class="btn btn-outline-primary">삭제</a></td>
 			</tr>
 		<% 		
 			}
