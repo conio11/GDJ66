@@ -42,15 +42,19 @@
 	stmt.setString(1, paramMember.getMemberID());
 	stmt.setString(2, paramMember.getMemberPW());
 	System.out.println(stmt + " <-- stmt(loginAction)");
+	
+	String msg = "";
 	rs = stmt.executeQuery();
 	if (rs.next()) { // 로그인 성공
 		// 세션에 로그인 정보(memberID) 저장
 		session.setAttribute("loginMemberID", rs.getString("memberID"));
-		System.out.println("로그인 성공 세션 정보 : " + session.getAttribute("loginMemberID"));
+		System.out.println("로그인 성공, 세션 정보 : " + session.getAttribute("loginMemberID"));
+		
 	} else { // 로그인 실패
 		System.out.println("로그인 실패");
+		msg = URLEncoder.encode("아이디, 비밀번호를 정확히 입력해주세요.", "UTF-8");
 	}
-	response.sendRedirect(request.getContextPath()+ "/home2.jsp");
+	response.sendRedirect(request.getContextPath()+ "/home2.jsp?msg=" + msg);
 	
 	System.out.println("==============================");
 %>
