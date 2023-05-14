@@ -46,7 +46,7 @@
 	String boardSql = "SELECT board_no boardNo, local_name localName, board_title boardTitle, board_content boardContent, member_id memberID, createdate, updatedate FROM board WHERE board_no=?";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql);
 	boardStmt.setInt(1, boardNo); // ? 에 boardNo 저장	
-	System.out.println(boardStmt + " <-- stmt(boardOne)");
+	System.out.println(boardStmt + " <-- boardStmt(boardOne)");
 	ResultSet boardRs = boardStmt.executeQuery(); // row -> 1 -> Board 타입
 	
 	Board board = null; 
@@ -66,8 +66,8 @@
 	// comment list 결과셋
 	// SELECT comment_no, board_no, comment_content FROM COMMENT
 	// WHERE board_no=? LIMIT ?, ?;
-	String commentSql = "SELECT comment_no commentNo, member_id memberID, board_no boardNo, comment_content commentContent, createdate, updatedate FROM COMMENT WHERE board_no=? LIMIT ?, ?";
-	PreparedStatement commentListStmt = conn.prepareStatement(commentSql);
+	String commentListSql = "SELECT comment_no commentNo, member_id memberID, board_no boardNo, comment_content commentContent, createdate, updatedate FROM COMMENT WHERE board_no=? LIMIT ?, ?";
+	PreparedStatement commentListStmt = conn.prepareStatement(commentListSql);
 	commentListStmt.setInt(1, boardNo);
 	commentListStmt.setInt(2, startRow);
 	commentListStmt.setInt(3, rowPerPage);
@@ -251,7 +251,7 @@
 		<%
 			if (board.getBoardNo() > startBoardNo) { // boardNo의 첫 번째 번호보다 클 때
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo - 1%>" class="btn btn-outline-primary">이전</a>
+				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo - 1%>" class="btn btn-outline-primary">이전 글</a>
 		<%
 			}
 		%>
@@ -259,7 +259,7 @@
 		<%
 			if (board.getBoardNo() < lastBoardNo) { // boardNo의 마지막 번호보다 작을 때
 		%>
-				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo + 1%>" class="btn btn-outline-primary">다음</a>
+				<a href="<%=request.getContextPath()%>/board/boardOne.jsp?boardNo=<%=boardNo + 1%>" class="btn btn-outline-primary">다음 글</a>
 		<%
 			}
 		%>
