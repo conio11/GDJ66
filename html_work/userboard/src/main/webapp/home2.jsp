@@ -23,7 +23,7 @@
 	int startRow = (currentPage - 1) * rowPerPage;
 	System.out.println(startRow + " <-- startRow(home2)");
 	
-	System.out.println(request.getParameter("localName") + " <- localName(home2)");
+	System.out.println(request.getParameter("localName") + " <- param localName(home2)");
 	String localName = "전체";
 	if (request.getParameter("localName") != null) {
 		localName = request.getParameter("localName");
@@ -90,7 +90,7 @@
 	
 	boardRs = boardStmt.executeQuery(); // DB 쿼리 결과셋 포함
 	// boardRs -> boardList 이동
-	ArrayList<Board> boardList = new ArrayList<Board>();// 애플리케이션에서 사용할 모델 (현재 사이즈 0)
+	ArrayList<Board> boardList = new ArrayList<Board>(); // 애플리케이션에서 사용할 모델 (현재 사이즈 0)
 	while (boardRs.next()) {
 		Board b = new Board();
 		b.setBoardNo(boardRs.getInt("boardNo"));
@@ -116,6 +116,10 @@
 		lastPage += 1;
 	}
 	
+	// 전체 게시글 수, 마지막 페이지 번호 디버깅
+	System.out.println(totalRow + " <-- totalRow(home2)");
+	System.out.println(lastPage + " <-- lastPage(home2)");
+	
 	System.out.println("====================================");
 %>
 <!-- View Layer -->
@@ -134,7 +138,7 @@
 	<body>
 		<!-- 메인 메뉴(가로) -->
 		<div>
-			<jsp:include page="./inc/mainmenu.jsp"></jsp:include> <!-- mainmenu.jsp 의 결과를 현재 페이지에서 사용 가능 -->
+			<jsp:include page="/inc/mainmenu.jsp"></jsp:include> <!-- mainmenu.jsp 의 결과를 현재 페이지에서 사용 가능 -->
 		</div>
 		
 
@@ -153,13 +157,7 @@
 				%>
 			</ul>
 		</div>
-		
-		<div>
-			<!-- 로그인 폼  -->
-		<%
-			if (session.getAttribute("loginMemberID") == null) { // 로그인 전이면 로그인 폼 출력
-		%>
-				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post"> <!-- 절대 주소로 작성 - "/web0502/loginAction.jsp"  -->
+
 			<%
 				if (request.getParameter("msg") != null) { // 액션 페이지에서 넘어올 때 msg에 값이 있으면 출력
 			%>
@@ -167,6 +165,13 @@
 			<%	
 				}
 			%>
+		<div>
+			<!-- 로그인 폼  -->
+		<%
+			if (session.getAttribute("loginMemberID") == null) { // 로그인 전이면 로그인 폼 출력
+		%>
+				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post"> <!-- 절대 주소로 작성 - "/web0502/loginAction.jsp"  -->
+
 					<table class="table table-bordered">
 						<tr>
 							<th class="table-primary text-center">아이디</th>
@@ -233,7 +238,7 @@
 		</div>
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
-			<jsp:include page="./inc/copyright.jsp"></jsp:include>
+			<jsp:include page="/inc/copyright.jsp"></jsp:include>
 		</div>
 	</body>
 </html>
