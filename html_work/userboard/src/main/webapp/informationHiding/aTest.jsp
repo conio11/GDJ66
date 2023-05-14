@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="vo.*"%>
 <%
-	A a = new A();
+	A a = new A(); 
 	String name = a.getFullName();
 	System.out.println(name);
 	

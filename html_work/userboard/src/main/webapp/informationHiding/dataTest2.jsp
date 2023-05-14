@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import ="vo.*"%>
 <%
-	Data3 d1 = new Data3();
+	Data3 d1 = new Data3(); 
 	Data3 d2 = new Data3();
 	
 	// d1.x = 1;
