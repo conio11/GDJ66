@@ -25,8 +25,6 @@
 	while (selectRs.next()) { 
 		Employees e = new Employees();
 	}
-	
-	
 %>
     
     
@@ -34,7 +32,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>employeesLIst</title>
+	<title>employeesList</title>
 	</head>
 	<body>
 		
