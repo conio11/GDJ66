@@ -131,19 +131,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-		<!-- <style>
-			table, th, td {border: 1px solid; border-collapse: collapse;}
-		</style> -->
 	</head>
 	<body>
 		<!-- 메인 메뉴(가로) -->
 		<div>
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include> <!-- mainmenu.jsp 의 결과를 현재 페이지에서 사용 가능 -->
+			<h1 class="text-center">userboard</h1>
 		</div>
 		
-
 		<div> <!-- 서브 메뉴(세로) subMenuList 모델 출력 -->
-			<ul>
+			<ul class="list-group">
 				<%
 					for (HashMap<String, Object> m : subMenuList) {
 				%>
@@ -193,7 +190,6 @@
 			}
 		%>
 		</div>
-		
 		<table class="table table-bordered text-center">
 			<tr class="table-primary">
 				<th>localName</th>
@@ -241,6 +237,7 @@
 			}
 		%>
 		</div>
+
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
 			<jsp:include page="/inc/copyright.jsp"></jsp:include>
