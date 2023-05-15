@@ -32,6 +32,18 @@
 	|| request.getParameter("boardContent").equals("")
 	|| request.getParameter("memberID") == null 
 	|| request.getParameter("memberID").equals("")) {
+		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		String localName = request.getParameter("localName");
+		String boardTitle = request.getParameter("boardTitle");
+		String boardContent = request.getParameter("boardContent");
+		String memberID = request.getParameter("memberID");
+		
+		System.out.println(boardNo + " <-- boardNo(deleteBoardAction)");
+		System.out.println(localName + " <-- boardlocalName(deleteBoardAction)");
+		System.out.println(boardTitle + " <-- boardTitle(deleteBoardAction)");
+		System.out.println(boardContent + " <-- boardContent(deleteBoardAction)");
+		System.out.println(memberID + " <-- memberID(deleteBoardAction)");
+		
 		response.sendRedirect(request.getContextPath() + "/home2.jsp");
 		return;
 	} 
@@ -42,11 +54,7 @@
 	String memberID = request.getParameter("memberID");
 	
 	// boardNo, localName, boardTitle, boardContent, memberID 디버깅
-	System.out.println(boardNo + " <-- boardNo(deleteBoardAction)");
-	System.out.println(localName + " <-- boardlocalName(deleteBoardAction)");
-	System.out.println(boardTitle + " <-- boardTitle(deleteBoardAction)");
-	System.out.println(boardContent + " <-- boardContent(deleteBoardAction)");
-	System.out.println(memberID + " <-- memberID(deleteBoardAction)");
+
 	
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";

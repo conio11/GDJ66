@@ -90,7 +90,7 @@
 					</tr>
 					<tr>
 						<th class="table-primary text-center">memberID</th>
-						<td><%=memberID%></td>
+						<td><input type="text" name="memberID" value="<%=memberID%>" readonly="readonly"></td>
 					</tr>
 				</table>
 				<button type="submit" class="btn btn-outline-primary">게시글 삭제</button>
