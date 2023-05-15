@@ -49,7 +49,7 @@
 		// 세션에 로그인 정보(memberID) 저장
 		session.setAttribute("loginMemberID", rs.getString("memberID"));
 		System.out.println("로그인 성공, 세션 정보 : " + session.getAttribute("loginMemberID"));
-		
+		// msg = URLEncoder.encode("로그인되었습니다.", "UTF-8");
 	} else { // 로그인 실패
 		System.out.println("로그인 실패");
 		msg = URLEncoder.encode("아이디, 비밀번호를 정확히 입력해주세요.", "UTF-8");

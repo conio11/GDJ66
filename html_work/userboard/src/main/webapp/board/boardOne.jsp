@@ -141,6 +141,14 @@
 		<div class="text-center">
 			<h1>상세 페이지</h1>
 		</div>
+		<%
+			if (request.getParameter("msg2") != null) {
+		%>
+				<%=request.getParameter("msg2")%>
+		<%
+			}
+		%>
+		
 		<!-- boardOne 결과셋  -->
 		<table class="table table-bordered">
 			<tr>
@@ -172,6 +180,11 @@
 				<td><%=board.getUpdatedate().substring(0, 10)%><td>
 			</tr>
 		</table>
+		<div>
+			<a href="<%=request.getContextPath()%>/board/updateBoardForm.jsp?boardNo=<%=board.getBoardNo()%>&localName=<%=board.getLocalName()%>&boardTitle=<%=board.getBoardTitle()%>&boardContent=<%=board.getBoardContent()%>&memberID=<%=board.getMemberID()%>" class="btn btn-outline-primary">게시글 수정</a>
+			<a href="<%=request.getContextPath()%>/board/deleteBoardForm.jsp?boardNo=<%=board.getBoardNo()%>&localName=<%=board.getLocalName()%>&boardTitle=<%=board.getBoardTitle()%>&boardContent=<%=board.getBoardContent()%>&memberID=<%=board.getMemberID()%>" class="btn btn-outline-primary">삭제</a>
+		</div>
+		
 		<br>
 		
 		<!-- 3-2) comment(댓글) 입력 : 세션유무에 따른 분기 -->
@@ -179,6 +192,15 @@
 		<div class="text-center">
 			<h2>댓글</h2>
 		</div>
+		
+		<%
+			if (request.getParameter("msg") != null) {
+		%>
+				<%=request.getParameter("msg")%>
+		<%
+			}
+		%>
+
 		<%
 			// 로그인한 사용자만 댓글 입력 허용
 			if (session.getAttribute("loginMemberID") != null) {
@@ -226,25 +248,14 @@
 				<td><%=c.getCommentContent()%></td>
 				<td><%=c.getCreatedate().substring(0, 10)%></td>
 				<td><%=c.getUpdatedate().substring(0, 10)%></td>
-				<td><a href="" class="btn btn-outline-primary">수정</a></td>
-				<td><a href="" class="btn btn-outline-primary">삭제</a></td>
+				<td><a href="<%=request.getContextPath()%>/board/updateCommentForm.jsp?memberID=<%=c.getMemberID()%>&commentContent=<%=c.getCommentContent()%>&commentNo=<%=c.getCommentNo()%>&boardNo=<%=board.getBoardNo()%>" class="btn btn-outline-primary">수정</a></td>
+				<td><a href="<%=request.getContextPath()%>/board/deleteCommentForm.jsp?memberID=<%=c.getMemberID()%>&commentContent=<%=c.getCommentContent()%>&commentNo=<%=c.getCommentNo()%>&boardNo=<%=board.getBoardNo()%>" class="btn btn-outline-primary">삭제</a></td>
 			</tr>
 		<% 		
 			}
 		%>
 		</table>
 		
-		<%
-			// 로그인된 상태이면
-			if (session.getAttribute("loginMemberID") != null) {
-		%>
-			<div>
-				<a href="" class="btn btn-outline-primary">수정</a>
-				<a href="" class="btn btn-outline-primary">삭제</a>
-			</div>
-		<%		
-			}
-		%>
 			<br>
 		
 		<div class="text-center">

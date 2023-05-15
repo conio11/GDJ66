@@ -186,6 +186,10 @@
 				</form>
 				<br>
 		<%
+			} else { // 로그인된 경우
+		%>	
+				<%=(String) session.getAttribute("loginMemberID")%>님, 반갑습니다.	
+		<%
 			}
 		%>
 		</div>
@@ -214,6 +218,7 @@
 			}
 		%>
 		</table>
+		<a href="<%=request.getContextPath()%>/board/insertBoardForm.jsp" class="btn btn-outline-primary">게시글 작성</a>
 		<%
 			// request.getRequestDispatcher(request.getContextPath()+ "/inc/copyright.jsp").include(request, response);
 			// 위 코드를 액션 태그로 변경하면 아래와 같음

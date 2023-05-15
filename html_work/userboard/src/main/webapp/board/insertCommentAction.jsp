@@ -3,13 +3,14 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import="vo.*"%>
-
 <%
 	// post 방식 인코딩 처리
 	request.setCharacterEncoding("UTF-8");
 
 	// 세션 유효성 확인 (로그인 여부)
 	// 세션 아이디값 없으면 (로그인되지 않은 상태이면) home2.jsp로 이동
+	String msg = "";
+	
 	if (session.getAttribute("loginMemberID") == null) {
 		response.sendRedirect(request.getContextPath() + "/home2.jsp");
 		return; // 실행 종료
@@ -24,11 +25,12 @@
 		response.sendRedirect(request.getContextPath() + "/home2.jsp");
 		return; // 실행 종료
 	}
-	
 	int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+	
 	if (request.getParameter("commentContent") == null 
 	|| request.getParameter("commentContent").equals("")) {
-		response.sendRedirect(request.getContextPath() + "/board/boardOne.jsp?boardNo=" + boardNo);
+		msg = URLEncoder.encode("댓글을 입력해주세요.", "UTF-8");	
+		response.sendRedirect(request.getContextPath() + "/board/boardOne.jsp?boardNo=" + boardNo + "&msg=" + msg);
 		return; // 실행 종료
 	}
 	String commentContent = request.getParameter("commentContent");
