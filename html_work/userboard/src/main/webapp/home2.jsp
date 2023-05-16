@@ -221,22 +221,54 @@
 		%>
 		 
 		<div class="text-center">
+		<!-- <div class="container mt-3 center"> -->
+ 
+  		<ul class="pagination justify-content-center">
+  		<%
+			if (currentPage > 1) {
+		%>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=currentPage - 1%>&localName=<%=localName%>">Previous</a></li>
+		  
+	 	 <%
+			}
+		%> 
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=1&localName=<%=localName%>">1</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=2&localName=<%=localName%>">2</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=3&localName=<%=localName%>">3</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=4&localName=<%=localName%>">4</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=5&localName=<%=localName%>">5</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=6&localName=<%=localName%>">6</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=7&localName=<%=localName%>">7</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=8&localName=<%=localName%>">8</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=9&localName=<%=localName%>">9</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=10&localName=<%=localName%>">10</a></li>
+   		<%
+			if (currentPage < lastPage) {
+		%>
+			 <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=currentPage + 1%>&localName=<%=localName%>">Next</a></li>
 		<%
+			}
+		%>
+		       
+  		</ul>
+		<!-- </div> -->
+		
+<%-- 		<%
 			if (currentPage > 1) {
 		%>
 				<a href="./home2.jsp?currentPage=<%=currentPage - 1%>&localName=<%=localName%>" class="btn btn-outline-primary">이전</a>
 		<%
 			}
-		%>
+		%> --%>
 				<%=currentPage%>페이지
-		<%
+<%-- 		<%
 			if (currentPage < lastPage) {
 		%>
 				<a href="./home2.jsp?currentPage=<%=currentPage + 1%>&localName=<%=localName%>" class="btn btn-outline-primary">다음</a>
 		<%
 			}
-		%>
-		</div>
+		%> --%>
+		</div> 
 
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
