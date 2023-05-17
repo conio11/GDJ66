@@ -139,9 +139,11 @@
 			<h1 class="text-center">userboard</h1>
 		</div>
 		
-		<div class="row"> <!-- 서브 메뉴(세로) subMenuList 모델 출력 -->
-			<div class="col-sm-2 offset-sm-2">
-			<ul class="list-group">
+		<div class="row"> 
+		<!-- 서브 메뉴(세로) subMenuList 모델 출력 -->
+		
+			<div class="col-sm-4">
+			<ul class="list-group justify-content-end">
 				<%
 					for (HashMap<String, Object> m : subMenuList) {
 				%>
@@ -154,24 +156,23 @@
 					}
 				%>
 			</ul>
-			</div>
-		
+		</div>
 
-			
-			<!-- 로그인 폼  -->
-			<div class="col-sm-3 offset-sm-2 mt-3">
-		<%
-			if (request.getParameter("msg") != null) { // 액션 페이지에서 넘어올 때 msg에 값이 있으면 출력
-		%>
-				<%=request.getParameter("msg")%>
-		<%	
+			<%
+				if (request.getParameter("msg") != null) { // 액션 페이지에서 넘어올 때 msg에 값이 있으면 출력
+			%>
+					<%=request.getParameter("msg")%>
+			<%	
 				}
-	
+			%>
+		<div class="col-sm-8" style="height:200px;">
+			<!-- 로그인 폼  -->
+		<%
 			if (session.getAttribute("loginMemberID") == null) { // 로그인 전이면 로그인 폼 출력
 		%>
 				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post"> <!-- 절대 주소로 작성 - "/web0502/loginAction.jsp"  -->
 
-					<table class="table table-bordered table-sm">
+					<table class="table table-borderless table-sm">
 						<tr>
 							<th class="table-primary text-center">아이디</th>
 							<td><input type="text" name="memberID"></td>
@@ -191,8 +192,8 @@
 		<%
 			}
 		%>
-			</div>
 		</div>
+		
 		<table class="table table-bordered text-center">
 			<tr class="table-primary">
 				<th>localName</th>
@@ -272,6 +273,7 @@
 			}
 		%> --%>
 		</div> 
+		</div>
 
 		<div>
 			<!-- include 페이지 : Copyright &copy; 구디아카데미 -->
