@@ -3,8 +3,6 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>
 
-
-
 <%
 	/* 
 		select 
@@ -47,9 +45,7 @@
 	}
 	System.out.println(list);
 	
-	
-	
-	
+	System.out.println("=========================");
 %>    
 
 <!DOCTYPE html>
