@@ -140,7 +140,10 @@
 		</div>
 		
 	<table> <!-- 외부 테이블 -->
-	<tr> <!-- 외부 테이블 <tr> -->
+	<tr class="row"> <!-- 외부 테이블 <tr> -->
+	 	<td class="col"> 외부 테이블 <td>
+		&nbsp; &nbsp;  &nbsp; &nbsp;  
+	</td> 외부 테이블 <td> 
 	<td> 
 	
 		<div> <!-- 서브 메뉴(세로) subMenuList 모델 출력 -->
@@ -160,14 +163,14 @@
 		</div>
 	</td> <!-- 외부 테이블 <td>1  -->
 	
-	<td> <!-- 외부 테이블 <td> -->
+	<td class="col"> <!-- 외부 테이블 <td> -->
 		&nbsp; &nbsp;  &nbsp; &nbsp;  
 	</td> <!-- 외부 테이블 <td>  -->
-	<td> <!-- 외부 테이블 <td> -->
+	<td class="col"> <!-- 외부 테이블 <td> -->
 		&nbsp; &nbsp;  &nbsp; &nbsp; 
 	</td> <!-- 외부 테이블 <td>  -->
 	
-	<td> <!-- 외부 테이블 <td>2  -->
+	<td class="col"> <!-- 외부 테이블 <td>2  -->
 
 			<%
 				if (request.getParameter("msg") != null) { // 액션 페이지에서 넘어올 때 msg에 값이 있으면 출력
@@ -205,14 +208,14 @@
 		%>
 		</div>
 	</td> <!-- 외부 테이블 <td>2  -->
-	<td> <!-- 외부 테이블 <td> -->
+	<td class="col"> <!-- 외부 테이블 <td> -->
 		&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; 
 	</td> <!-- 외부 테이블 <td>  -->
-	<td> <!-- 외부 테이블 <td> -->
+	<td class="col"> <!-- 외부 테이블 <td> -->
 		&nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; 
 	</td> <!-- 외부 테이블 <td>  -->
 	
-	<td> <!--class="text-bg-primary"  -->
+	<td class="col"> <!--class="text-bg-primary"  -->
 		<!-- <h5>새 메시지 입력</h5> -->
 		css + 페이징 추후 수정
 	</td>
