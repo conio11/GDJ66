@@ -3,7 +3,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.util.*"%>   
 
-<%
+<%	
 	// DB 연결
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String dbUser = "hr";
