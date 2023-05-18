@@ -19,6 +19,7 @@
 		having count(*) > 1 -- (4)
 		order by 부서인원 desc; -- (6)
 	*/
+	
 	String driver = "oracle.jdbc.driver.OracleDriver";
 	String dbUser = "hr";
 	String dbPw = "1234";
