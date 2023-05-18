@@ -155,8 +155,6 @@
 				%>
 			</ul>
 			</div>
-		
-
 			
 			<!-- 로그인 폼  -->
 			<div class="col-sm-3 offset-sm-2 mt-3">
@@ -224,53 +222,51 @@
 		%>
 		 
 		<div class="text-center">
+		<%
+			// 페이지 네비게이션 페이징
+			int pagePerPage = 10; // [이전] [다음] 탭 사이 페이지 개수
+			
+			// minPage: [이전] [다음] 탭 사이 가장 작은 숫자
+			// maxPage: [이전] [다음] 탭 사이 가장 큰 숫자
+			int minPage = ((currentPage - 1) / pagePerPage) * pagePerPage + 1;
+			int maxPage = minPage + (pagePerPage - 1);
+			if (maxPage > lastPage) { // maxPage가 마지막 페이지(최대 currentPage) 보다 클 수 없음
+				maxPage = lastPage;
+			}
+		%>
+		
 		<!-- <div class="container mt-3 center"> -->
  
   		<ul class="pagination justify-content-center">
   		<%
-			if (currentPage > 1) {
+			if (minPage > 1) { // 현재 페이지의 minPage가 첫 페이지의 minPage인 1보다 클 때 (여기서는 11, 21, ,,) 이전 버튼 
 		%>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=currentPage - 1%>&localName=<%=localName%>">Previous</a></li>
+		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=minPage - pagePerPage%>&localName=<%=localName%>">Previous</a></li>
 		  
 	 	 <%
 			}
-		%> 
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=1&localName=<%=localName%>">1</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=2&localName=<%=localName%>">2</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=3&localName=<%=localName%>">3</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=4&localName=<%=localName%>">4</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=5&localName=<%=localName%>">5</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=6&localName=<%=localName%>">6</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=7&localName=<%=localName%>">7</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=8&localName=<%=localName%>">8</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=9&localName=<%=localName%>">9</a></li>
-		    <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=10&localName=<%=localName%>">10</a></li>
-   		<%
-			if (currentPage < lastPage) {
+  		
+  			for (int i = minPage; i <= maxPage; i = i + 1) { // [이전][다음] 탭 사이 반복
+  				if (i == currentPage) {
+  		%>
+  					<li class="page-item active"><a class="page-link" href="./home2.jsp?currentPage=<%=i%>&localName=<%=localName%>"><%=i%></a></li> <!-- 현재 페이지(선택한 페이지) 번호를 링크 파란색으로 표시 -->	
+  		<%			
+  				} else {
+  		%>
+  					<li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=i%>&localName=<%=localName%>"><%=i%></a></li>
+  		<%			
+  				}
+  			}
+  			
+			if (maxPage < lastPage) { // 마지막 페이지보다 maxPage가 작을 때만 다음 버튼
 		%>
-			 <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=currentPage + 1%>&localName=<%=localName%>">Next</a></li>
+			 <li class="page-item"><a class="page-link" href="./home2.jsp?currentPage=<%=minPage + pagePerPage%>&localName=<%=localName%>">Next</a></li>
 		<%
 			}
 		%>
 		       
   		</ul>
-		<!-- </div> -->
-		
-<%-- 		<%
-			if (currentPage > 1) {
-		%>
-				<a href="./home2.jsp?currentPage=<%=currentPage - 1%>&localName=<%=localName%>" class="btn btn-outline-primary">이전</a>
-		<%
-			}
-		%> --%>
-				<%=currentPage%>페이지
-<%-- 		<%
-			if (currentPage < lastPage) {
-		%>
-				<a href="./home2.jsp?currentPage=<%=currentPage + 1%>&localName=<%=localName%>" class="btn btn-outline-primary">다음</a>
-		<%
-			}
-		%> --%>
+			<%-- 	<%=currentPage%>페이지 --%>
 		</div> 
 
 		<div>
