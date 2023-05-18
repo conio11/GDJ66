@@ -14,9 +14,12 @@
 	
 	
 	int result = 0;
+	System.out.println("request.getInputStream() 내용 시작");
 	while ((result = is.read()) != -1) {
 		System.out.print((char)result);
 	}
+	
+	System.out.println("request.getInputStream() 내용 끝");
 	
 	System.out.println("===========================");
 %>
