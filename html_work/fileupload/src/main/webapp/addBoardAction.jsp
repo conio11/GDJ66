@@ -24,7 +24,6 @@
 	// MultipartRequest API를 사용하여 스트림 내에서 문자값을 반환받을 수 있음
 	
 	// 업로드 파일이 pdf 파일이 아니면
-	/*
 	if (mRequest.getContentType("boardFile").equals("application/pdf") == false) {
 		// 위에서 저장된 파일을 삭제
 		System.out.println("PDF 파일이 아닙니다.");
@@ -36,8 +35,7 @@
 		}
 		return; // 실행 종료
 	}
-	*/
-	
+
 	// 1) input type="text" 반환 API -> board 테이블 저장
 	String boardTitle = mRequest.getParameter("boardTitle");
 	String memberID = mRequest.getParameter("memberID");
@@ -95,6 +93,7 @@
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(addBoardAction)");
 	
+	// PreparedStatement.RETURN_GENERATED_KEYS: PreparedStatement 객체를 사용하여 SQL 쿼리를 실행할 때, 자동으로 생성된 키(보통 AUTO_INCREMENT 열의 값)를 검색하기 위한 상수
 	String boardSql = "INSERT INTO board(board_title, member_id, updatedate, createdate) VALUES (?, ?, NOW(), NOW())";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql, PreparedStatement.RETURN_GENERATED_KEYS); 
 	boardStmt.setString(1, boardTitle);
@@ -102,7 +101,6 @@
 	boardStmt.executeUpdate(); // board 입력 후 키값 저장
 	
 	// String sql = "SELECT MAX(board_no) FROM board";
-	// PreparedStatement keyStmt = conn.prepareStatement(boardSql, PreparedStatement.RETURN_GENERATED_KEYS);
 	ResultSet keyRs = boardStmt.getGeneratedKeys();
 	int boardNo = 0;
 	if (keyRs.next()) {
