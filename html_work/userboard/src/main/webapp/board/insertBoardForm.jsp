@@ -36,7 +36,7 @@
 			<jsp:include page="/inc/mainmenu.jsp"></jsp:include>
 		</div>
 		<br>
-		<form action="<%=request.getContextPath()%>/board/insertBoardAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/board/insertBoardAction.jsp" method="get">
 			<table class="table table-bordered">
 				<tr>
 					<th class="table-primary text-center">localName</th>

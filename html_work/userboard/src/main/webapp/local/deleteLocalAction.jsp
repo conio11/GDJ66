@@ -25,12 +25,12 @@
 	if (request.getParameter("localName") == null
 	|| request.getParameter("localName").equals("")) {
 		String localName = request.getParameter("localName");
-		System.out.println(localName + " <-- localName(updateLocalAction)");
+		System.out.println(localName + " <-- localName(deleteLocalAction)");
 		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp");
 		return;
 	}
 	String localName = request.getParameter("localName");
-	System.out.println(localName + " <-- localName(updateLocalAction)");
+	System.out.println(localName + " <-- localName(deleteLocalAction)");
 
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -38,9 +38,9 @@
 	String dbUser = "root";
 	String dbPw = "java1234";
 	Class.forName(driver);
-	System.out.println("드라이버 로딩 성공(updateLocalAction)");
+	System.out.println("드라이버 로딩 성공(deleteLocalAction)");
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-	System.out.println("DB 접속 성공(updateLocalAction)");
+	System.out.println("DB 접속 성공(deleteLocalAction)");
 	
 	// local 테이블에서 local_name에 해당하는 행을 삭제하는 쿼리
 	// DELETE FROM local WHERE local_name=?
@@ -56,9 +56,12 @@
 		msg = URLEncoder.encode("카테고리가 삭제되었습니다.", "UTF-8");
 		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp?msg=" + msg);
 	} else { // 삭제 실패
+		System.out.println(row + " <-- row(deleteLocalAction)");
 		System.out.println("지역명 삭제 실패");
-		localName = URLEncoder.encode(localName, "UTF-8");
-		response.sendRedirect(request.getContextPath() + "/local/deleteLocalForm.jsp?localName=" + localName);
+		// localName = URLEncoder.encode(localName, "UTF-8");
+		msg = URLEncoder.encode("카테고리 삭제에 실패했습니다.", "UTF-8");
+		// response.sendRedirect(request.getContextPath() + "/local/deleteLocalForm.jsp?localName=" + localName);
+		response.sendRedirect(request.getContextPath() + "/local/localOne.jsp?msg=" + msg);
 	}
 	
 	System.out.println("=============================");

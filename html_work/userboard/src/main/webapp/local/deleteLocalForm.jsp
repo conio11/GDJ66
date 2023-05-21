@@ -35,9 +35,9 @@
 	String dbUser = "root";
 	String dbPw = "java1234";
 	Class.forName(driver);
-	System.out.println("드라이버 로딩 성공(updateLocalForm)");
+	System.out.println("드라이버 로딩 성공(deleteLocalForm)");
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-	System.out.println("DB 접속 성공(updateLocalForm)");
+	System.out.println("DB 접속 성공(deleteLocalForm)");
 	
 	// localName에 해당하는 board 테이블 행의 수(게시글 수)를 구하는 쿼리 작성
 	// SELECT COUNT(*) cnt FROM board WHERE local_name=?
@@ -85,7 +85,7 @@
 		<%
 			}
 		%>
-		<form action="<%=request.getContextPath()%>/local/deleteLocalAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/local/deleteLocalAction.jsp" method="post"> <!-- post 사용 시 인코딩 깨짐 -->
 		<table class="table table-bordered">
 			<tr>
 				<th class="table-primary text-center">localName</th>

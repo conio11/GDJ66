@@ -30,7 +30,7 @@
 	<%
 		}
 	%>
-		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/member/insertMemberAction.jsp" method="post" accept-charset="UTF-8">
 			<table class="table table-bordered">
 				<tr>
 					<th class="table-primary text-center">아이디</th>

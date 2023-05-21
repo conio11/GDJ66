@@ -84,7 +84,7 @@
 		<%
 			if (loginMemberID.equals(memberID)) {	
 		%>
-			<form action="<%=request.getContextPath()%>/board/updateCommentAction.jsp" method="post">
+			<form action="<%=request.getContextPath()%>/board/updateCommentAction.jsp" method="get">
 				<input type="hidden" name="boardNo" value="<%=boardNo%>">
 				<input type="hidden" name="commentNo" value="<%=commentNo%>">
 				

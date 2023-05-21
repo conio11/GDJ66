@@ -88,7 +88,7 @@
 		<%
 			}
 		%>
-		<form action="<%=request.getContextPath()%>/local/updateLocalAction.jsp" method="post">
+		<form action="<%=request.getContextPath()%>/local/updateLocalAction.jsp" method="get"> <!-- post 사용 시 인코딩 깨지는 현상  -->
 			<table class="table table-bordered">
 				<tr>
 					<th class="table-primary text-center">현재 지역명</th>

@@ -90,7 +90,7 @@
 		<%
 			if (loginMemberID.equals(memberID)) {
 		%>
-				<form action="<%=request.getContextPath()%>/board/updateBoardAction.jsp" method="post">
+				<form action="<%=request.getContextPath()%>/board/updateBoardAction.jsp" method="get"> <!-- post 사용 시 오류  -->
 					<table class="table table-bordered">
 						<tr>
 							<th class="table-primary text-center">boardNo</th>

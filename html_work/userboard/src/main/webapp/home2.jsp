@@ -167,7 +167,7 @@
 	
 			if (session.getAttribute("loginMemberID") == null) { // 로그인 전이면 로그인 폼 출력
 		%>
-				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post"> <!-- 절대 주소로 작성 - "/web0502/loginAction.jsp"  -->
+				<form action="<%=request.getContextPath()%>/member/loginAction.jsp" method="post" accept-charset="UTF-8"> <!-- 한글 입력 시 인코딩 깨짐 -->
 
 					<table class="table table-bordered table-sm">
 						<tr>
