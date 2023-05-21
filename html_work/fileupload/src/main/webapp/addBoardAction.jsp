@@ -7,7 +7,7 @@
 <%@ page import="java.sql.*"%>
 <%
 	// 파일 업로드 위치
-	String dir = request.getServletContext().getRealPath("/upload");
+	String dir = request.getServletContext().getRealPath("/upload"); // 경로 오류 발생 시 PC에 오류 주소 복사 후 upload 폴더 직접 생성
 	System.out.println(dir + " <-- dir(addBoardAction)");
 	
 	// 업로드 파일 최대 용량 (100Mb)
