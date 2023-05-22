@@ -8,7 +8,7 @@
 	// * 요청분석(컨트롤러 계층) 후 모델 계층 생성
 	
 	//인코딩 설정
-	response.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 
 	// 1)) session - JSP내장(기본) 객체
 

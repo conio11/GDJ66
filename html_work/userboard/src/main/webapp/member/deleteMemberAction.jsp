@@ -6,6 +6,10 @@
 	// 회원 탈퇴(delete)	
 	// 세션 유효성 확인 - 로그인 상태가 아닌 경우 home2.jsp로 이동
 	// 세션 아이디 확인
+	
+	// post 방식 인코딩 설정
+	request.setCharacterEncoding("UTF-8");
+	
 	String msg = "";
 	if (session.getAttribute("loginMemberID") == null) {
 		msg = URLEncoder.encode("로그인 후 이용 가능합니다", "UTF-8");

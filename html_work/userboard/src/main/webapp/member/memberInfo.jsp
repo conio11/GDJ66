@@ -12,7 +12,7 @@
 	// '회원 탈퇴' 버튼
 	
 	// 인코딩 설정
-	response.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 	
 	// 세션 유효성 확인: 로그인 상태가 아닌 경우 home2.jsp로 이동
 	// 로그인된 상태에서만 '회원정보'를 볼 수 있는 상태이므로 없어도 되는 부분인지?
