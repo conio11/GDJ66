@@ -10,9 +10,9 @@
 	String dbUser = "root";
 	String dbPw = "java1234";
 	Class.forName(driver);
-	System.out.println("드라이버 로딩 성공(addBoardAction)");
+	System.out.println("드라이버 로딩 성공(boardList)");
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-	System.out.println("DB 접속 성공(addBoardAction)");
+	System.out.println("DB 접속 성공(boardList)");
 	
 	/*  
 	// 테이블 1:1 연결
@@ -27,18 +27,22 @@
 	ORDER BY b.createdate DESC;
 	*/
 	
-	String sql = "SELECT b.board_title boardTitle, f.origin_filename originFilename, f.save_filename saveFilename, path FROM board b INNER JOIN board_file f ON b.board_no = f.board_no ORDER BY b.createdate DESC";
+	String sql = "SELECT b.board_no boardNo, b.board_title boardTitle,f.board_file_no boardFileNo, f.origin_filename originFilename, f.save_filename saveFilename, path FROM board b INNER JOIN board_file f ON b.board_no = f.board_no ORDER BY b.createdate DESC";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	ResultSet rs = stmt.executeQuery();
 	ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 	while (rs.next()) {
 		HashMap<String, Object> m = new HashMap<>();
+		m.put("boardNo", rs.getInt("boardNo"));
 		m.put("boardTitle", rs.getString("boardTitle"));
+		m.put("boardFileNo", rs.getInt("boardFileNo"));
 		m.put("originFilename", rs.getString("originFilename"));
 		m.put("saveFilename", rs.getString("saveFilename"));
 		m.put("path", rs.getString("path"));
 		list.add(m);
 	}
+	
+	System.out.println("================================");
 %>
 
 <!DOCTYPE html>
@@ -51,8 +55,10 @@
 	<h1>PDF 자료 목록</h1>
 	<table border="1">
 		<tr>
-			<td>boardTitle</td>
-			<td>originFilename</td>
+			<th>boardTitle</th>
+			<th>originFilename</th>
+			<th>수정</th>
+			<th>삭제</th>
 		</tr>
 	<%
 		for (HashMap<String, Object> m : list) {
@@ -64,6 +70,8 @@
 					<%=(String)m.get("originFilename")%>
 				</a>
 			</td>
+			<td><a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
+			<td><a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
 		</tr>
 	<%
 		}
