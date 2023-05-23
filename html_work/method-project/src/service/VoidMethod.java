@@ -23,8 +23,8 @@ public class VoidMethod {
 	// 22, 9 -> 9 출력
 	// 21, 20 -> 21 출력
 	// 23, 24 -> 없음
+	
 	public void int2Param(int a, int b) {
-		
 		if (a > 21 && b > 21) {
 			System.out.println("없음");
 			return;
@@ -44,6 +44,22 @@ public class VoidMethod {
 			}
 		}
 	}
+	/*
+	   // 다른 방법
+	   public void int2Param(int a, int b) {
+		      if(a > 21 && b > 21) {
+		         System.out.println("없음");
+		      } else if (a > 21) {
+		         System.out.println(b);
+		      } else if (b > 21) {
+		         System.out.println(a);
+		      } else if (a > b){
+		         System.out.println(a);
+		      } else {
+		         System.out.println(b);
+		      }
+		   }
+	   */
 	
 	// 3) 매개변수: String
 	public void stringParam(String name) {
