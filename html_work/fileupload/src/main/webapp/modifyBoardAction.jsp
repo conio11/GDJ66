@@ -5,6 +5,7 @@
 <%@ page import="java.io.*"%>
 <%@ page import="vo.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.net.*"%>
 <%
 	String dir = request.getServletContext().getRealPath("/upload");
 	int max = 10 * 1024 * 1024;
@@ -13,6 +14,8 @@
 	// String originFilename = mRequest.getOriginalFileName("boardFile") 값이 null이면 board 테이블 title만 수정
 	
 	// 1) board_title 수정
+	String msg = "";
+	String msg2 = "";
 	int boardNo = Integer.parseInt(mRequest.getParameter("boardNo"));
 	int boardFileNo = Integer.parseInt(mRequest.getParameter("boardFileNo"));
 	String boardTitle = mRequest.getParameter("boardTitle");
@@ -27,16 +30,25 @@
 	String dbUser = "root";
 	String dbPw = "java1234";
 	Class.forName(driver);
-	System.out.println("드라이버 로딩 성공(addBoardAction)");
+	System.out.println("드라이버 로딩 성공(modifyBoardAction)");
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-	System.out.println("DB 접속 성공(addBoardAction)");
+	System.out.println("DB 접속 성공(modifyBoardAction)");
 	
 	String boardSql = "UPDATE board SET board_title=? WHERE board_no=?";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql);
 	boardStmt.setString(1, boardTitle);
 	boardStmt.setInt(2, boardNo);
-	int boardRow = boardStmt.executeUpdate();
 	
+	int boardRow = boardStmt.executeUpdate();
+	System.out.println(boardRow + " <-- boardRow(modifyBoardAction)");
+	if (boardRow == 1) {
+		System.out.println("게시글명 변경 성공");
+		msg = URLEncoder.encode("게시글명 변경이 완료되었습니다.", "UTF-8");
+	} else {
+		System.out.println("게시글명 변경 실패");
+		msg = URLEncoder.encode("게시글명 변경이 완료되었습니다.", "UTF-8");
+	}
+
 	// 2) 이전 boardFile 삭제, 새 boardFile 추가, 테이블 수정
 			
 	if (mRequest.getOriginalFileName("boardFile") != null) {
@@ -89,9 +101,17 @@
 			boardFileStmt.setInt(3, boardFile.getBoardFileNo());
 			
 			int boardFileRow = boardFileStmt.executeUpdate();
+			System.out.println(boardFileRow + " <-- boardFileRow(modifyBoardAction)");
+			if (boardFileRow == 1) {
+				System.out.println("PDF 자료 변경 성공");
+				msg2 = URLEncoder.encode("PDF 자료 변경이 완료되었습니다.", "UTF-8");
+			} else {
+				System.out.println("PDF 자료 변경 실패");
+				msg2 = URLEncoder.encode("PDF 자료 변경이 완료되었습니다.", "UTF-8");
+			}
 		}
 	}	
-	response.sendRedirect(request.getContextPath() + "/boardList.jsp");
+	response.sendRedirect(request.getContextPath() + "/boardList.jsp?msg=" + msg + "&msg2=" + msg2);
 	
 	System.out.println("================================");
 %>

@@ -41,41 +41,64 @@
 		m.put("path", rs.getString("path"));
 		list.add(m);
 	}
+
 	
 	System.out.println("================================");
 %>
 
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>boardList</title>
-</head>
-<body>
-	<h1>PDF 자료 목록</h1>
-	<table border="1">
-		<tr>
-			<th>boardTitle</th>
-			<th>originFilename</th>
-			<th>수정</th>
-			<th>삭제</th>
-		</tr>
-	<%
-		for (HashMap<String, Object> m : list) {
-	%>
-		<tr>
-			<td><%=(String)m.get("boardTitle")%></td>
-			<td>
-				<a href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>">
-					<%=(String)m.get("originFilename")%>
-				</a>
-			</td>
-			<td><a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">수정</a></td>
-			<td><a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>">삭제</a></td>
-		</tr>
-	<%
-		}
-	%>
-	</table>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>boardList</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+	</head>
+	<body>
+		<div class="text-center">
+			<h1>PDF 자료 목록</h1>
+		</div>
+		<%
+			if (request.getParameter("msg") != null) {
+		%>
+				<%=request.getParameter("msg")%>
+		<%
+			} 
+		%>
+		
+		<% 
+			if (request.getParameter("msg2") != null) { 
+		%>
+				<%=request.getParameter("msg2")%>
+		<%
+			}
+		%>
+		<br>
+		<table class="table">
+			<tr class="table-warning text-center">
+				<th>boardTitle</th>
+				<th>originFilename</th>
+				<th>수정</th>
+				<th>삭제</th>
+			</tr>
+		<%
+			for (HashMap<String, Object> m : list) {
+		%>
+			<tr class="text-center">
+				<td><%=(String)m.get("boardTitle")%></td>
+				<td>
+					<a href="<%=request.getContextPath()%>/<%=(String)m.get("path")%>/<%=(String)m.get("saveFilename")%>" download="<%=(String)m.get("saveFilename")%>" class="btn btn-outline-light text-dark">
+						<%=(String)m.get("originFilename")%>
+					</a>
+				</td>
+				<td><a href="<%=request.getContextPath()%>/modifyBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>" class="btn btn-outline-light text-dark">수정</a></td>
+				<td><a href="<%=request.getContextPath()%>/removeBoard.jsp?boardNo=<%=m.get("boardNo")%>&boardFileNo=<%=m.get("boardFileNo")%>" class="btn btn-outline-light text-dark">삭제</a></td>
+			</tr>
+		<%
+			}
+		%>
+		</table>
+		<a href="<%=request.getContextPath()%>/addBoard.jsp" class="btn btn-outline-warning">새 자료 업로드</a>
+	</body>
 </html>

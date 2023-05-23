@@ -5,6 +5,7 @@
 <%@ page import="java.io.*"%>
 <%@ page import="vo.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.net.*"%>
 <%
 	// 파일 업로드 위치
 	String dir = request.getServletContext().getRealPath("/upload"); 
@@ -25,17 +26,29 @@
 	
 	MultipartRequest mRequest = new MultipartRequest(request, dir, max, "UTF-8", new DefaultFileRenamePolicy());
 
+	if (mRequest.getParameter("boardNo") == null
+	|| mRequest.getParameter("boardNo").equals("")) {
+		response.sendRedirect(request.getContextPath() + "/boardList.jsp");
+	}
+	
 	int boardNo = Integer.parseInt(mRequest.getParameter("boardNo"));
-	int boardFileNo = Integer.parseInt(mRequest.getParameter("boardFileNo"));
-	String boardTitle = mRequest.getParameter("boardTitle");
+	// int boardFileNo = Integer.parseInt(mRequest.getParameter("boardFileNo"));
+	// String boardTitle = mRequest.getParameter("boardTitle");
+	String saveFilename = mRequest.getParameter("saveFilename");
 	
 	System.out.println(boardNo + " <-- boardNo(removeBoardAction)");
-	System.out.println(boardFileNo + " <-- boardFileNo(removeBoardAction)");
-	System.out.println(boardTitle + " <-- boardTitle(removeBoardAction)");
-	
-	
+	// System.out.println(boardFileNo + " <-- boardFileNo(removeBoardAction)");
+	// System.out.println(boardTitle + " <-- boardTitle(removeBoardAction)");
+	System.out.println(saveFilename + "< -- saveFilename(removeBoardAction)");
+
 	// 1) file 삭제
-	// 2) boardTitle 삭제
+	File f = new File(dir + "/" + saveFilename);
+	if (f.exists()) {
+		f.delete();
+		System.out.println(saveFilename + " 파일 삭제");
+	}
+	
+	// 2) board 삭제
 	
 	// DB 연결
 	String driver = "org.mariadb.jdbc.Driver";
@@ -47,11 +60,22 @@
 	Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
 	System.out.println("DB 접속 성공(removeBoardAction)");
 	
+	String msg = "";
 	String boardSql = "DELETE FROM board WHERE board_no=?";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql);
 	boardStmt.setInt(1, boardNo);
+	int boardRow = boardStmt.executeUpdate();
+	System.out.println(boardRow + " <-- boardRow(removeBoardAction)");
+	if (boardRow == 1) { // board에서 삭제 성공
+		System.out.println("삭제 성공");
+		msg = URLEncoder.encode("자료 삭제가 완료되었습니다.", "UTF-8");
+	} else {
+		System.out.println("삭제 실패");
+		msg = URLEncoder.encode("자료를 삭제하지 못했습니다.", "UTF-8");
+	}
 	
-	response.sendRedirect(request.getContextPath() + "/boardList.jsp");
+	// 삭제 성공 결과 여부 상관없이 boardList.jsp로 이동
+	response.sendRedirect(request.getContextPath() + "/boardList.jsp?msg=" + msg);
 	
 	System.out.println("=====================================");
 %>

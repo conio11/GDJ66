@@ -5,6 +5,7 @@
 <%@ page import="vo.*"%>
 <%@ page import="java.io.*"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="java.net.*"%>
 <%
 	// 파일 업로드 위치
 	String dir = request.getServletContext().getRealPath("/upload"); // 경로 오류 발생 시 PC에 오류 주소 복사 후 upload 폴더 직접 생성
@@ -94,11 +95,20 @@
 	System.out.println("DB 접속 성공(addBoardAction)");
 	
 	// PreparedStatement.RETURN_GENERATED_KEYS: PreparedStatement 객체를 사용하여 SQL 쿼리를 실행할 때, 자동으로 생성된 키(보통 AUTO_INCREMENT 열의 값)를 검색하기 위한 상수
+	String msg = "";
 	String boardSql = "INSERT INTO board(board_title, member_id, updatedate, createdate) VALUES (?, ?, NOW(), NOW())";
 	PreparedStatement boardStmt = conn.prepareStatement(boardSql, PreparedStatement.RETURN_GENERATED_KEYS); 
 	boardStmt.setString(1, boardTitle);
 	boardStmt.setString(2, memberID);
-	boardStmt.executeUpdate(); // board 입력 후 키값 저장
+	int boardRow = boardStmt.executeUpdate(); // board 입력 후 키값 저장
+	System.out.println(boardRow + " <-- boardRow(addBoardAction)");
+	if (boardRow == 1) { // board에서 삭제 성공
+		System.out.println("입력 성공");
+		msg = URLEncoder.encode("자료를 업로드했습니다.", "UTF-8");
+	} else {
+		System.out.println("입력 실패");
+		msg = URLEncoder.encode("자료를 업로드하지 못했습니다.", "UTF-8");
+	}
 	
 	// String sql = "SELECT MAX(board_no) FROM board";
 	ResultSet keyRs = boardStmt.getGeneratedKeys();
@@ -115,7 +125,7 @@
 	fileStmt.setString(4, type);
 	fileStmt.executeUpdate(); // board_file 입력
 	
-	response.sendRedirect(request.getContextPath() + "/boardList.jsp"); // boardList.jsp 파일로 이동
+	response.sendRedirect(request.getContextPath() + "/boardList.jsp?msg=" + msg); // boardList.jsp 파일로 이동
 	
 	System.out.println("================================================");	
 %>
