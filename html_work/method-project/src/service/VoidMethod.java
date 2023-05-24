@@ -1,5 +1,8 @@
 package service;
 
+import vo.*;
+import java.util.*;
+
 // 해당 클래스의 모든 리턴타입: void
 public class VoidMethod {
 	// 1) 매개변수 : 없음 
@@ -94,5 +97,184 @@ public class VoidMethod {
 	
 	public void referTypeParam(int[] refer) {
 		refer[0] = 777;
+	}
+	
+	// 5) 매개변수: 배열(String 배열)
+	// a. 어떤 값을 입력받을 것인가? (사람 이름 배열 입력)
+	// b. 어떻게 처리(구현)할 것인가? "김"씨 성의 인원 출력 + 유효성 검사(null, 0 등에 대한 처리)
+	// c. 어떤 값을 반환할 것인가? void(반환값 X)
+	// d. 출력값: 전체 n명 중 김씨는 x명입니다.
+	public void stringArrParam(String[] names) {
+		if (names == null || names.length == 0) {
+			System.out.println("이름이 입력되지 않았습니다.");
+		} else {
+			int cnt = names.length;
+			int kimCnt = 0;
+			for (int i = 0; i < names.length; i += 1) {
+				if (names[i].startsWith("김")) {
+					kimCnt++;
+				}
+			}
+			System.out.println("전체 " + cnt + "명 중 김씨는 " + kimCnt + "명입니다.");
+		}
+	}
+	
+		/*
+		if (names == null || names.length == 0) {
+			System.out.println("이름 배열을 입력하세요");
+			return;
+		}
+		
+		int nameCnt = 0;
+		for (String n : names) {
+			if (n.startsWith("김")) {
+				nameCnt += 1;
+			}
+		}
+		// \n: 줄바꿈
+		System.out.printf("전체 %d명 중 김씨는 %d명입니다.\n", names.length, nameCnt);
+		*/
+	
+	// 6) 매개변수: 클래스
+	// a. 어떤 값을 입력받을 것인가? - 한 학생의 정보 (Vo)
+	// b. 어떻게 처리(구현)할 것인가? 학생 정보 출력 + 유효성 검사(null, 0 등에 대한 처리)
+	// c. 어떤 값을 반환할 것인가? void(반환값 X)
+	// d. 출력값: 10번, 김XX, 남자, 20살
+	public void clsParam(Student student) { 
+		if (student == null || student.getName() == null || student.getGender() == null) { // 유효성 검사 추가
+			return;
+		}
+		
+		Calendar c = Calendar.getInstance();
+		int age = c.get(Calendar.YEAR) - student.getBirth();
+		System.out.printf("%d번, %sXX, %s, %d살\n", student.getId(), student.getName().substring(0, 1), student.getGender(), age);
+
+	}
+	
+	// 7) 매개변수: 클래스 배열
+	// a. 어떤 값을 입력받을 것인가? - 여러 학생의 정보 (Vo)
+	// b. 어떻게 처리(구현)할 것인가? 학생 정보 출력 + 유효성 검사(null, 0 등에 대한 처리)
+	// c. 어떤 값을 반환할 것인가? void(반환값 X)
+	// d. 출력값: 남자 x명, 여자 y명
+	public void clsArrParam(Student[] students) {
+		// 유효성 검사
+		if (students == null) { 
+			return;
+		}
+		
+		int maleCnt = 0; // 남자 인원
+		int femaleCnt = 0; // 여자 인원
+		for (int i = 0; i < students.length; i += 1) {
+			if (students[i].getGender() == null) {
+				return;
+			}
+			if (students[i].getGender().startsWith("남")) {
+				maleCnt++;
+			} else {
+				femaleCnt++;
+			}
+					
+		}
+		System.out.printf("남자 %d명, 여자 %d명\n", maleCnt, femaleCnt);
+	}
+	
+	/*
+	if (students == null) {
+		return;
+	}
+	
+	int mCnt = 0; // 남자 인원
+	int fCnt = 0; // 여자 인원
+	
+	for (Student s : students) {
+		if (s == null || s.getGender() == null) {
+			return;
+		}
+		if (s.getGender().equals("남")) {
+			mCnt++;
+		} else if (s.getGender().equals("여")) {
+			fCnt++;
+		}
+	}
+	
+	System.out.println("남자는 " + mCnt + "명, 여자는 " + fCnt + " 명");
+	}
+	*/
+	
+	// 8) 매개변수: ArrayList
+	// a. 어떤 값을 입력받을 것인가? - 여러 학생의 정보 (ArrayList<Student>)
+	// b. 어떻게 처리(구현)할 것인가? 학생 정보 출력 + 유효성 검사(null, 0 등에 대한 처리)
+	// c. 어떤 값을 반환할 것인가? void(반환값 X)
+	// d. 출력값: 전체 x명, 20대 x명, 30대 x명
+	public void clsArrayListParam(ArrayList<Student> studentList) {
+		if (studentList == null || studentList.size() == 0) {
+			System.out.println("입력값이 없습니다.");
+			return;
+		}
+		
+		int cnt = 0;
+		int cnt20 = 0;
+		int cnt30 = 0;
+		cnt = studentList.size();
+		Calendar c = Calendar.getInstance();
+		for (int i = 0; i < studentList.size(); i += 1) {
+			if (studentList.get(i).getBirth() <= 19) {
+				System.out.println("나이가 제대로 입력되지 않았습니다.");
+				return;
+			}
+			int age = c.get(Calendar.YEAR) - studentList.get(i).getBirth();
+			if (age >= 30) {
+				cnt30++;
+			} else if (age >= 20) {
+				cnt20++;
+			}
+		}
+	
+		System.out.printf("전체 %d명, 20대 %d명, 30대 %d명\n", cnt, cnt20, cnt30);
+	}
+	
+	public void listParam(ArrayList<Student> list) {
+		if (list == null) {
+			return; 
+		}
+		
+		int ages20 = 0;
+		int ages30 = 0;
+		int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+		
+		for (Student s : list) {
+			int age = currentYear - s.getBirth();
+			int ages = age / 10 * 10;
+			if (ages == 20) {
+				ages20++;
+			} else if (ages == 30) {
+				ages30++;
+			}
+		}
+		System.out.printf("전체 %d명, 20대 %d명, 30대 %d명\n", list.size(), ages20, ages30);
+	}
+	
+	// 9) 매개변수: HashMap
+	// a. 어떤 값을 입력받을 것인가? - Student 1명 + Emp 1명 --> HashMap 하나를 입력
+	// b. 어떻게 처리(구현)할 것인가? 학생 정보 출력 + 유효성 검사(null, 0 등에 대한 처리)
+	// c. 어떤 값을 반환할 것인가? void(반환값 X)
+	// d. 출력값: 학생 이름은 XXX이고, 담당 직원의 이름은 XXX입니다.
+	public void mapParam(HashMap<String, Object> map) {
+		if (map == null || map.size() == 0) {
+			System.out.println("입력값이 없습니다.");
+			return;
+		}
+		Emp emp = (Emp)(map.get("e1"));
+		Student student = (Student)(map.get("s1"));
+		
+		System.out.printf("학생 이름은 %s이고, 담당 직원의 이름은 %s입니다.\n", student.getName(), emp.getEmpName());
+		
+		
+		
+		/*
+		 * String sName = map.get(""); String eName = ""; for (HashMap<String, Object> m
+		 * : map) { m.get(empName); }
+		 */
+		
 	}
 }
