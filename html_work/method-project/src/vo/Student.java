@@ -2,6 +2,7 @@ package vo;
 
 public class Student {
 	private int id;
+	private String pw;
 	private String name;
 	private int birth;
 	
@@ -10,6 +11,12 @@ public class Student {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 	public String getName() {
 		return name;

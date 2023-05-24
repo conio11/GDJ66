@@ -141,7 +141,7 @@ public class VoidMethod {
 	// c. 어떤 값을 반환할 것인가? void(반환값 X)
 	// d. 출력값: 10번, 김XX, 남자, 20살
 	public void clsParam(Student student) { 
-		if (student == null || student.getName() == null || student.getGender() == null) { // 유효성 검사 추가
+		if (student == null || student.getName() == null || student.getGender() == null) { // 유효성 검사
 			return;
 		}
 		
@@ -275,6 +275,5 @@ public class VoidMethod {
 		 * String sName = map.get(""); String eName = ""; for (HashMap<String, Object> m
 		 * : map) { m.get(empName); }
 		 */
-		
 	}
 }
