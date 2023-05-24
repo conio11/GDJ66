@@ -126,7 +126,7 @@ public class PrimitiveMethod {
 	// a. 어떤 값을 입력받을 것인가? 학생타입의 번호, 이름 속성만 입력
 	// b. 어떻게 처리(구현)할 것인가? 로그인 
 	// c. 어떤 값을 반환할 것인가? boolean
-	public boolean clasParam(Student student) {
+	public boolean clsParam(Student student) {
 		// 유효성 검사 추가
 		// 학생 DB 목록
 		Student[] db = new Student[3];
@@ -236,7 +236,7 @@ public class PrimitiveMethod {
 		
 	}
 	
-	// 8) 매개변수: HashMap
+	// 9) 매개변수: HashMap
 	// a. 어떤 값을 입력받을 것인가? 두 개의 리스트 (Student, Emp)
 	// b. 어떻게 처리(구현)할 것인가? 총 인원 (리스트 사이즈의 합)
 	// c. 어떤 값을 반환할 것인가? int
@@ -244,11 +244,16 @@ public class PrimitiveMethod {
 		int studentCnt = 0;
 		int empCnt = 0;
 		
-		// null 유효성 검사
-		@SuppressWarnings("unchecked")
+		// @SuppressWarnings("unchecked")
 		ArrayList<Student> studentList = (ArrayList<Student>)map.get("studentList");
-		@SuppressWarnings("unchecked")
+		// @SuppressWarnings("unchecked")
 		ArrayList<Emp> empList = (ArrayList<Emp>)map.get("empList");
+		
+		// null 유효성 검사
+		if (studentList == null || empList == null) {
+			System.out.println("입력값이 없습니다.");
+			return 0;
+		}
 		studentCnt = studentList.size();
 		empCnt = empList.size();
 		return studentCnt + empCnt;

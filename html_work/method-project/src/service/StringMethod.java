@@ -27,7 +27,6 @@ public class StringMethod {
 			// System.out.println(lastIndex + " <-- (.)lastIndex");
 			// System.out.println(filename.substring(lastIndex));
 			return filename.substring(lastIndex + 1); // 확장자명 (. 제외)
-			
 		} else {
 			// return "확장자를 찾을 수 없습니다.";
 			return "";

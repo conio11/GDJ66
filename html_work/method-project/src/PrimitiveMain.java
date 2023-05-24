@@ -9,6 +9,9 @@ public class PrimitiveMain {
 		System.out.println(maxIntValue);
 		System.out.println("===(1)===");
 		
+		System.out.println(pm.primitiveParam(2000));
+		System.out.println("===(2)===");
+		
 		System.out.println(pm.stringParam("kevin", "degea"));
 		System.out.println("===(3)===");
 		
@@ -20,6 +23,11 @@ public class PrimitiveMain {
 		System.out.println(pm.strArrParam(names));
 		System.out.println("===(5)===");
 		
+		Student student = new Student();
+		student.setId(100); // 학생 ID 설정
+		student.setPw("1234"); // 학생 비밀번호 설정
+		System.out.println(pm.clsParam(student));
+		System.out.println("===(6)===");
 		
 		Student s1 = new Student();
 		s1.setBirth(2000);
@@ -66,14 +74,43 @@ public class PrimitiveMain {
 		System.out.println(pm.listParam(sub));
 		System.out.println("===(8)===");
 		
-		StringMethod sm = new StringMethod();
+		// 예시 map 객체 생성
+		HashMap<String, Object> map = new HashMap<>();
+
+		// 예시 Student 리스트 생성
+		ArrayList<Student> studentList = new ArrayList<>();
 		
+		// 학생 객체 생성 및 리스트에 추가
+		Student student1 = new Student();
+		student1.setId(100);
+		studentList.add(student1);
+		Student student2 = new Student();
+		student2.setId(200);
+		studentList.add(student2);
+
+		// 예시 Emp 리스트 생성
+		ArrayList<Emp> empList = new ArrayList<>();
+		
+		// 직원 객체 생성 및 리스트에 추가
+		Emp emp1 = new Emp();
+		emp1.setEmpID(1);
+		empList.add(emp1);
+		Emp emp2 = new Emp();
+		emp2.setEmpID(2);
+		empList.add(emp2);
+
+		// 맵에 리스트들을 저장
+		map.put("studentList", studentList);
+		map.put("empList", empList);
+
+		// 메소드 호출
+		int result = pm.mapParam(map);
+		System.out.println(result); // 결과 출력
+		System.out.println("===(9)===");
+		
+		StringMethod sm = new StringMethod();
 		String filename = "극장.영수증.pdf"; // 보고서.hwp // 극장.영수증.pdf
 		System.out.println(sm.stringParam(filename));
-		System.out.println("===stringParam===");
-		
-		
-		
-		
+		System.out.println("===stringParam===");	
 	}
 }

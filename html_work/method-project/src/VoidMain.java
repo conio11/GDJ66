@@ -8,19 +8,22 @@ public class VoidMain {
 	public static void main(String[] args) {
 		VoidMethod vm = new VoidMethod();
 		vm.voidParam();
+		System.out.println("===(1)===");
 		
 		int num = 8;
 		vm.intParam(num);
+		System.out.println("===(2)===");
 		
-		String name = "철수";
+		vm.int2Param(21, 10);
+		System.out.println("===(2-1)===");
+		
+		String name = "김철수";
 		vm.stringParam(name);
-		
-		int a = 10;
-		int b = 10;
-		vm.int2Param(a, b);
+		System.out.println("===(3)===");
 		
 		int[] arr = {5, 1, 10, 7, 999, 21};
 		vm.intArrayParam(arr);
+		System.out.println("===(4)===");
 		
 		// 기본타입(값) 매개변수 vs 참조타입(주소) 매개변수
 		int value = 100;
@@ -34,9 +37,11 @@ public class VoidMain {
 		vm.referTypeParam(refer);
 		System.out.println(refer[0]); // 777
 		System.out.println(refer); // 주소값은 변하지 않음
+		System.out.println("===(기본타입/참조타입)===");
 		
-		String[] names = {"김철수", "이철수", "김철수", "박철수"};
+		String[] names = {"김철수", "이철수", "김철수", "박철수", "이철수"};
 		vm.stringArrParam(names);
+		System.out.println("===(5)===");
 		
 		Student st = new Student();
 		st.setId(10);
@@ -44,6 +49,14 @@ public class VoidMain {
 		st.setBirth(2000);
 		st.setGender("남자");
 		vm.clsParam(st);
+		
+		Student ch = new Student();
+		ch.setId(3);
+		ch.setName("최동욱");
+		ch.setGender("남");
+		ch.setBirth(1999);
+		vm.clsParam(ch);
+		System.out.println("===(6)===");
 		
 		
 		Student[] st2 = new Student[4];
@@ -61,27 +74,6 @@ public class VoidMain {
 		st2[3].setBirth(1999);
 		vm.clsArrParam(st2);
 		
-		ArrayList<Student> st3 = new ArrayList<Student>();
-		
-		
-		Student s = new Student();
-		s.setName("김철수");
-		
-		Emp e = new Emp();
-		e.setEmpName("김철수2");
-		
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("e1", e);
-		map.put("s1", s);
-		vm.mapParam(map);
-		
-		Student ch = new Student();
-		ch.setId(3);
-		ch.setName("최동욱");
-		ch.setGender("남");
-		ch.setBirth(1999);
-		vm.clsParam(ch);
-
 		Student s1 = new Student();
 		s1.setId(3);
 		s1.setName("최동욱");
@@ -102,14 +94,15 @@ public class VoidMain {
 		students[1] = s2;
 		students[2] = s3;
 		vm.clsArrParam(students);
-		//
+		System.out.println("===(7)===");
+		
 		ArrayList<Student> list = new ArrayList<>();
 		list.add(s1);
 		list.add(s2);
 		list.add(s3);
 		vm.listParam(list);
-		
 		vm.clsArrayListParam(list);
+		System.out.println("===(8)===");
 		
 		Emp emp = new Emp();
 		emp.setEmpName("루피");
@@ -118,7 +111,18 @@ public class VoidMain {
 		HashMap<String, Object> map1 = new HashMap<>();
 		map1.put("e1", emp);
 		map1.put("s1",hkd);
-		vm.mapParam(map1);		
+		vm.mapParam(map1);	
+		
+		Student s = new Student();
+		s.setName("김철수");
+		Emp e = new Emp();
+		e.setEmpName("김철수2");
+		
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("e1", e);
+		map.put("s1", s);
+		vm.mapParam(map);
+		System.out.println("===(9)===");
 		
 		// HashMap<Student, Emp> map = new HashMap<Student, Emp>();
 		// s.setName(String name)
@@ -130,8 +134,5 @@ public class VoidMain {
 		// map.put(Student.);
 		
 		// System.out.println(map.get("김철수"));
-		
-		
-		System.out.println("================================");
 	}
 }
