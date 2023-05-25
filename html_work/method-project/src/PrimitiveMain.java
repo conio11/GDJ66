@@ -112,5 +112,46 @@ public class PrimitiveMain {
 		String filename = "극장.영수증.pdf"; // 보고서.hwp // 극장.영수증.pdf
 		System.out.println(sm.stringParam(filename));
 		System.out.println("===stringParam===");	
+	
+		ClassMethod cm = new ClassMethod();
+		Member mem = new Member();
+		mem.setMemberID(100);
+		mem.setMemberPW("1234");
+		mem.setMemberName("ABC");
+		mem.setMemberBirth(2000);
+		System.out.println(cm.m66(mem)); // null이 아닐 경우 클래스 객체 참조값 반환
+		System.out.println("===(CM1)===");
+		
+		ArrayList<String> list = new ArrayList<>();
+		list.add("리스트1");
+		list.add("리스트2");
+		list.add("리스트3");
+		System.out.println(cm.m78(list)); // null이 아닐 경우 배열 참조값 반환
+		System.out.println("===(CM2)===");
+	
+		int[] numArr = {1, 2, 3, 4, 5, 6};
+		System.out.println(cm.m84(numArr));
+		System.out.println("===(CM3)===");
+		
+		System.out.println(cm.m96(1, "구디", false, 200, "운영"));
+		
+		System.out.println("===(CM4)===");
+		
+		
+		// 테스트 코드
+		// 1) 테스트용 클래스 생성 뒤 테스트 클래스 내부 static main() 에서 테스트 실행
+		// 2) 테스트하려는 메소드의 클래스 안에 static main() 생성, 호출
+		/*
+		MapReturnMethod mrm = new MapReturnMethod();
+		HashMap<String, Object> map 
+			= mrm.m910(1, "구디", false, 100, "운영");
+		
+		Emp2 emp = (Emp2)(map.get("emp"));
+		Dept dept = (Dept)(map.get("dept"));
+		
+		System.out.printf("%s님의 부서는 %s 입니다%n"
+				, emp.getEname(),dept.getDname());
+		*/
+
 	}
 }
