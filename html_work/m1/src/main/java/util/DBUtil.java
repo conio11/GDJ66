@@ -9,9 +9,9 @@ public class DBUtil {
 		String dbUser = "root";
 		String dbPw = "java1234";
 		Class.forName(driver);
-		System.out.println("드라이버 로딩 성공(DBUtil)");
+		// System.out.println("드라이버 로딩 성공(DBUtil)");
 		Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPw);
-		System.out.println("DB 접속 성공(DBUtil)");
+		// System.out.println("DB 접속 성공(DBUtil)");
 		return conn;
 	}
 }

@@ -53,7 +53,6 @@ public class SubjectDao {
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, subjectNo);
 		row = stmt.executeUpdate(); 
-	
 		return row;
 	}
 	
@@ -67,8 +66,7 @@ public class SubjectDao {
 		stmt.setString(1, subject.getSubjectName());
 		stmt.setInt(2, subject.getSubjectTime());
 		stmt.setInt(3, subject.getSubjectNo());
-		row = stmt.executeUpdate(); 
-		
+		row = stmt.executeUpdate(); 	
 		return row;
 	}
 	
