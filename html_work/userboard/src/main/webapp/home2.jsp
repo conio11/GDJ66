@@ -191,7 +191,7 @@
 		%>
 			</div>
 		</div>
-		<table class="table table-bordered text-center">
+		<table class="table table-bordered text-center container">
 			<tr class="table-primary">
 				<th>localName</th>
 				<th>boardTitle</th>
