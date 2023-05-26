@@ -70,7 +70,7 @@ public class SubjectDao {
 		return row;
 	}
 	
-	// 5) 과목 1개 상세
+	// 5) 과목 1개 상세정보
 	public Subject selectSubjectOne(int subjectNo) throws Exception {
 		Subject subject = null;
 		DBUtil dbUtil = new DBUtil();

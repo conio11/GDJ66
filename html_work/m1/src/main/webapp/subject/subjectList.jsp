@@ -38,7 +38,7 @@
 	<body>
 		<div class="container mt-3">
 		<div class="text-center">
-			<h1>subjectList</h1>
+			<h1>과목 리스트</h1>
 		</div>
 		<br>
 		<a href="<%=request.getContextPath()%>/subject/addSubject.jsp" class="btn btn-outline-secondary">새 과목 입력</a>
@@ -46,25 +46,21 @@
 		<br>
 		<table class="table table-hover text-center">
 			<tr>
-				<th>subjectNo</th>
-				<th>subjectName</th>
-				<th>subjectTime</th>
-				<th>createdate</th>
-				<th>updatedate</th>
-				<th>수정</th>
-				<th>삭제</th>
+				<th>과목 번호</th>
+				<th>과목 이름</th>
+				<th>과목 시수</th>
+				<th>생성일자</th>
+				<th>수정일자</th>
 			</tr>
 		<%
 			for (Subject s : list) {
 		%>
 			<tr>
 				<td><%=s.getSubjectNo()%></td>
-				<td><%=s.getSubjectName()%></td>
+				<td><a href="<%=request.getContextPath()%>/subject/subjectOne.jsp?subjectNo=<%=s.getSubjectNo()%>" class="btn"><%=s.getSubjectName()%></a></td>
 				<td><%=s.getSubjectTime()%></td>
 				<td><%=s.getCreatedate().substring(0, 10)%></td>
 				<td><%=s.getUpdatedate().substring(0, 10)%></td>
-				<td><a href="" class="btn">수정</a></td>
-				<td><a href="" class="btn">삭제</a></td>
 			</tr>	
 		<%
 			}

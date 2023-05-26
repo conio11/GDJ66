@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+.......<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>   
 <%@ page import="java.util.*" %>
@@ -12,7 +12,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	// 입력값 유효성 확인
-	// 과목 이름, 시간 값 중 하나라도 null 또는 공백값이 입력되면
+	// 과목 이름, 과목 시수 값 중 하나라도 null 또는 공백값이 입력되면 subjectList.jsp로 이동
 	if (request.getParameter("subjectName") == null
 	|| request.getParameter("subjectName").equals("")
 	|| request.getParameter("subjectTime") == null
@@ -36,6 +36,7 @@
 	subject.setSubjectTime(subjectTime);
 	
 	int row = subDao.insertSubject(subject);
+	System.out.println(row + " <-- row(addSubjectAction)");
 	
 	if (row == 1) {
 		System.out.println("입력 성공");
