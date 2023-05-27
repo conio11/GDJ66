@@ -1,12 +1,12 @@
-.......<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>   
-<%@ page import="java.util.*" %>
 <%@ page import="vo.*" %>
 <%@ page import="dao.*" %>
-<%@ page import="util.*" %>
+<%@ page import="java.net.*" %>
 <%
 	// controller
+	
+	// 과목 중복값 입력 방지 설정하기
 
 	// post 방식 인코딩 설정
 	request.setCharacterEncoding("UTF-8");
@@ -38,15 +38,17 @@
 	int row = subDao.insertSubject(subject);
 	System.out.println(row + " <-- row(addSubjectAction)");
 	
+	String msg = "";
 	if (row == 1) {
 		System.out.println("입력 성공");
-		
+		msg = URLEncoder.encode("새 과목이 입력되었습니다.", "UTF-8"); 
 	} else {
 		System.out.println("입력 실패");
+		msg = URLEncoder.encode("새 과목 입력에 실패했습니다.", "UTF-8"); 
 	}
 	
 	// 입력 성공 여부 관계없이 메인 페이지로 이동
-	response.sendRedirect(request.getContextPath() + "/subject/subjectList.jsp");
+	response.sendRedirect(request.getContextPath() + "/subject/subjectList.jsp?msg=" + msg);
 	
 	System.out.println("=============addSubjectAction=============");
 %>

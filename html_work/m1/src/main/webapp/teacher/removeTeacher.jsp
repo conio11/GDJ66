@@ -19,7 +19,7 @@
 	
 	// TeacherDao 클래스 객체 생성 -> SQL 메소드 이용 
 	TeacherDao TDao = new TeacherDao();
-	Teacher teacher = new Teacher();
+	Teacher teacher = new Teacher(); 
 	teacher = TDao.selectTeacherOne(teacherNo);
 	
 	System.out.println("=============removeTeacher=============");	

@@ -3,7 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="vo.*"%>
 <%@ page import="dao.*"%>
-<%@ page import="util.*"%>
 
 <%
 	// post 방식 인코딩 설정
@@ -23,6 +22,9 @@
 	
 	// 페이지당 출력 행 수
 	int rowPerPage = 5;
+	
+	// 시작 행 번호
+	// ... LIMIT (beginRow, rowPerPage)
 	int beginRow = (currentPage - 1) * rowPerPage;
 
 	// 전체 행 수
@@ -55,7 +57,6 @@
 	System.out.println("=============teacherList=============");
 %>
 
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -64,7 +65,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
   		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-  		<style>
+  		<style> /* 페이징 버튼 회색으로 설정 */
 			.page-link {
 			  color: #000; 
 			  background-color: #fff;
@@ -88,11 +89,12 @@
 	</head>
 	<body>
 		<div class="container mt-3">
+		<a href="<%= request.getContextPath()%>/subject/subjectList.jsp" class="btn btn-outline-secondary">과목 리스트</a>
 		<div class="text-center">
 			<h1>강사 리스트</h1>
 		</div>
 		<br>
-		<a href="<%= request.getContextPath()%>/subject/subjectList.jsp" class="btn btn-outline-secondary">과목 리스트</a>
+		
 		<%
 			if (request.getParameter("msg") != null) {
 		%>
@@ -136,7 +138,7 @@
 			for (int i = minPage; i <= maxPage; i++) {
 				if (i == currentPage) {
 		%>
-					<li class="page-item active"><a class="page-link"><%=i%></span></a>
+					<li class="page-item active"><a class="page-link"><%=i%></a>
 		<% 			
 				} else {
 		%>
@@ -144,7 +146,6 @@
 		<%		
 				}
 			}
-			
 		%>
 		
 		<%

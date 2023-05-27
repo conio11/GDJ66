@@ -21,7 +21,7 @@
 	// TDao 
 	TeacherDao TDao = new TeacherDao();
 	
-	Teacher teacher = new Teacher();
+	Teacher teacher = new Teacher(); 
 	teacher = TDao.selectTeacherOne(teacherNo);
 	
 	System.out.println("=============teacherOne=============");	
@@ -40,7 +40,7 @@
 		<div class="container mt-3">
 		<a href="<%= request.getContextPath()%>/teacher/teacherList.jsp" class="btn btn-outline-secondary">메인 화면으로</a>
 		<div class="text-center">
-			<h1>강사 상세 정보</h1>
+			<h1>강사 상세정보</h1>
 		</div>
 		<table class="table table-hover text-center">
 			<tr>

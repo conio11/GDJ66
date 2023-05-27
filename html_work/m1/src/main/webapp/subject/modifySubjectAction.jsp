@@ -20,7 +20,7 @@
 	
 	int subjectNo = Integer.parseInt(request.getParameter("subjectNo"));
 	String subjectName = request.getParameter("subjectName");
-	String subjectTime = request.getParameter("subjectTime");
+	int subjectTime = Integer.parseInt(request.getParameter("subjectTime"));
 	
 	System.out.println(subjectNo + " <-- subjectNo(modifySubjectAction)");
 	System.out.println(subjectName + " <-- subjectName(modifySubjectAction)");
@@ -30,11 +30,25 @@
 	SubjectDao subDao = new SubjectDao();
 	
 	Subject subject = new Subject();
-	subject.setSubjectNo(subjectNo);
+	subject.setSubjectNo(subjectNo); // update문에서 subject_no=? 조건 사용
 	subject.setSubjectName(subjectName);
 	subject.setSubjectTime(subjectTime);
 	
+	int row =subDao.updateSubject(subject);
+	System.out.println(row + " <-- row(modifySubjectAction)");
+	
 	String msg = "";
+	if (row == 1) {
+		System.out.println("수정 성공");
+		msg = URLEncoder.encode("과목 정보가 변경되었습니다.", "UTF-8"); 
+	} else {
+		System.out.println("수정 실패");
+		msg = URLEncoder.encode("과목 정복 변경에 실패했습니다.", "UTF-8");
+	}
+	
+	// 과목 정보 수정 여부 관계없이 메시지와 함께 메인 페이지로 이동
+	response.sendRedirect(request.getContextPath() + "/subject/subjectList.jsp?msg=" + msg);
+	
 	
 	
 	System.out.println("=============modifySubjectAction=============");

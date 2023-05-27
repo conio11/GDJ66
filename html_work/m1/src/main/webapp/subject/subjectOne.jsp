@@ -40,7 +40,7 @@
 		<div class="container mt-3">
 		<a href="<%= request.getContextPath()%>/subject/subjectList.jsp" class="btn btn-outline-secondary">메인 화면으로</a>
 		<div class="text-center">
-			<h1>상세페이지</h1>
+			<h1>과목 상세정보</h1>
 		</div>
 		<table class="table table-hover">
 			<tr>

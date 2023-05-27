@@ -25,11 +25,11 @@
 		<form action="<%=request.getContextPath()%>/subject/addSubjectAction.jsp" method="post">
 			<table class="table table-hover text-center">
 				<tr>
-					<th>subjectName</th>
+					<th>과목 이름</th>
 					<td><input type="text" name="subjectName" class="form-control w-50" placeholder="과목 이름을 입력하세요."></td>
 				</tr>
 				<tr>
-					<th>subjectTime</th>
+					<th>과목 시수</th>
 					<td><input type="text" name="subjectTime" class="form-control w-50" placeholder="과목 시수를 입력하세요."></td>
 				</tr>
 			</table>

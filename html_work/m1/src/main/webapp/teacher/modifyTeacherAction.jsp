@@ -29,7 +29,7 @@
 	TeacherDao TDao = new TeacherDao();
 	
 	Teacher teacher = new Teacher();
-	teacher.setTeacherNo(teacherNo); // update문에서 teacher_no? 조건으로 변경하므로 teacherNo값 필수
+	teacher.setTeacherNo(teacherNo); // update문에서 teacher_no=? 조건으로 변경하므로 teacherNo값 필수
 	teacher.setTeacherID(teacherID);
 	teacher.setTeacherName(teacherName);
 	teacher.setTeacherHistory(teacherHistory);
