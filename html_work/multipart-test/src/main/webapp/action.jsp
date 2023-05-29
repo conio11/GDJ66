@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*"%>
 <%
+	// post 방식 인코딩 설정
+	request.setCharacterEncoding("UTF-8");
+
 	// request.getParameter("name");
 	// enctype: application/x-www-form-urlencoded인 폼에서 name = name인 문자열값을 받는 API
 
