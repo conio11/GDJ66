@@ -50,8 +50,7 @@
 			<tr>
 				<th>강사 ID</th>
 				<td>
-					<%=teacher.getTeacherID()%>
-					<%-- <input type="text" name="subjectName" value="<%=teacher.getTeacherID()%>" readonly="readonly" class="form-control w-50"> --%>
+					<input type="text" name="subjectName" value="<%=teacher.getTeacherID()%>" readonly="readonly" class="form-control w-50">
 				</td>
 			</tr>
 			<tr>
