@@ -38,8 +38,8 @@ public class ExceptionTest {
 		et.test(3);
 		// et.test(1);
 		
-		et.test2("100");
-		et.test2("9디");
+		et.test2("100"); // 100
+		et.test2("9디"); // 예외처리
 		
 		et.test3();
 	}
