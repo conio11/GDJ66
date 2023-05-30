@@ -6,8 +6,14 @@ import java.sql.*;
 import vo.*;
 
 public class TeacherDao {
-	// 1) acherList.jsp + 화면 캡처 + teacher 샘플데이터 
+	// 1) teacherList.jsp + 화면 캡처 + teacher 샘플데이터 
 	// 교과목이 연결되지 않은 강사는 출력 X: INNER JOIN -> OUTER JOIN
+	/*
+	SELECT t.teacher_no teacherNo, t.teacher_id teacherID, t.teacher_name teacherName, IFNULL(GROUP_CONCAT(ts.subject_no), 'X') teacherSubjectNo, IFNULL(GROUP_CONCAT(s.subject_name), 'X') subjectName 
+	FROM teacher t LEFT OUTER JOIN teacher_subject ts ON t.teacher_no = ts.teacher_no 
+	LEFT OUTER JOIN subject s ON ts.subject_no=s.subject_no GROUP BY t.teacher_no, t.teacher_id, t.teacher_name LIMIT ?, ?";
+	 */
+	
 	public ArrayList<HashMap<String, Object>> selectTeacherListByPage(int beginRow, int rowPerPage) throws Exception {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<>();
 		DBUtil dbUtil = new DBUtil();
