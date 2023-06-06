@@ -43,13 +43,11 @@
 		msg = URLEncoder.encode("과목 정보가 변경되었습니다.", "UTF-8"); 
 	} else {
 		System.out.println("수정 실패");
-		msg = URLEncoder.encode("과목 정복 변경에 실패했습니다.", "UTF-8");
+		msg = URLEncoder.encode("과목 정보 변경에 실패했습니다.", "UTF-8");
 	}
 	
 	// 과목 정보 수정 여부 관계없이 메시지와 함께 메인 페이지로 이동
 	response.sendRedirect(request.getContextPath() + "/subject/subjectList.jsp?msg=" + msg);
-	
-	
-	
+
 	System.out.println("=============modifySubjectAction=============");
 %>

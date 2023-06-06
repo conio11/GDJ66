@@ -94,7 +94,6 @@
 			<h1>강사 리스트</h1>
 		</div>
 		<br>
-		
 		<%
 			if (request.getParameter("msg") != null) {
 		%>

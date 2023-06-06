@@ -47,13 +47,13 @@
 	// [이전] 11 12 13 14 15 [다음]
 			
 	// currentPage = 1;
-	// 0 * 5 + 1
+	// 0 * 5 + 1 = 1
 	// currentPage = 2;
-	// (2 - 1) / 5
+	// (2 - 1) / 5 * 5 + 1 = 1
 	// currentPage = 3;
-	// (3 - 1) / 5 = 0 
+	// (3 - 1) / 5 * 5 + 1 = 1
 	// currentPage = 9
-	// (9 - 1) / 5 = 1
+	// (9 - 1) / 5 * 5 + 1 = 6
 	
 	// [이전] [다음] 탭 사이 최소, 최대값
 	int minPage = ((currentPage - 1) / pagePerPage) * pagePerPage + 1;
