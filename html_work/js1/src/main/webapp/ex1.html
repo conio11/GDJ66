@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex1</title>
+		
+		<script>
+			// 출력용 API
+			// js에서는 문자, 문자열 구분 X -> '', "", `` 사용 가능
+			
+			// let x = 10;
+			
+			alert('test');
+			console.log('console test'); // 개발자 도구에 출력
+			console.log("console test"); 
+			console.log(`console test`); 
+			console.log(`console
+					test`);
+			
+			// console.log()에 매개변수 여러 개 사용 가능
+			console.log('구디', '아카데미'); // 한 칸 띄고 출력
+			
+			// 주석 
+			// 자바와 같이 사용
+			/*
+			 	여러 줄 주석
+			 	22
+			*/
+			
+			// 데이터
+			// 1) 값 타입
+			// 숫자
+			let a1 = 10; // 변수 선언 시 var, let, const(상수) 사용
+			let a2 = 3.4;
+			console.log('a1 : ', a1);
+			console.log('a2 : ', a2);
+			
+			// 문자
+			let b1 = '구디';
+			let b2 = "구디";
+			let b3 = `구디`;
+			console.log('b1 : ', b1);
+			
+			// boolean
+			let c1 = true;
+			let c2 = false;
+			console.log('c1 : ', c1);
+			
+			// 2) 참조 타입
+			let d = [4, 5, 1];
+			console.log('d[0] : ', d[0]);
+			
+			// 배열
+			let e = {id : 'admin', age : 25, married : false};
+			console.log('e.id : ', e.id);
+			
+			// 코드 (실행 가능한 코드: 함수)
+			let f = function(){
+				console.log('코드도 변수에 저장 가능');
+			};
+			console.log(f);
+			// 코드는 함수 호출 연산자를 이용하여 실행 가능 <- 함수호출(실행)
+			f(); // 코드도 변수에 저장 가능
+			
+			// 특별한 값
+			// infinity(무한대), NaN, undefined, null
+			let s1 = 1 / 0;
+			console.log('1/0 :', s1); // 1/0 : Infinity
+			console.log('1/0 값의 타입 :', typeof(s1)); // 1/0 값의 타입 : number
+			
+			let s2 = 0 / 0;
+			console.log('0/0 :', s2); // 0/0 : NaN
+			console.log('s2 타입 :', typeof(s2)); // s2 타입 : number // number 타입에 무한대, 표현할 수 없는 숫자값도 포함
+			
+			let s3 = null;
+			console.log('s3 :', s3); // s3 : null 
+			console.log('s3 타입:', typeof(s3)); // s3 타입: object (참조 타입)
+			
+			let s4;
+			console.log('s4 :', s4); // s4 : undefined
+			console.log('s4 타입:', typeof(s4)); // s4 타입 : undefined (참조 타입 X)
+			
+			// Wrapper(boxing) 타입 -> 값 타입과 같은 형태의 참조 타입
+			// 값 타입에는 메소드 사용 불가, 참조 타입에는 메소드 사용 가능
+			let x = 'test';
+			// x를 참조 문자 타입으로(auto boxing) 변경 후 length 속성, substring() 메소드 
+			console.log('x.length :', x.length);
+			console.log('x.substring() :', x.substring(2));
+		
+			// 객체 안에 코드
+			let obj = {
+				name : '구디', // 속성
+				age : 12,
+				play : function() {alert('놀다');}
+				
+			};
+			// console.log(obj['name']); []참조연산자 사용 가능
+			console.log('obj name 속성 :', obj.name); // .참조연산자 
+			console.log('obj age 속성 :', obj.age);
+			console.log('obj play 메소드 :', obj.play);
+			// obj.name(); // TypeError: obj.name is not a function
+			// () 함수 호출 연산자는 코드 타입(함수, 메소드)에만 사용 가능
+			obj.play(); // 경고창(alert) 출력
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
