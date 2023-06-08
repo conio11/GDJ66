@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex2</title>
+		<script>
+			// 삼항연산자
+			// booelan ? (참일 때 실행코드) : (거짓일 때 실행코드)
+			let x1 = 8;
+			x1 % 2 == 1 ? console.log('홀수') : console.log('짝수');
+		
+			// typeof 연산자
+			// typeof(값)
+			
+			// 값 타입
+			console.log(typeof("abc")); // string
+			console.log(typeof(123)); // number
+			console.log(typeof(3.14)); // number
+			console.log(typeof(true)); // boolean
+			console.log(typeof(NaN)); // number // NaN: 숫자가 아니지만 숫자 타입
+			console.log(typeof(x)); // undefined(void)
+			
+			// 참조 타입
+			console.log(typeof(function(){})); // function
+			console.log(typeof({})); // object
+			console.log(typeof([])); // object
+			console.log(typeof(null)); // object
+			
+			// 반복문
+			// for문
+			for (let i = 0; i < 10; i += 1) {
+				console.log(i);
+			}
+			
+			// for-each: for-in, for-of
+			let arr = ['하명진', '이재성', '조동욱']; // let obj = {0: '하명진', 1: '이재성', 2: '조동욱'}
+			for (let i in arr) { // 인덱스 순환 
+				console.log(i);	// 0 1 2
+			}
+			
+			for (let i of arr) { // 배열에 들어있는 값 순환 // 자바의 for-each
+				console.log(i); 
+			}
+			
+			let obj = {id : 'goodee', age : 12, oper: true};
+			for (let i in obj) { // 인덱스 순환 
+				console.log(i); // id age oper
+				console.log(obj[i]); // goodee 12 true // [] 참조 연산자 내부에 변수 사용 가능 
+				// console.log(obj.i); // undefined // .참고 연산자 뒤 변수 사용 불가
+			}
+			// 자바: 반복문 내 객체 순환 불가
+			// js: 객체 순환 가능
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
