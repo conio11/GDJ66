@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script>
+			// 함수 vs 메소드, this
+			
+			// fun(); // Uncaught ReferenceError
+			fun2();
+			
+			
+			// 함수(전역에 만들어진 함수)
+			let fun = function() {
+				alert('fun: hello');
+				console.log(this);
+			};
+			
+			fun();
+			
+			function fun2() {
+				alert('hello2');
+			}
+			
+			// 메소드(객체 안에 만들어지는 함수)
+			// this 객체를 사용할 때는 메소드 생성
+			let obj = {meth : function(){
+					alert('method: hello');
+					console.log(this);
+				}
+			}
+			obj.meth();
+		</script>
+	</head>
+	<body>
+		<h1>함수 vs 메소드, this 키워드</h1> <!-- alert에서 확인 클릭 후 출력 -->
+	</body>
+</html>
