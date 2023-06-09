@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>object creation</title>
+		<script>
+			/*  
+			
+			객체를 생성하는 방법
+			1. 객체 리터럴(상수) {} 사용
+			2. class 문법 사용
+			3. this와 new 연산자를 사용하는 함수 (생성자 함수)
+			4. 익명 생성자 함수 사용
+			5. 일반함수 사용 (return 값이 객체)
+		
+			*/
+			
+			// 1. 객체 리터럴 {} 사용
+			let a = {}; // 자바스크립트는 객체에 동적으로 속성 추가 가능 (속성 안에 함수 포함 가능 -> 메소드)
+			a.id = 'goodee';
+			a.birth = 2012;
+			a.address = '금천구';
+			
+			let b = {id: 'goodee', 
+					birth: 2012, 
+					address: '금천구', 
+					greet: function(){
+						alert('b hello')
+					}
+			};
+			alert("b.id : " + b.id);
+			b.greet();
+			
+			// 2. class 문법(ECMASScript 6)
+			class User {
+				constructor() { // 생성자 함수 + new 연산자
+					this.id = 'goodee';
+					this.age = 2012;
+					// this.test = function(){}; 클래스 안에 메소드 만들지 X ?
+				}
+				greet() {
+					alert(this.id + ' hello');
+				}
+			}
+			
+			let u = new User();
+			alert('user : ' + u.id);
+			u.greet();
+			
+			let u2 = new User();
+			u2.id = 'ace';
+			alert('user : ' + u2.id);
+			u2.greet();
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>
