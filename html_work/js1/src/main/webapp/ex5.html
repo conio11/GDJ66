@@ -2,21 +2,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>ex5</title>
 		<script>
 			// 함수 vs 메소드, this
+			// 함수의 this -> 전역인 window
+			// 메소드의 this -> this 메소드를 호출하는 객체 자신
 			
 			// fun(); // Uncaught ReferenceError
-			fun2();
-			
+			fun2(); // hello2 알림창 // 아래에서 선언
 			
 			// 함수(전역에 만들어진 함수)
 			let fun = function() {
 				alert('fun: hello');
-				console.log(this);
+				console.log(this); // window
 			};
 			
-			fun();
+			fun(); // fun: hello 알림창
 			
 			function fun2() {
 				alert('hello2');
@@ -26,10 +27,10 @@
 			// this 객체를 사용할 때는 메소드 생성
 			let obj = {meth : function(){
 					alert('method: hello');
-					console.log(this);
+					console.log(this); // object
 				}
 			}
-			obj.meth();
+			obj.meth(); // method: hello 알림창
 		</script>
 	</head>
 	<body>
