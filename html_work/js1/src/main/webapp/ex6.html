@@ -5,14 +5,12 @@
 		<title>object creation</title>
 		<script>
 			/*  
-			
 			객체를 생성하는 방법
 			1. 객체 리터럴(상수) {} 사용
 			2. class 문법 사용
 			3. this와 new 연산자를 사용하는 함수 (생성자 함수)
 			4. 익명 생성자 함수 사용
 			5. 일반함수 사용 (return 값이 객체)
-		
 			*/
 			
 			// 1. 객체 리터럴 {} 사용
@@ -39,7 +37,7 @@
 					// this.test = function(){}; 클래스 안에 메소드 만들지 X ?
 				}
 				greet() {
-					alert(this.id + ' hello');
+					alert(this.id + ' hello'); // alert() 내에서 문자열 연결은 + 사용해야 함
 				}
 			}
 			
@@ -51,9 +49,6 @@
 			u2.id = 'ace';
 			alert('user : ' + u2.id);
 			u2.greet();
-			
-			
-			
 		</script>
 	</head>
 	<body>
