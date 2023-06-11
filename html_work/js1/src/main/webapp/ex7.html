@@ -16,11 +16,11 @@
 			let result = a(1, 3); // () 함수 호출 연산자와 함께 사용하면 함수 실행
 			console.log('result:', result); // result: 4
 			
-			(function(){alert('test')})(); // 익명 함수(함수 이름X) 호출
+			(function(){alert('test')})(); // 익명 함수(함수 이름X) 호출 -> 함수를 정의하고 즉시 호출
 			// let b = function(x, y) {alert(x + y);};
 			
 			// 매개변수가 있는 익명함수
-			(function(x, y) {alert(x + y);})('goodee', 'hello');
+			(function(x, y) {alert(x + y);})('goodee', 'hello'); // 함수를 정의하고 즉시 호출
 			
 			let b = a; // b에 반환값이 아니라 함수가 그대로 들어감 -> b도 함수
 			let result2 = b(7, 10);
@@ -35,7 +35,7 @@
 			
 			// 함수에 메소드(속성)도 추가 가능
 			b.play = function(){console.log('놀다')};
-			b.play();
+			b.play(); // 함수 호출
 			
 			let arr = [
 				function() {console.log('첫 번째 배열 함수')}, 
@@ -61,7 +61,7 @@
 			};
 			let f = c(); // ccc
 			f(); // eee
-			c()(); // ccc (줄바꿈) eee 
+			c()(); // ccc (줄바꿈) eee // c 함수를 호출하고 반환된 함수를 다시 호출 (c 호출 -> ccc 출력 -> eee 반환 -> eee 호출/출력)
 			
 			// 매개값
 			let g = function(fun) {
