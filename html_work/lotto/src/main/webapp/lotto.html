@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>lotto</title>
+		<style>
+		    div     {width:120px;height:120px;
+		            border:1px solid gray;
+		            display:table; float:left;
+		            margin-right:5px;}
+		   
+		    p       {font-size:50px;
+		            display:table-cell;
+		            text-align:center;
+		            vertical-align:middle;}
+		   
+		    nav     {clear:both; /* both: left, right 모두 clear */
+		            text-align:center;
+		            width:884px;}
+		   
+		    #orange {background-color:orange;} 
+		    #yellow {background-color:yellow;} 
+		    #green  {background-color:green;}  
+		    #blue   {background-color:blue;}   
+		    #navy   {background-color:navy;}   
+		    #purple {background-color:purple;}     
+		</style>
+	</head>
+	<body>	
+    	<h1>로또 생성기</h1>
+		    <div id="orange"><p id="orange_num">0</p></div>
+		    <div id="yellow"><p id="yellow_num">0</p></div>
+		    <div id="green"><p id="green_num">0</p></div>
+		    <div id="blue"><p id="blue_num">0</p></div>
+		    <div id="navy"><p id="navy_num">0</p></div>
+		    <div id="purple"><p id="purple_num">0</p></div>
+		   <!-- 사용X
+		   	 <nav>
+		        <input type="button" value="start" id="start">
+		        <input type="button" value="stop" id="stop">
+		    </nav> -->
+  			<button id="playBtn" type="button">play</button>
+	</body>
+	<script>
+		let randomArray = function(n) {
+			let resultArr = [];
+		 	
+			let arr = new Array(45); // arr의 length를 45로 지정 // arr = [] 형태도 사용 가능하나 for문에 숫자 사용해야 하는 문제
+			for (let i = 0; i < arr.length; i += 1) {
+				arr[i] = i + 1;
+			}
+			
+			// shuffle 로직 (알고리즘)
+			for (let i = 0; i < 100000; i += 1) {
+				// 1) arr의 0번째 값을 임시변수에 저장
+				let temp = arr[0];
+				// 2) 랜덤번째 값을 0번째 값에 복사
+				let ranNum = Math.floor(Math.random() * 45); // index는 0부터 44 -> 0.0부터 45 미만의 실수를 구한 뒤 버림
+				arr[0] = arr[ranNum];
+				// 3) 임시변수(temp - 원본의 0번째 값)의 값을 랜덤번째에 복사
+				arr[ranNum] = temp;
+			}
+			
+			resultArr = arr.slice(0, n); // arr의 index 0부터 n-1의 값까지 반환
+			
+			return resultArr; // n개의 숫자(1 ~ 45) 배열을 반환
+		};
+		
+		let lotto = randomArray(6);
+		console.log(lotto); // 디버깅 코드
+		
+		// DOM TREE API
+		// document.getElementById('orange_num'); // document: <body> 태그 내 모든 요소를 다루는 내장 객체? -> <html> 생성 후 불러오기
+		// document.getElementsByTagName('태그명');
+		// document.getElementsByClassName('클래스명');
+	
+		// HTML5 랩핑된 API
+		// document.querySelector('id명(#)/태그명/클래스명(.)');
+		/*
+		document.querySelector('#orange_num').innerHTML = lotto[0]; // .innerHTML: HTML 요소의 내부 HTML 콘텐츠
+		document.querySelector('#yellow_num').innerHTML = lotto[1];
+		document.querySelector('#green_num').innerHTML = lotto[2];
+		document.querySelector('#blue_num').innerHTML = lotto[3];
+		document.querySelector('#navy_num').innerHTML = lotto[4];
+		document.querySelector('#purple_num').innerHTML = lotto[5];
+		*/
+		
+		// TIME API
+		// 특정 시간 후에 한 번 실행하는 함수
+		// setTimeout(실행코드: 함수, 시간: ms) // 특정 시간에 1번 실행
+		setTimeout(function() {console.log('goodee')}, 1000);
+		
+		// 무한루프 함수 
+		// setInterval(실행코드: 함수, 시간: ms); // 1000 입력될 경우 1초에 한 번씩 무한루프 실행
+		
+		/*
+		let f = function() {
+			console.log(Math.random());
+		} 	
+			
+		setInterval(f, 1000); // 1초마다 Math.random() 실행
+		*/
+			
+		let sv = setInterval(function() {
+						console.log(Math.random());
+					}, 1000); // 1초마다 Math.random() 실행
+		
+		// 화살표 함수 표현방식
+		// function(){} 를 () => {} 와 같이 표현 (완전히 동일하지는 않음)
+		// setInterval(() => {console.log(Math.random());}, 1000); // 위와 동일한 기능의 코드
+		
+		
+		// 무한루프를 중지시키는 함수
+		// clearInterval(setInterval의 반환값)
+		// clearInterval(sv); // 바로 중지 -> 확인 불가
+		setTimeout(function() {clearInterval(sv);}, 10 * 1000); // 10초 후에 중지
+		
+		// 웹 브라우저 이벤트(버튼 클릭 등) 콜백 함수: addEventListener 메소드
+		// 이벤트객체.addEventListener('이벤트 이름', 실행코드: 함수)
+		let playBtn = document.querySelector('#playBtn');
+		playBtn.addEventListener('click', function(){
+			// 6개의 번호를 변경하면서 보여주는 무한루프
+			let orangeLoop = setInterval(function(){ // orange 색상의 블럭 내 숫자를 0.05초마다 랜덤 출력
+				document.querySelector('#orange_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			let yellowLoop = setInterval(function(){
+				document.querySelector('#yellow_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			let greenLoop = setInterval(function(){
+				document.querySelector('#green_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			let blueLoop = setInterval(function(){
+				document.querySelector('#blue_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			let navyLoop = setInterval(function(){
+				document.querySelector('#navy_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			let purpleLoop = setInterval(function(){
+				document.querySelector('#purple_num').innerHTML 
+					= Math.floor(Math.random() * 45) + 1;
+			}, 50);
+			
+			setTimeout(function(){
+				clearInterval(orangeLoop); // 번호 변경 중지
+				document.querySelector('#orange_num').innerHTML = lotto[0];
+			}, 1 * 1000); // 1초 후에 실행
+			
+			setTimeout(function(){
+				clearInterval(yellowLoop);
+				document.querySelector('#yellow_num').innerHTML = lotto[1];
+			}, 2 * 1000); // 2초 후에 실행
+			
+			setTimeout(function(){
+				clearInterval(greenLoop);
+				document.querySelector('#green_num').innerHTML = lotto[2];
+			}, 3 * 1000); // 3초 후에 실행
+			
+			setTimeout(function(){
+				clearInterval(blueLoop);
+				document.querySelector('#blue_num').innerHTML = lotto[3];
+			}, 4 * 1000); // 4초 후에 실행
+			
+			setTimeout(function(){
+				clearInterval(navyLoop);
+				document.querySelector('#navy_num').innerHTML = lotto[4];
+			}, 5 * 1000); // 5초 후에 실행
+			
+			setTimeout(function(){
+				clearInterval(purpleLoop);
+				document.querySelector('#purple_num').innerHTML = lotto[5];
+			}, 6 * 1000); // 6초 후에 실행
+		});
+	</script>
+</html>
