@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>0613 ex2</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	</head>
+	<body>
+		<input type="text" id="title" value="구디아카데미">
+		
+		<input type="checkbox" class="hobby" id="hobby" value="야구" checked="checked">야구
+		<input type="checkbox" class="hobby" id="hobby" value="축구">축구
+		<input type="checkbox" class="hobby" id="hobby" value="클라이밍">클라이밍
+		<button type="button" id="hobbyBtn">취미 유효성 검사</button>
+		<script>
+			// DOM API
+			console.log(document.getElementById('title').value); // 구디아카데미
+			
+			// CSS 선택자가 사용 가능한 DOM API
+			console.log(document.querySelector('#title').value); // 구디아카데미
+				
+			// JQuery API 사용
+			console.log(jQuery('#title').val()); // 구디아카데미
+			
+			// JQuery API(축약형): jQuery == $
+			console.log($('#title').val()); // 구디아카데미
+			
+			// let title = $('#title'); // JQuery에서는 이와 같이 변수를 잘 사용하지 않음
+			
+			let ck = document.getElementById('hobby'); // document.querySelector('#hobby');
+			console.log('typeof ck: ', typeof ck);
+			console.log('ck length:', ck.length);
+			
+			let ck2 = document.getElementsByClassName('hobby');  // document.querySelector('.hobby');
+			console.log('typeof ck2: ', typeof ck2);
+			console.log('ck2 length:', ck2.length);
+			
+			let ck3 = document.querySelectorAll('.hobby');
+			console.log('typeof ck3: ', typeof ck3);
+			console.log('ck3 length:', ck3.length);
+			
+			console.log("$('.hobby').length: ", $('.hobby').length);
+			console.log('체크된 hobby count: ', $('.hobby:checked').length);
+			
+			// DOM API 사용
+			document.querySelector('#hobbyBtn').addEventListener('click', function() {
+				if (document.querySelectorAll('.hobby:checked').length < 2) {
+					alert('2개 이상의 취미를 선택하세요.');
+				} else { // 2개 이상 선택된 경우 
+					let str = "";
+					for (let i = 0; i < document.querySelectorAll('.hobby:checked').length; i += 1) {
+						str += (document.querySelectorAll('.hobby:checked')[i].value + ',');
+					}
+					alert(str);
+				}
+			})
+			
+			// jQuery 사용
+			$('#hobbyBtn').click(function(){
+				if ($('.hobby:checked').length < 2) {
+					alert('2개 이상의 취미를 선택하세요.');
+				} else {
+					let str = "";
+					// jQuery for-each 문법: $(배열).each(function(index, item){});
+				    $('.hobby:checked').each(function(index, item) {
+				    	str += $(item).val() + ','; // item은 자바스크립트 변수 -> $()로 랩핑한 뒤 .val() 사용
+				    });
+				    // js 내장 문법
+				    // 배열.forEach(function(item, index){});
+				    alert(str);
+				}
+			});
+		</script>
+	</body>
+</html>
