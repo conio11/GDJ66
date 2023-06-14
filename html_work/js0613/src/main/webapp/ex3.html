@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>0613 ex3</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script>
+			// DOM API 코드 구현을 head 태그 내에 위치시킬 경우 아래와 같이 사용
+			/*
+			window.addEventListener('load', function(){ // load: DOM TREE를 로드 후 코드를 실행하는 이벤트
+				alert(document.getElementById('title').innerHTML);
+			})
+			*/
+			
+			// jQuery
+			$(document).ready(function() { // $(document).ready(): 문서가 로드되고 DOM 트리가 완전히 생성된 후에 실행될 콜백 함수를 등록하는 역할 (DOM 로드 이벤트)
+				alert($('#title').test());
+			});
+		</script>
+	</head>
+	<body>
+		<h1 id="title">구디아카데미</h1>
+		<script>
+			alert('test');
+		</script>
+	</body>
+</html>
