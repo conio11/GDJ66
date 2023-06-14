@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>validationForm</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+		<script>
+		  /*
+	      intput 태그 값 : val(), val(매개값) 
+	      ex) <input type="text" value="">
+	      
+	      일반태그(문자) : text(), text(매개값)
+	      ex) <div>hello</div>
+	      
+	      일반태그(다른태그) : html(), html(매개값)
+	      ex) <div><span>hi</span></div>
+	         $('span').text(); 
+	         $('div').html(); 
+	         
+	      ☆☆☆☆☆ 
+	      이벤트 처리 콜백함수 안에서 this는 이벤트의 객체를 바인딩
+	      this -- ('#id')
+	   	  */
+	   
+	   $(document).ready(function() { // 이벤트 : <body> ~ </body>태그가 로드되고 나면 
+	      // 시작시 id입력폼에 포커스
+	      $('#id').focus();
+	      
+	      let allCheck = false;
+	   
+	      // id유효성 체크
+	      $('#id').blur(function() { // 다음 커서로 넘어갈 때
+	         if ($('#id').val().length < 4) {
+	            $('#idMsg').text('ID는 4자 이상이어야 합니다');
+	            $('#id').focus();
+	         } else {
+	            console.log($('#id').val()); 
+	            // console.log($(this).val()); // this 뒤에 jquery 메서드를 참조하려면 $(this)후...
+	            $('#idMsg').text(''); // 'ID는 4자 이상이어야 합니다' 삭제
+	            $('#pw').focus();
+	         }
+	      });
+	      
+	      // pw유효성 체크
+	      $('#pw').blur(function(){
+	         if ($('#pw').val().length < 4) {
+	            $('#pwMsg').text('PW는 4자이상이어야 합니다');
+	            $('#pw').focus();
+	         } else {
+	            $('#pwMsg').text('');
+	            $('#pwck').focus();
+	         }
+	      });
+	      
+	      // pwck유효성 체크
+	      $('#pwck').blur(function(){
+	         if ($('#pwck').val() != $('#pw').val()) {
+	            $('#pwMsg').text('PW를 확인하세요');
+	            $('#pw').focus();
+	         } else {
+	            $('#pwMsg').text('');
+	            $('#name').focus();
+	         }
+	      });
+	      
+	      // name유효성 체크
+	      $('#name').blur(function(){
+	         if ($('#name').val().length < 1) { // $('#pw').val() == ''
+	            $('#nameMsg').text('name을 입력하세요');
+	            $('#name').focus();
+	         } else {
+	            $('#nameMsg').text('');
+	            $('#birth').focus();
+	         }
+	      });
+	      
+	      // birth유효성 체크
+	      $('#birth').blur(function(){
+	         if ($('#birth').val().length < 1) { // $('#pw').val() == ''
+	            $('#birthMsg').text('birth을 입력하세요');
+	            $('#birth').focus();
+	         } else {
+	            $('#birthMsg').text('');
+	
+	            let today = new Date();
+	            let todayYear = today.getFullYear();
+	            let birthYear = $(this).val().substring(0,4); // $('#birth').val().substring(0,4);
+	            let age = todayYear - Number(birthYear);             
+	            $('#age').val(age);
+	            $('#email').focus();
+	         }
+	      });
+	      
+	      // email유효성 체크
+	      $('#email').blur(function(){
+	         if ($('#email').val() == '') {
+	            $('#emailMsg').text('email를 입력하세요');
+	            $('#email').focus();
+	         } else {
+	            $('#emailMsg').text('');
+	            $('#emailUrl').focus();
+	         }
+	      });
+	      $('#emailUrl').blur(function(){
+	         if ($('#emailUrl').val() == '') {
+	            $('#emailMsg').text('emailURl를 입력하세요');
+	            $('#emailUrl').focus();
+	         } else {
+	            $('#emailMsg').text('');
+	            $('#signinBtn').focus();
+	            allCheck = true;
+	         }
+	      });
+	      
+	      // signinBtn click + gender선택 유무 + hobby선택 유무 체크
+	      $('#signinBtn').click(function() {
+	         // 페이지에 바로 버턴 누름을 방지하기 위해
+	         if (allCheck == false) { // if(!allCheck) {
+	            $('#id').focus();
+	            return;
+	         }
+	         
+	         if ($('.gender:checked').length == 0) {
+	            $('#genderMsg').text('성별을 선택하세요');
+	            return;
+	         } else {
+	            $('#genderMsg').text('');
+	         }
+	         
+	         if ($('.hobby:checked').length == 0) {
+	            $('#hobbyMsg').text('하나이상의 취미를 선택하세요');
+	            return;
+	         } else {
+	            $('#hobbyMsg').text('');
+	         }
+	         
+	         $('#signinForm').submit();
+	      });
+	   });
+	</script>
+	</head>
+	<body>
+	   <h2>회원가입</h2>
+	   <form id="signinForm" action="/js1219/signinAction.jsp">
+	      <table border="1">
+	         <!-- 아이디 -->
+	         <tr>
+	            <td>아이디</td>
+	            <td>
+	               <input type="text" id="id"> 
+	               <span id="idMsg" class="msg"></span>
+	            </td>
+	         </tr>
+	         <!-- 비밀번호 -->
+	         <tr>
+	            <td>
+	               <div>비밀번호</div>
+	               <div>비밀번호확인</div>
+	            </td>
+	            <td>
+	               <div>
+	                  <input type="password" id="pw">
+	                  <span id="pwMsg" class="msg"></span>
+	               </div>
+	               <div>
+	                  <input type="password" id="pwck">
+	               </div>
+	            </td>
+	         </tr>
+	         <!-- 이름 -->
+	         <tr>
+	            <td>이름</td>
+	            <td>
+	               <input type="text" id="name">
+	               <span id="nameMsg" class="msg"></span>
+	            </td>
+	         </tr>
+	         <!-- 생일 -->
+	         <tr>
+	            <td>생일</td>
+	            <td>
+	               <input type="date" id="birth">
+	               <span id="birthMsg" class="msg"></span>
+	            </td>
+	         </tr>
+	         <!-- 나이 -->
+	         <tr> 
+	            <td>나이</td>
+	            <td><input type="text" id="age" readonly="readonly"></td>
+	         </tr>
+	         <!-- 성별 -->
+	         <tr>
+	            <td>성별</td>
+	            <td>
+	               <input type="radio" name="gender" class="gender">남 
+	               <input type="radio" name="gender" class="gender">여
+	               <span id="genderMsg" class="msg"></span>
+	            </td>   
+	            </tr>
+	         <!-- 취미 -->
+	         <tr>
+	            <td>취미</td>
+	            <td>
+	               <input type="checkbox" name="hobby" class="hobby">여행 
+	               <input type="checkbox" name="hobby" class="hobby">게임 
+	               <input type="checkbox" name="hobby" class="hobby">등산
+	               <span id="hobbyMsg" class="msg"></span>
+	            </td>
+	         </tr>
+	         <!-- 메일주소 -->
+	         <tr>
+	            <td>메일</td>
+	            <td>
+	               <span><input type="text" id="email"></span> 
+	               <span>@</span> 
+	               <select id="emailUrl">
+	                  <option value="">선택</option>
+	                  <option value="naver.com">naver</option>
+	                  <option value="daum.net">daum</option>
+	                  <option value="gmail.com">gmail</option>
+	               </select>
+	               <span id="emailMsg" class="msg"></span>
+	            </td>
+	         </tr>
+	         <!-- 메모 -->
+	         <tr>
+	            <td>메모(선택입력)</td>
+	            <td><textarea cols="50" rows="5"></textarea></td>
+	         </tr>
+	      </table>
+	      <button type="button" id="signinBtn">회원가입</button>
+	      <button type="reset">초기화</button>
+	   </form>
+	</body>
+</html>
