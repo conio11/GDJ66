@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>0614 ex2</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){ // 문서가 준비되었을 때 실행 (script 태그를 head에 사용하기 위함)
+				// $("p") -> jQuery 배열(element) 객체
+				// $(.)
+				// $ ('#') -> jQuery 객체
+				
+				  $("p").click(function() { // 클릭이 되었을 때 
+				    $(this).hide(); // <p> 태그 내 요소가 클릭되었을 때 숨김 처리
+				  });
+				
+				  $('p').on('click', function() {
+					  alert('p on click');
+				  }) 	
+				  
+				  $('p').click(function() {
+					  alert('p on click2');
+				  }); 
+				  
+				  $('#id').blur(function() { // 포커스를 잃었을 때
+					 // alert('blur');
+				  	 if (isNaN($('#id').val()) == false) { // isNaN: 숫자로 바뀌면 false, 숫자로 바뀌지 않으면 true
+				  		 // alert('id는 문자만 입력'); 
+				  	 	 $('#idHelp').text('숫자만으로 id를 사용할 수 없습니다');
+				  	  	 $('#id').val(''); // val() : getter 역할, val(매개값): setter 역할
+				  	  	 $('#id').focus();		
+			  	  	 	 return;
+				  	 } else {
+				  		$('#idHelp').text('');
+				  	 }
+				  });
+				  
+				  $('#lang').change(function() { // 값이 바뀌었을 때 
+					  $('#langOutPut').val($('#lang').val());  // id가 langOutPut인 value를 선택값과 똑같이 바꿈
+				  })
+				});
+		</script>
+	</head>
+	<body>
+		<p>p1</p>
+		<p>p2</p>
+		<p>p3</p>
+		
+		<div>
+			<select id="lang">
+				<option value="">언어선택</option>
+				<option value="java">java</option>
+				<option value="python">python</option>
+			</select>
+			<input type="text" id="langOutPut" readonly="readonly">
+		</div>
+		
+		<div>
+		<!-- blur  -->
+			blur : <input type="text" id="id" value=""><span id="idHelp"></span>
+		</div>
+		<div>
+		<!-- blur  -->
+			test : <input type="text" id="test">
+		</div>
+	</body>
+</html>

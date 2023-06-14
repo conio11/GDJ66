@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex1</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			let arr1 = [5, 7, 9];
+			arr1.forEach(function(e, i) { // (값, 인덱스)
+				console.log('값', e, '인덱스', i);
+			});
+			
+			$(arr1).each(function(i, e) { // jQuery 메소드를 사용하기 위해 jQuery 변수로 랩핑해야 함 
+				console.log('값', e, '인덱스', i);
+			})
+			
+			let x = document.querySelector('#test'); 
+			let y = $('#test') // let y: jQuery 속성 가능한 상태
+		</script>
+	</head>
+	<body>
+	
+	</body>
+</html>
