@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>member</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			class Member {
+				constructor(name, gender) {
+					this.name = name; // key 개념으로 사용
+					this.gender = gender;
+				}
+			}
+			
+			let list = [];
+			
+			$(document).ready(function() {
+				$('#addMember').click(function() { // 버튼을 클릭했을 때 
+					if ($('#name').val() == '' || $('#gender').val() == '') { // 공백 유효성 검사 - 한 값이라도 공백이면
+						alert('이름과 나이를 입력하세요.');
+					} else {
+						// key name 속성 중복 유효성 검사
+						let flag = true;
+						$(list).each(function(index, item) {
+							if (item.name == $('#name').val()) {
+								alert('동일한 이름이 존재합니다.');
+								flag = false; // 중복 이름이 존재하면 flag 값을 false로 설정 후 반복 종료
+								return;
+							}
+						});
+						
+						if (flag == true) {
+							let m = new Member($('#name').val(), $('#gender').val());
+							list.push(m);
+							console.log(list);
+							// table에 입력값 출력
+							$('#memberList').empty(); // #memberList 태그 사이의 모든 태그를 지움 // remove: #memberList 태그 자신도 지움
+							$(list).each(function(index, item) { // list 라고 사용하면 javascript의 변수 -> $() 사용
+								$('#memberList').append(`<tr>
+									<td><input class="delCk" type="checkbox" value="${item.name}"></td>						
+									<td>${item.name}</td>
+									<td>${item.gender}</td>
+								</tr>`);
+							});	
+						}
+					};
+				});
+				
+				// 삭제버튼
+				$('#delMember').click(function() { // 삭제버튼이 눌렸을 때
+						if ($('.delCk:checked').length < 1) {
+							alert('선택된 행이 없습니다.');
+							return;
+						}
+						// 선택된 이름을 list 배열에서 삭제
+						$('.delCk:checked').each(function(ckIndex, ckItem) {
+							$(list).each(function(listIndex, listItem) {
+								if ($(ckItem).val() == listItem.name) {
+									// checkbox value 값과 배열(list) 안에 name 값이 같으면
+									// 그 순서(index)에 해당하는 배열을 삭제
+									list.splice(listIndex, 1); // splice(삭제를 시작할 인덱스, 개수): 배열에서 요소 삭제
+								} 			
+							});
+						});
+						
+						// list를 다시 출력
+						$('#memberList').empty(); // 출력된 내용 지우고
+						$(list).each(function(index, item) { // 배열 (list) 
+							$('#memberList').append(`<tr>
+									<td><input class="delCk" type="checkbox" value="${item.name}"></td>						
+									<td>${item.name}</td>
+									<td>${item.gender}</td>
+								</tr>`);
+						});
+						
+					});
+				});
+		</script>
+	</head>
+	<body>
+		<h1>회원목록</h1>
+		<div>
+			<input type="text" id="name"> <!-- key: 중복값 방지 -->
+			<input type="text" id="gender">
+			<button type="button" id="addMember">추가</button>
+		</div>
+		<table border="1">
+			<thead>
+				<tr>
+					<td><button type="button" id="delMember">삭제</button></td>
+					<td>이름</td>
+					<td>성별</td>
+				</tr>
+			</thead>
+			<tbody id="memberList">
+			</tbody>
+		</table>
+	</body>
+</html>

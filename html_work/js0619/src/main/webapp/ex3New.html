@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#addFile').click(function() {
+					// 추가되지 말아야 할 조건
+					if ($('.pic').length == 0) { // 맨 처음에 파일추가 버튼 클릭 가능
+						$('#files').append('<input type="file" class="pic">');
+					} else {
+						if ($('.pic').last().val() == '') { // 마지막 파일 업로드 태그가 비어 있으면
+							alert('빈 파일 업로드 태그가 있습니다.');
+						} else {
+							$('#files').append('<input type="file" class="pic">');
+						}
+					}
+				});
+				
+				$('#delFile').click(function() { // 파일을 삭제 (가장 마지막 파일)
+					// $('.pic').remove(); // 전체 삭제
+					if ($('.pic').last().val() != '') { // 내용물이 있으면 삭제 불가
+						alert('빈 파일 업로드 태그가 없습니다.');
+					} else { // 비어 있는 파일 업로드 태그 삭제 가능
+						$('.pic').last().remove();
+						
+					}
+				})
+			});
+		</script>
+	</head>
+	<body>
+		<h1>멀티 파일 업로드</h1>
+		<form method="post" action="./action.jsp" enctype="multipart-form/data">
+				<div>
+				제목: 
+				<input type="text" id="title" name="title">	
+			</div>
+			<div>
+				<button id="addFile" type="button">파일추가</button>
+				<button id="delFile" type="button">파일삭제</button>
+			</div>
+			<div id="files"></div>
+		</form>
+	</body>
+</html>

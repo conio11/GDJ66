@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ex1</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#btn1').click(function() { // id가 btn1인 요소를 클릭하면
+					alert('bt1 클릭');
+					$('#output').html('<button id="btn2">btn2</button>'); // btn1 클릭 후 id가 output인 요소를 btn2 버튼으로 출력
+				});
+				
+				// 동적으로 추가된 태그의 이벤트 처리는 전체 document 다시 리로드 후 진행
+				/*
+				$('#btn2').click(function() { // id가 btn2인 요소를 클릭하면
+					alert('btn2 클릭'); // 아무 일도 일어나지 않음 -> 실제로 존재하지 않는 버튼이기 때문에
+				});
+				*/
+				$(document).on('click', '#btn2', function() { // 전체 document 리로드 // btn2인 요소를 클릭하면
+					alert('btn2 클릭'); // 경고창 출력
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<button id="btn1">btn1</button>
+		<div id="output"></div>
+	
+	</body>
+</html>

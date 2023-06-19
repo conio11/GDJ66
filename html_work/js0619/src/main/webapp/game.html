@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>RSPGame</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				let count = 0; // 가위바위보 시도 횟수
+				let currentStair = 0; // 현재 위치한 층수
+				
+				// 1) 시도횟수 출력
+				$('#count').val(count); // id가 count인 html 요소의 값을 count 변수의 값으로 설정
+				// jQuery setter / getter
+				/*
+					<input> : .val(값) / val()
+					태그 사이에 문자열: .text(매개값) / text()
+					태그 사이에 태그 채울 때: .html(매개값) / html()
+				*/
+				
+				// 2) 가위바위보 진행
+				// 선택자가 클래스 이름이면 반환 타입은 배열
+				$('#playBtn').click(function() {
+					console.log('length : ',  $('.rsp:checked').length); // 클래스명이 rsp 
+					if ($('.rsp:checked').length == 0) {
+						alert('가위/바위/보 중 하나를 선택하세요');
+						return; // 버튼 클린 콜백 종료
+					} 
+					// 선택했으면 (사용자 선택 - 가위, 바위, 보)
+					let userRspVal = $($('.rsp:checked')[0]).val(); // 
+					console.log('userRspVal:', userRspVal);
+					
+					// 시스템 선택 (가위, 바위, 보)
+					let sysRsp = ['가위', '바위', '보'];
+					let sysRspVal = sysRsp[Math.floor(Math.random() * 3)];
+					console.log('sysRspVal: ', sysRspVal);
+					
+					count += 1; // 승패 관계없이 게임 시도 횟수는 1 증가
+					$('#count').val(count);
+				
+					// 승패
+					if (userRspVal == sysRspVal) { // 무승부
+						console.log('비김');
+						$('#playLog').val('비김 ' + currentStair + '층');
+					} else if((userRspVal == '가위' && sysRspVal == '보')
+					|| (userRspVal == '바위' && sysRspVal == '가위')
+					|| (userRspVal == '보' && sysRspVal == '바위')) { // 사용자가 이기는 조건
+						
+						// 기존 층의 캐릭터 삭제
+						$('#s' + (currentStair)).html('&nbsp;'); 
+						// 현재 층 + 1
+						currentStair += 1;
+						// 현재 층에 캐릭터 추가
+						$('#s' + currentStair).html('&#127939;');
+						
+						console.log('승');
+						$('#playLog').val('승 ' + currentStair + '층');
+						
+						if (currentStair == 7) {
+							alert('게임 종료. 시도횟수: ' + count + '회');
+							// 페이지 새로고침
+							location.reload();
+						 	return;
+						}
+					} else { // 시스템이 이기는 조건
+						console.log('패');
+						$('#playLog').val('패 ' + currentStair + '층');
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+	   <h1>계단 게임</h1>
+	   <form>
+	      <fieldset>
+	         <legend>가위/바위/보</legend>
+	         <input type="text" id="count" readonly="readonly">번째 : 
+	         <input type="radio" name="rsp" class="rsp" value="가위">가위
+	         <input type="radio" name="rsp" class="rsp" value="바위">바위
+	         <input type="radio" name="rsp" class="rsp" value="보">보
+	         <button type="button" id="playBtn">play</button>
+	         <div>log</div>
+	         <div>
+	            <textarea id="playLog" rows="10" cols="60" readonly="readonly"></textarea>
+	         </div>
+	      </fieldset>
+	   </form>
+	   <br>
+	   <table border="1">
+	      <tr>
+	         <td style="width:50px; background-color: purple;">
+	            <span id="s7">&nbsp;</span>
+	         </td>
+	         <td rowspan="7" style="text-align: center; vertical-align: bottom;">
+	            <span id="s0">&#127939;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: navy;">
+	            <span id="s6">&nbsp;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: blue;">
+	            <span id="s5">&nbsp;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: green;">
+	            <span id="s4">&nbsp;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: yellow;">
+	            <span id="s3">&nbsp;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: orange;">
+	            <span id="s2">&nbsp;</span>
+	         </td>
+	      </tr>
+	      <tr>
+	         <td style="background-color: red;">
+	            <span id="s1">&nbsp;</span>
+	         </td>
+	      </tr>
+	   </table>
+	</body>
+</html>
