@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>request</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script></script>
+	</head>
+	<body>
+	<!--
+		 웹페이지 요청 방식 (html, js) - get/post - 동기/비동기
+		 1. html (동기)
+			1) a 태그 (get)
+			2) form 태그 액션 속성(get/post)
+			
+			2. javascript (동기/비동기)
+			1) location 객체 (get)
+			2) ajax api (get/post) -> 비동기
+			
+			동기요청 : 페이지 요청 (응답)
+			비동기요청 : api 요청 (반환값 응답)
+		-->
+		<h1>요청 페이지</h1>
+		<div>
+			1 - 1) <a href="./response.html">a태그, get, 동기</a>
+		</div>
+		<div>
+			1 - 2)
+			<form action="./response.html" method="get">
+				<button type="submit">form 태그, get, 동기</button>
+			</form>
+		</div>
+		<div>
+			1 - 3)
+			<form action="./response.html" method="post">
+				<button type="submit">form 태그, get, 동기</button>
+			</form>
+		</div>
+		<div>
+			2 - 1)
+			<button type="button" id="btn1">js(locaion 객체), get, 동기</button>
+			<script>
+				$('#btn1').click(function() {
+					location.href='./response.html';
+				})
+			</script>
+		</div>
+		<div>
+			2 - 2)
+			<button type="button" id="btn2">js(ajax api), get, 동기, api 요청 (문자열 반환값: xml, json)</button> <!-- api 요청이므로 페이지가 바뀌지 않음 -->
+			<script>
+				$('#btn2').click(function() {
+					console.log('btn2 클릭');
+					$.ajax({
+						async: true, // false: 동기, true: 비동기(디폴트)
+						type: 'post',
+						url: './response.html'
+					});
+				});
+			</script>
+		</div>
+	
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<button type="button" id="btn1">ajax 비동기 요청</button>
+		<div>
+			<div>id: <input type="text" id="id" readonly="readonly"></div>
+			<div>pw: <input type="text" id="pw" readonly="readonly"></div>
+		</div>
+		<script>
+			$('#btn1').click(function() {
+				$.ajax({
+					url: './data.json', // api 데이터 요청(xml, json 파일 또는 이와 같은 파일을 반환하는 api 호출)
+					type: 'get', 
+					success : function(param) {
+						// param -> data.json파일 X -> data.json 파일 해석 후 자바스크립트 코드(객체) 변경한 타입
+						alert('비동기 호출 성공');
+						console.log(param);
+						$('#id').val(param.id);
+						$('#pw').val(param.pw);
+					},  // api 호출이 성공했을 때 실행되는 콜백함수
+					error : function(param) {
+						alert('비동기 호출 실패');
+					} // api 호출이 실패했을 때 실행되는 콜백함수
+				});
+			});
+		</script>
+	</body>	
+</html>
