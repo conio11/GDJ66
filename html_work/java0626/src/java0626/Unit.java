@@ -1,5 +1,5 @@
 package java0626;
 
-public class Unit {
-	public int hp; 
+public abstract class Unit { // Object > Unit > GroundUnit > Tank
+	public int hp;
 }

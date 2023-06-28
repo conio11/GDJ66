@@ -3,9 +3,9 @@ package java0626;
 public class Tank extends GroundUnit {
 	// public int hp;
 	public int mode;
-	
+	@Override
 	public void attack(GroundUnit u) {
-		u.hp -= 1;
+		u.hp -= 10;
 	}
 	
 	/*
