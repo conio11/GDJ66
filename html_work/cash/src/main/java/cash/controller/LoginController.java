@@ -11,11 +11,10 @@ import javax.servlet.http.HttpSession;
 import cash.model.*;
 import cash.vo.*;
 
+/*@SuppressWarnings("serial")*/
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	@Override
-	// private static final long serialVersionUID = 1L;
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		// session 인증 검사 코드
 		HttpSession session = request.getSession();
