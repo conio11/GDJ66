@@ -52,6 +52,7 @@ public class RemoveMemberController extends HttpServlet {
 			
 		} else if (row == 0) { // 
 			System.out.println("회원 탈퇴 실패");
+			response.sendRedirect(request.getContextPath() + "/removeMember");
 		} else {
 			System.out.println("remove member error!");
 		}		

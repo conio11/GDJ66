@@ -90,6 +90,7 @@ public class MemberDao {
 			try {
 				stmt.close();
 				conn.close();
+				rs.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
 			}
