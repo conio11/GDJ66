@@ -2,8 +2,9 @@ package cash.vo;
 
 public class Cashbook {
 	private int cashbookNo;
+	private String memberId;
 	private String category;
-	private String cashBookDate;
+	private String cashbookDate;
 	private int price;
 	private String memo;
 	private String updatedate;
@@ -13,12 +14,13 @@ public class Cashbook {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Cashbook(int cashbookNo, String category, String cashBookDate, int price, String memo, String updatedate,
+	public Cashbook(int cashbookNo, String memberId, String category, String cashbookDate, int price, String memo, String updatedate,
 			String createdate) {
 		super();
 		this.cashbookNo = cashbookNo;
+		this.memberId = memberId;
 		this.category = category;
-		this.cashBookDate = cashBookDate;
+		this.cashbookDate = cashbookDate;
 		this.price = price;
 		this.memo = memo;
 		this.updatedate = updatedate;
@@ -31,17 +33,23 @@ public class Cashbook {
 	public void setCashbookNo(int cashbookNo) {
 		this.cashbookNo = cashbookNo;
 	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	public String getCategory() {
 		return category;
 	}
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getCashBookDate() {
-		return cashBookDate;
+	public String getCashbookDate() {
+		return cashbookDate;
 	}
-	public void setCashBookDate(String cashBookDate) {
-		this.cashBookDate = cashBookDate;
+	public void setCashbookDate(String cashbookDate) {
+		this.cashbookDate = cashbookDate;
 	}
 	public int getPrice() {
 		return price;
@@ -70,11 +78,8 @@ public class Cashbook {
 	
 	@Override
 	public String toString() {
-		return "Cashbook [cashbookNo=" + cashbookNo + ", category=" + category + ", cashBookDate=" + cashBookDate
+		return "Cashbook [cashbookNo=" + cashbookNo + ", memberId =" + memberId + ", category=" + category + ", cashbookDate=" + cashbookDate
 				+ ", price=" + price + ", memo=" + memo + ", updatedate=" + updatedate + ", createdate=" + createdate
 				+ "]";
 	}
-	
-	
-
 }
