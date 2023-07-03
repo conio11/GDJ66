@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/cashbook")
 public class CashbookController extends HttpServlet {
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 인증 검사 코드
 		HttpSession session = request.getSession();
