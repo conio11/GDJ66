@@ -9,6 +9,7 @@
 		<title>cashbookListOne</title>
 	</head>
 	<body>
+		<a href="${pageContext.request.contextPath}/calendar">뒤로가기</a>
 		<h1>${targetYear}년 ${targetMonth + 1}월 ${targetDate}일 가계부</h1>
 		
 		<table border="1">
@@ -17,15 +18,21 @@
 				<th>금액</th>
 				<th>메모</th>
 				<th>작성일자</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
 			</tr>
 		<c:forEach var="c" items="${list}">
 			<tr>
 				<td>${c.category}</td>	
 				<td>${c.price}</td>
 				<td>${c.memo}</td>	
-				<td>${fn:substring(c.createdate, 0, 10)}</td>			
+				<td>${fn:substring(c.createdate, 0, 10)}</td>
+				<td><a href="">#</a></td>
+				<td><a href="">#</a></td>			
 			</tr>
 		</c:forEach>
 		</table>
+		
+		<a href="${pageContext.request.contextPath}/addCashbook?targetYear=${targetYear}&targetMonth=${targetMonth}&targetDate=${targetDate}">새로 입력</a>
 	</body>
 </html>

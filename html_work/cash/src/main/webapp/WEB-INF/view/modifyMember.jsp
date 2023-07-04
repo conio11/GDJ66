@@ -18,10 +18,17 @@
 				$("#modifyMemberBtn").click(function() {
 					if ($("#memberPw").val() == "") {
 						alert("현재 비밀번호를 입력해주세요.");
+						$("#memberPw").focus();
 					} else if ($("#newPw1").val() == "") {
 						alert("새 비밀번호를 입력해주세요.");
+						$("#newPw1").focus();
 					} else if ($("#newPw2").val() == "") {
 						alert("새 비밀번호를 다시 입력해주세요.");
+						$("#newPw2").focus();
+					} else if ($("#newPw2").val() != $("#newPw1").val()) {
+						alert("새 비밀번호가 일치하지 않습니다.");
+						$("#newPw2").val(""); // 값 비우기
+						$("#newPw2").focus();
 					} else {
 						$("#modifyMember").submit();
 					}
