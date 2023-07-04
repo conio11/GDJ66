@@ -39,6 +39,7 @@
 	 	-->
 		<!-- 자바 코드 (제어문) : JSTL  -->
 		<div class="container mt-3">
+		<a href="${pageContext.request.contextPath}/cashbook" class="btn btn-success">홈 화면으로</a>
 		<div class="text-center">
 			<h1>${targetYear}년 ${targetMonth + 1}월</h1>
 		</div>
@@ -47,6 +48,16 @@
 			<a href="${pageContext.request.contextPath}/calendar?targetYear=${targetYear}&targetMonth=${targetMonth + 1}" class="float-end btn btn-outline-success">다음 달</a>
 		</div>
 		<br>
+		
+		<div>
+			<h3>이달의 해시태그</h3>
+			<div>
+				<c:forEach var="m" items="${htList}">
+					<a href="" class="btn btn-sm">${m.word}(${m.cnt})</a>
+				</c:forEach>
+			</div>
+		</div>
+		
 		<table class="table table-bordered">
 			<tr>
 				<th class="text-bg-success text-center">일</th>
@@ -66,15 +77,15 @@
 					</c:if>
 
 					<c:if test="${d < 1}">
-						<td></td>
+						<td style="color: gray;">${preLastDate + d}</td>
 					</c:if>
 					<c:if test="${d > lastDate}">
-						<td></td>
+						<td style="color: gray;">${d - lastDate}</td>
 					</c:if>
 					<c:if test="${!(d < 1 || d > lastDate)}">
 						<td>
 							<div>
-								<a href="${pageContext.request.contextPath}/cashbookListOne?targetYear=${targetYear}&targetMonth=${targetMonth}&targetDate=${d}">${d}</a>
+								<a href="${pageContext.request.contextPath}/cashbookListOne?targetYear=${targetYear}&targetMonth=${targetMonth}&targetDate=${d}" class="btn">${d}</a>
 							</div>
 							<c:forEach var="c" items="${list}">
 								<c:if test="${d == fn:substring(c.cashbookDate, 8, 10)}">
