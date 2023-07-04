@@ -1,6 +1,7 @@
 package cash.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,18 +20,17 @@ public class CashbookListOneController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 유효성 검사
-		/*
+		String msg = "";
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginMember") == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			msg = URLEncoder.encode("로그인 후 이용 가능합니다.", "UTF-8"); 
+			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		}
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		String loginMemberId = loginMember.getMemberId();
-		System.out.println(loginMemberId + " <-- loginMemberId(CashbookListOneController)");
-		*/
-		String loginMemberId = "user";
-		
+		System.out.println(loginMemberId + " <-- loginMemberId(CashbookListOneGet)");
+
 		// targetYear, targetMonth, targetDate 중 하나라도 넘어오지 않았을 경우 calendar 컨트롤러로 리다이렉트
 		if (request.getParameter("targetYear") == null
 		|| request.getParameter("targetMonth") == null
@@ -38,25 +38,15 @@ public class CashbookListOneController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/calendar");
 			return; 
 		}
+		
 		int targetYear = Integer.parseInt(request.getParameter("targetYear"));
 		int targetMonth = Integer.parseInt(request.getParameter("targetMonth"));
 		int targetDate = Integer.parseInt(request.getParameter("targetDate"));
 		
-		System.out.println(targetYear + " <-- targetYear(CashbookListOneController)");
-		System.out.println(targetMonth + " <-- targetMonth(CashbookListOneController)");
-		System.out.println(targetDate + " <-- targetDate(CashbookListOneController)");
+		System.out.println(targetYear + " <-- targetYear(CashbookListOneGet)");
+		System.out.println(targetMonth + " <-- targetMonth(CashbookListOneGet)");
+		System.out.println(targetDate + " <-- targetDate(CashbookListOneGet)");
 		
-	/*	if (targetMonth < 10) {
-			targetMonth = "" + targetMonth;
-		}
-		
-		if (targetDate.length() == 1) {
-			targetDate = "0" + targetDate;
-		}
-		
-		String cashbookDate = targetYear + "-" + (targetMonth + 1) + "-" + targetDate;
-		System.out.println(cashbookDate + " <-- cashbookDate(CashbookListOneController)");
-		*/
 		// 모델값 구하기
 		CashbookDao cashbookDao = new CashbookDao();
 		List<Cashbook> list = cashbookDao.selectCashbookListByCashbookDate(loginMemberId, targetYear, targetMonth + 1, targetDate);
@@ -67,7 +57,6 @@ public class CashbookListOneController extends HttpServlet {
 		request.setAttribute("targetMonth", targetMonth);
 		request.setAttribute("targetDate", targetDate);
 		request.setAttribute("list", list);
-		
 		
 		// cashbookListOne.jsp 포워딩
 		request.getRequestDispatcher("/WEB-INF/view/cashbookListOne.jsp").forward(request, response);
