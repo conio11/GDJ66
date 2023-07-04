@@ -1,6 +1,8 @@
 package cash.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +19,10 @@ public class MemberOneController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// session 유효성 검사 
 		HttpSession session = request.getSession();
+		String msg = "";
 		if (session.getAttribute("loginMember") == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			msg = URLEncoder.encode("로그인 후 이용 가능합니다.", "UTF-8"); 
+			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		}
 		Member loginMember = (Member) session.getAttribute("loginMember");

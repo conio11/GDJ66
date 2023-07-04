@@ -70,7 +70,8 @@ public class AddMemberController extends HttpServlet {
 		} else if (row == 1) {
 			System.out.println("회원가입 성공");
 			// 회원가입 성공 시 login.jsp로 이동 -> controller 리다이렉트
-			response.sendRedirect(request.getContextPath() + "/login");
+			msg = URLEncoder.encode("회원가입이 완료되었습니다. 로그인 후 이용 가능합니다.", "UTF-8");
+			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		} else {
 			System.out.println("add member error!");

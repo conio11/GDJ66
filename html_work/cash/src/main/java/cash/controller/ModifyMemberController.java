@@ -20,8 +20,10 @@ public class ModifyMemberController extends HttpServlet {
 		// session 유효성 검사
 		HttpSession session = request.getSession();
 		// 로그인 상태가 아니면 로그인 컨트롤러(-> login.jsp)로 이동
+		String msg = "";
 		if (session.getAttribute("loginMember") == null ) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			msg = URLEncoder.encode("로그인 후 이용 가능합니다.", "UTF-8"); 
+			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		}
 		
@@ -34,8 +36,10 @@ public class ModifyMemberController extends HttpServlet {
 		// session 유효성 검사
 		HttpSession session = request.getSession();
 		// 로그인 상태가 아니면 로그인 컨트롤러(-> login.jsp)로 이동
+		String msg = "";
 		if (session.getAttribute("loginMember") == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
+			msg = URLEncoder.encode("로그인 후 이용 가능합니다.", "UTF-8"); 
+			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		}
 		
@@ -47,7 +51,6 @@ public class ModifyMemberController extends HttpServlet {
 		String newPw2 = request.getParameter("newPw2");
 		
 		String newPw = null;
-		String msg = "";
 		if (newPw1.equals(newPw2)) {
 			newPw = newPw1;
 		} else {
