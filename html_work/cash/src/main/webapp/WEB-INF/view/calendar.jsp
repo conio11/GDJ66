@@ -29,6 +29,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
  		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				const urlParams = new URL(location.href).searchParams;
+				const msg = urlParams.get("msg");
+				if (msg != null) {
+					alert(msg);
+				}
+			});
+		</script>
 	</head>
 	<body>
 		<!-- 변수 or 반환값 -> EL 사용 $...  -->
@@ -39,7 +49,8 @@
 	 	-->
 		<!-- 자바 코드 (제어문) : JSTL  -->
 		<div class="container mt-3">
-		<a href="${pageContext.request.contextPath}/cashbook" class="btn btn-success">홈 화면으로</a>
+		<a href="${pageContext.request.contextPath}/logout" class="btn btn-success">로그아웃</a>
+		<a href="${pageContext.request.contextPath}/memberOne" class="btn btn-success">회원정보</a>
 		<div class="text-center">
 			<h1>${targetYear}년 ${targetMonth + 1}월</h1>
 		</div>
@@ -53,7 +64,7 @@
 			<h3>이달의 해시태그</h3>
 			<div>
 				<c:forEach var="m" items="${htList}">
-					<a href="" class="btn btn-sm">${m.word}(${m.cnt})</a>
+					<a href="${pageContext.request.contextPath}/hashtagOne?word=${m.word}" class="btn btn-sm">${m.word}(${m.cnt})</a>
 				</c:forEach>
 			</div>
 		</div>

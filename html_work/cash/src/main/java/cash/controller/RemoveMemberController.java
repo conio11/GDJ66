@@ -29,7 +29,6 @@ public class RemoveMemberController extends HttpServlet {
 		String memberId = loginMember.getMemberId();
 		System.out.println(memberId + " <-- memberId(removeMemberGet)");
 		
-		
 		request.getRequestDispatcher("/WEB-INF/view/removeMember.jsp").forward(request, response);
 	}
 

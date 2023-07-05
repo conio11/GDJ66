@@ -26,6 +26,9 @@ public class ModifyMemberController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login?msg=" + msg);
 			return;
 		}
+		Member loginMember = (Member) session.getAttribute("loginMember");
+		String memberId = loginMember.getMemberId();
+		System.out.println(memberId + " <-- memberId(modifyMemberGet)");
 		
 		// 로그인 상태이면 modifyMember.jsp로 이동
 		request.getRequestDispatcher("/WEB-INF/view/modifyMember.jsp").forward(request, response);
@@ -33,6 +36,9 @@ public class ModifyMemberController extends HttpServlet {
 	
 	// 회원정보수정 액션
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// post 방식 인코딩 설정
+		request.setCharacterEncoding("UTF-8");
+		
 		// session 유효성 검사
 		HttpSession session = request.getSession();
 		// 로그인 상태가 아니면 로그인 컨트롤러(-> login.jsp)로 이동
@@ -70,7 +76,7 @@ public class ModifyMemberController extends HttpServlet {
 			System.out.println("비밀번호 변경 성공");
 			// 페이지 이동
 			msg = URLEncoder.encode("비밀번호가 변경되었습니다.", "UTF-8"); 
-			response.sendRedirect(request.getContextPath() + "/cashbook?msg=" + msg);
+			response.sendRedirect(request.getContextPath() + "/calendar?msg=" + msg);
 		} else if (row == 0) {
 			System.out.println("비밀번호 변경 실패. 현재 비밀번호 확인");
 			msg = URLEncoder.encode("비밀번호 변경 실패. 현재 비밀번호를 확인해주세요.", "UTF-8"); 

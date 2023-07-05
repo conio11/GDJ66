@@ -37,6 +37,8 @@
 		</script>
 	</head>
 	<body>
+		<a href="${pageContext.request.contextPath}/calendar">홈 화면으로</a>
+		
 		<h1>회원정보수정</h1>
 		<form method="post" action="${pageContext.request.contextPath}/modifyMember" id="modifyMember">
 			<table border="1">

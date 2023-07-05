@@ -13,15 +13,14 @@ import javax.servlet.http.HttpSession;
 import cash.model.*;
 import cash.vo.*;
 
-/*@SuppressWarnings("serial")*/
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		// session 인증 검사 코드
+		// session 유효성 검사
 		HttpSession session = request.getSession();
 		if (session.getAttribute("loginMember") != null) {
-			response.sendRedirect(request.getContextPath() + "/cashbook");
+			response.sendRedirect(request.getContextPath() + "/calendar");
 			return;
 		}
 		
@@ -31,7 +30,6 @@ public class LoginController extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// doGet(request, response);
 		String memberId = request.getParameter("memberId");
 		String memberPw = request.getParameter("memberPw");
 		
@@ -53,6 +51,6 @@ public class LoginController extends HttpServlet {
 		System.out.println("로그인 성공(LoginPost)");
 		session.setAttribute("loginMember", loginMember);
 		msg = URLEncoder.encode(memberId + "님, 환영합니다.", "UTF-8"); 
-		response.sendRedirect(request.getContextPath() + "/cashbook?msg=" + msg);
+		response.sendRedirect(request.getContextPath() + "/calendar?msg=" + msg);
 	}
 }

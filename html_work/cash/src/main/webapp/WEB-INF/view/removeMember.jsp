@@ -26,6 +26,7 @@
 		</script>
 	</head>
 	<body>
+		<a href="${pageContext.request.contextPath}/calendar">홈 화면으로</a>
 		<h1>회원탈퇴</h1>
 		<form method="post" action="${pageContext.request.contextPath}/removeMember" id="removeMember">
 			<table border="1">
