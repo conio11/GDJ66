@@ -1,0 +1,108 @@
+1. 자바 입출력 개념
+다음 자바 코드 실행 시 출력되는 결과는? -> 
+
+2.
+3. Reference 타입 -> 답: 20 / 200
+int a = 20;
+int[] b = {100, 200, 300}
+change / a = 30, b[1] += 10 -> 210 (메소드 내에서 종료?)
+20 / 200
+
+
+4. 캡슐화 (Encapsulation) -> 답: 
+1) 외부 클래스, 패키지에서 직접 접근 불가하기 때문에 보안, 오류 방지 등에 유리. player 마다 id가 중복되지 않도록 정적인 변수를 사용함.
+2) 외부 클래스, 패키지에서 직접 접근 불가하기 때문에 보안, 오류 방지 등에 유리.(유효하지 않은 값 입력 방지 등)
+3) 외부에서 Player() 타입 객체를 선언할 수 있도록 하기 위해 public 사용
+4) 같은 패키지나 상속받은 클래스에서는 id값을 가져올 수 있도록 하기 위함. (getId() 사용 가능 범위 제한)
+5) id 설정 시 클래스 외부의 영향을 받지 않도록 함.
+
+
+5. 배열 -> 답: 1 2 3 4 5 6 7 8 9 (줄바꿈)
+ar[0] [], []
+ar[1] [], [], []
+ar[2] [], [], [], []
+
+out -> 3회 반복
+in -> 2, 3, 4회 반복
+ar[0][0] = 1
+ar[0][1] = 2
+ar[1][0] = 3
+ar[1][1] = 4 
+ar[1][2] = 5
+ar[2][0] = 6
+ar[2][1] = 7
+ar[2][2] = 8
+ar[2][3] = 9
+
+6. 다형성
+	Parent {
+		private int a = 1;
+		protected int b = 2;
+		public int c = 3;
+		
+		public void superMethod() {
+			sout("superMethod");		
+	}
+	
+	Child extends Parent {
+		private int x = 4;
+		protected int y = 5;
+		public int z = 6;
+		
+		public void subMethod() {
+			sout("subMethod")
+		}
+	}
+}
+
+
+
+
+7. Collection 기본 API -> 답: admin guest (줄바꿈)
+Set<Singer> set = new HashSet<>();
+Singer singer;
+
+singer = new Singer();
+singer.setName("admin");
+singer.setAge(30);
+
+// Singer singer2 = new Singer();
+singer.setName("guest");
+singer.setAge(32);
+set.add(singer);
+Iterator<Singer> it = set.iterator();
+while (it.hastNext())
+
+
+
+8. 논리연산자 -> 답: 2번
+static int result = 0 -> 10
+static boolean flag = false -> true
+.setResult(10); 
+methid1(10) -> true || method2()
+
+출력
+---
+method1() 실행
+false
+
+9. 상속 -> 답: 3번
+sub.name = "admin";
+sub.age = 30;
+super 영향 X
+
+10. 상속, 오버라이딩, 다형성 -> 1번
+Person[] persons = new Person[2];
+persons[0] = new Dancer();
+persons[1] = new Actor();
+for (int i = 0; i < persons.length; i++)
+
+11. Exception -> 답: 3번
+result = "1";
+method(0);
+x += x -> x = x + x
+x /= x -> x = x / x; -> exception
+result = 1245
+
+12.
+13.
